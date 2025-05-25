@@ -1,0 +1,517 @@
+{
+  "epicure": {
+    "pendingVouchers": [
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "6822WXQ",
+          "uniquePrivilegeCode": "6822WXQ",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": "TESTSUITEVC",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Safaris",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the of the participating Taj Safaris",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "176800",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "1IPK84TN4PLRA2LEWL1EOHEWNF"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "MD44G6O",
+          "uniquePrivilegeCode": "MD44G6O",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": "TESTSUITEVC",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Safaris",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the of the participating Taj Safaris",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-04-16T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "994175",
+          "createdOn": "2025-04-16T15:13:58+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "SWO9HC1W0OUC2HQ6H9KHQ7LA9I"
+        }
+      ],
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "ZXQQR7D",
+          "uniquePrivilegeCode": "ZXQQR7D",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Palaces",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the participating Taj Palaces",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "153525",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "2YO94C6WZU0ML2IH4R4IRK7RHQ"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "PD447Z8",
+          "uniquePrivilegeCode": "PD447Z8",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Palaces",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the participating Taj Palaces",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "801145",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "2ZI38VPBP4HGJ2UEH06OX17QS5"
+        }
+      ],
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "7955MNL",
+          "uniquePrivilegeCode": "7955MNL",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": "22052541",
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One Room Night including breakfast for two persons.",
+          "productDescription": "One nights stay at base category room including breakfast for two persons.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "513710",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "2ZI38VPBP4HGJ2UEH06OX17QS5"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "0G0063K",
+          "uniquePrivilegeCode": "0G0063K",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": "22052541",
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One Room Night including breakfast for two persons.",
+          "productDescription": "One nights stay at base category room including breakfast for two persons.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-02-24T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "976798",
+          "createdOn": "2025-02-24T18:30:25+05:30",
+          "status": "AVAILABLE",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "24L5ZGYWYO7XE2ULQWLN444GHQ"
+        }
+      ]
+    ],
+    "redeemedVouchers": [
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "KDOO4YR",
+          "uniquePrivilegeCode": "KDOO4YR",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": "TESTSUITEVC",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Safaris",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the of the participating Taj Safaris",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "286535",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "31S5ZRYX9J3VH2MQV27V6UOIXW"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "58003W5",
+          "uniquePrivilegeCode": "58003W5",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": "TESTSUITEVC",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% Discount on Best Available Rate for Room/Suite Stay at Taj Safaris",
+          "productDescription": "Twenty percent discount on Best Available Rate on direct booking of room/suite stay of upto five consecutive nights at any of the of the participating Taj Safaris",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-04-16T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "713865",
+          "createdOn": "2025-04-16T17:29:58+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "3J0CGKRG2CRHU2QEW8S4NS6ZZ2"
+        }
+      ],
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "Q2446Y4",
+          "uniquePrivilegeCode": "Q2446Y4",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% discount on Best Available Rates",
+          "productDescription": "One-time discount of twenty percent on Best Available Rate on direct booking of room/suite stay for unlimited consecutive nights.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "598556",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "542DFONA1G971YAALD83U7N8UA"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "GMNNJK4",
+          "uniquePrivilegeCode": "GMNNJK4",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "20% discount on Best Available Rates",
+          "productDescription": "One-time discount of twenty percent on Best Available Rate on direct booking of room/suite stay for unlimited consecutive nights.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "248264",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "JIYLY5NE8BQN2JTI2DSDDP41JI"
+        }
+      ],
+      [
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "YXGGY8P",
+          "uniquePrivilegeCode": "YXGGY8P",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": "22052541",
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One Room Night including breakfast for two persons.",
+          "productDescription": "One nights stay at base category room including breakfast for two persons.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-05-05T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "411221",
+          "createdOn": "2025-05-05T18:20:30+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "3ODPY1IXKLBLN2D70EEXVHN9LL"
+        },
+        {
+          "memberID": "202020646271",
+          "privilegeCode": "ZXQQRND",
+          "uniquePrivilegeCode": "ZXQQRND",
+          "extraData": {
+            "program_prefix": "EP",
+            "product_code": null,
+            "promocode": "22052541",
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One Room Night including breakfast for two persons.",
+          "productDescription": "One nights stay at base category room including breakfast for two persons.",
+          "productCategory": "VOUCHERS",
+          "offerName": "Re-imagine Epicure Enrollment Offer",
+          "offerType": "enrollment",
+          "offerDesc": "Enrollment Offer for the current program",
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2026-04-16T23:59:59+05:30",
+          "isReedemable": true,
+          "pin": "739273",
+          "createdOn": "2025-04-16T17:29:58+05:30",
+          "status": "USED",
+          "label": "EPICURE",
+          "labelType": "STAY",
+          "bitID": "2IUDYAASJD0O72LW07SXUM6Z4B"
+        }
+      ]
+    ]
+  },
+  "chamber": {
+    "pendingVouchers": [
+      [
+        {
+          "memberID": "B1LKDGA",
+          "privilegeCode": "Q8KN65",
+          "uniquePrivilegeCode": "Q8KN65",
+          "extraData": {
+            "program_prefix": "CH",
+            "product_code": null,
+            "redemption_source": ["PMS"]
+          },
+          "productName": "Grand Palaces Experience",
+          "productDescription": "1 Grand Palaces Experience for 3 Night 4 Day Stay",
+          "productCategory": "VOUCHERS",
+          "offerName": null,
+          "offerType": null,
+          "offerDesc": null,
+          "offerTitle": null,
+          "cdc": "PMS",
+          "offer_desktop_image": "",
+          "offer_mobile_image": "",
+          "validTill": "2026-02-02T23:59:59+05:30",
+          "isReedemable": false,
+          "pin": "576448",
+          "createdOn": "2025-02-03T05:30:00+05:30",
+          "status": "AVAILABLE",
+          "label": "THE CHAMBERS",
+          "labelType": "STAY",
+          "bitID": "15HIVIIIA87YL20NOWG6ID9UEA",
+          "chambersExternalId": "5713"
+        },
+        {
+          "memberID": "B1LKDGA",
+          "privilegeCode": "G4D5J7",
+          "uniquePrivilegeCode": "G4D5J7",
+          "extraData": {
+            "program_prefix": "CH",
+            "product_code": null,
+            "redemption_source": ["PMS"]
+          },
+          "productName": "Grand Palaces Experience",
+          "productDescription": "1 Grand Palaces Experience for 3 Night 4 Day Stay",
+          "productCategory": "VOUCHERS",
+          "offerName": null,
+          "offerType": null,
+          "offerDesc": null,
+          "offerTitle": null,
+          "cdc": "PMS",
+          "offer_desktop_image": "",
+          "offer_mobile_image": "",
+          "validTill": "2026-02-02T23:59:59+05:30",
+          "isReedemable": false,
+          "pin": "935771",
+          "createdOn": "2025-02-03T05:30:00+05:30",
+          "status": "AVAILABLE",
+          "label": "THE CHAMBERS",
+          "labelType": "STAY",
+          "bitID": "15HIVIIIA87YL20NOWG6ID9UEA",
+          "chambersExternalId": "5713"
+        }
+      ]
+    ],
+    "redeemedVouchers": []
+  },
+  "hsbc": {
+    "pendingVouchers": [
+      [
+        {
+          "memberID": "YBNYNHC",
+          "privilegeCode": "8IGEIVL",
+          "uniquePrivilegeCode": null,
+          "extraData": {
+            "program_prefix": "HSBC",
+            "product_code": "HSCRN",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One-Room Night including breakfast at Participating Hotels",
+          "productDescription": "One room-night stay at base category room including breakfast for two persons at participating hotels",
+          "productCategory": "VOUCHERS",
+          "offerName": null,
+          "offerType": null,
+          "offerDesc": null,
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2025-12-05T05:29:59+05:30",
+          "isReedemable": true,
+          "pin": "466810",
+          "createdOn": "2024-12-04T11:15:12+05:30",
+          "status": "AVAILABLE",
+          "label": "HSBC",
+          "labelType": "STAY",
+          "bitID": "1QK106JVR6O9Q2W5J4GA624628"
+        }
+      ],
+      [
+        {
+          "memberID": "YBNYNHC",
+          "privilegeCode": "9SYWTBH",
+          "uniquePrivilegeCode": null,
+          "extraData": {
+            "program_prefix": "HSBC",
+            "product_code": "HSPLC",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One-Room Night including breakfast at Taj Palaces",
+          "productDescription": "One room-night stay at base category room including breakfast for two persons at Taj Palaces",
+          "productCategory": "VOUCHERS",
+          "offerName": null,
+          "offerType": null,
+          "offerDesc": null,
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2025-12-05T05:29:59+05:30",
+          "isReedemable": true,
+          "pin": "120307",
+          "createdOn": "2024-12-04T11:15:12+05:30",
+          "status": "AVAILABLE",
+          "label": "HSBC",
+          "labelType": "STAY",
+          "bitID": "1QK106JVR6O9Q2W5J4GA624628"
+        }
+      ]
+    ],
+    "redeemedVouchers": [
+      [
+        {
+          "memberID": "YBNYNHC",
+          "privilegeCode": "8JEZMPB",
+          "uniquePrivilegeCode": null,
+          "extraData": {
+            "program_prefix": "HSBC",
+            "product_code": "HSCRN",
+            "promocode": null,
+            "redemption_source": ["PMS", "WEB"]
+          },
+          "productName": "One-Room Night including breakfast at Participating Hotels",
+          "productDescription": "One room-night stay at base category room including breakfast for two persons at participating hotels",
+          "productCategory": "VOUCHERS",
+          "offerName": null,
+          "offerType": null,
+          "offerDesc": null,
+          "offerTitle": null,
+          "cdc": "PMS,WEB",
+
+          "validTill": "2025-12-05T05:29:59+05:30",
+          "isReedemable": true,
+          "pin": "121248",
+          "createdOn": "2024-12-04T11:15:12+05:30",
+          "status": "USED",
+          "label": "HSBC",
+          "labelType": "STAY",
+          "bitID": "3FW1HN3HG7K6L2PUFMD2CTGYB0"
+        }
+      ]
+    ]
+  }
+}

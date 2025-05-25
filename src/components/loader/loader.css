@@ -1,0 +1,19 @@
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f6fa;
+}
+.loader-text {
+  margin-top: 16px;
+  color: #2e3b55;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.api-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

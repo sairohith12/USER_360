@@ -1,0 +1,25 @@
+import React from "react";
+import MobileNumberInput from "@/components/textFields/MobileNumber";
+import UserDetails from "@/components/Nudge";
+import TabsComponent from "@/components/tabs";
+import { useGuestContext } from "@/context/guestContext";
+import { Box } from "@mui/material";
+
+const NeucoinsRedemptionAndTabs: React.FC = () => {
+  const { isGuestLoggedIn } = useGuestContext();
+
+  return (
+    <Box padding={"0 3vw"} alignContent={"center"}>
+      {!isGuestLoggedIn ? (
+        <MobileNumberInput />
+      ) : (
+        <>
+          <UserDetails />
+          <TabsComponent />
+        </>
+      )}
+    </Box>
+  );
+};
+
+export default NeucoinsRedemptionAndTabs;

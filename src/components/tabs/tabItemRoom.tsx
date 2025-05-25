@@ -1,0 +1,796 @@
+// components/GuestForm.tsx
+import React, { useState } from 'react'
+import { Box, Button, Typography, CircularProgress, SelectChangeEvent } from '@mui/material'
+import FormInput from '../textFields/FormInput'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs, { Dayjs } from 'dayjs'
+import DateInput from '../DateInput'
+import { useGuestContext } from '@/context/guestContext'
+import OTPComponent from '../OTPComponent'
+import TextfieldValidator, { formatMobileNumber } from '@/utils/validateMobile'
+import CombinedModal from '../modal/ReponseModal'
+import { JOURNEY_TYPES } from '../textFields/constants'
+import FormSelect from '../textFields/FormSelect'
+import KeyValueList from '@/utils/KeyValueList'
+import api from 'api/axios'
+import {
+  ccAvenueGeneratePayments,
+  fields,
+  gcReinstateInstateFields,
+  gcVoucherRedemption,
+  neuCoinsReInstateFields,
+  voucherReinstateFields,
+} from './constants'
+import { formatDateToYYYYMMDD } from '@/utils/date'
+import { useAuth } from '@/context/authContext'
+// import Grid from "@mui/material/Grid";
+
+const TabItemRoom = () => {
+  const { Guest, guestLogout, journeyType } = useGuestContext()
+  const { user } = useAuth()
+  const journeyFields =
+    journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
+    journeyType === JOURNEY_TYPES.TEGC_REDEMPTION ||
+    journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION
+      ? fields
+      : journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE
+      ? neuCoinsReInstateFields
+      : journeyType === JOURNEY_TYPES.TEGC_REINSTATE
+      ? gcReinstateInstateFields
+      : journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE
+      ? voucherReinstateFields
+      : journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION
+      ? gcVoucherRedemption
+      : ccAvenueGeneratePayments
+  const initialFormValues = journeyFields.reduce((acc, field) => {
+    acc[field.name] =
+      field.type === 'date'
+        ? null
+        : field.name == 'propertyName'
+        ? 'Taj lands End Mumbai'
+        : field.name == 'memberID'
+        ? Guest?.memberId?.toString() || ''
+        : field.name == 'bitDate'
+        ? Guest?.createdOn?.toString() || ''
+        : field.name == 'memberType'
+        ? Guest?.memberType?.toString() || ''
+        : field.name == 'bitId'
+        ? Guest?.bitId?.toString() || ''
+        : field.name == 'redeemNeucoins'
+        ? '0'
+        : ''
+    return acc
+  }, {} as { [key: string]: string | Dayjs | null })
+  const userAmount =
+    JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType
+      ? Guest?.loyaltyInfo?.[0]?.loyaltyPoints
+      : JOURNEY_TYPES.TEGC_REDEMPTION === journeyType
+      ? Guest?.balance
+      : 0
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [loading, setLoading] = useState(false)
+  const [openOTPModal, setOpenOTPModal] = useState<boolean>(false)
+  const [open, setOpen] = useState(false)
+  const [modalType, setModalType] = useState<'success' | 'failure'>('success')
+  const [apiResponseData, setApiResponseData] = useState<any>(null)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormValues((prev) => ({ ...prev, [name]: value }))
+    // Clear the error when user modifies the field
+    setErrors((prev) => {
+      const newErrors = { ...prev }
+      delete newErrors[name]
+      return newErrors
+    })
+  }
+  //   const validate = () => {
+  //     const newErrors: { [key: string]: string } = {};
+
+  //     if (!formValues.firstName.trim())
+  //       newErrors.firstName = "First Name is required";
+  //     if (!formValues.lastName.trim())
+  //       newErrors.lastName = "Last Name is required";
+  //     if (!formValues.email.trim()) {
+  //       newErrors.email = "Email is required";
+  //     } else if (
+  //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formValues.email)
+  //     ) {
+  //       newErrors.email = "Invalid email address";
+  //     }
+  //     if (!formValues.phone.trim()) {
+  //       newErrors.phone = "Phone is required";
+  //     } else if (!/^\d{10}$/.test(formValues.phone)) {
+  //       newErrors.phone = "Phone must be 10 digits";
+  //     }
+  //     if (!formValues.dob.trim()) newErrors.dob = "DOB is required";
+  //     if (!formValues.nationality.trim())
+  //       newErrors.nationality = "Nationality is required";
+  //     if (!formValues.passport.trim())
+  //       newErrors.passport = "Passport Number is required";
+  //     if (!formValues.roomNumber.trim())
+  //       newErrors.roomNumber = "Room Number is required";
+  //     if (!formValues.checkIn.trim())
+  //       newErrors.checkIn = "Check-In Date is required";
+  //     if (!formValues.checkOut.trim())
+  //       newErrors.checkOut = "Check-Out Date is required";
+
+  //     setErrors(newErrors);
+
+  //     return Object.keys(newErrors).length === 0; // return true if no errors
+  //   };
+
+  const handleDateChange = (name: string, value: Dayjs | null) => {
+    setFormValues((prev) => {
+      const updatedForm = { ...prev, [name]: value }
+
+      // Auto set checkout +1 day after checkin
+      if (name === 'checkIn' && value) {
+        const nextDay = value.add(1, 'day')
+        if (!prev.checkOut || (prev.checkOut as Dayjs).isBefore(nextDay)) {
+          updatedForm.checkOut = nextDay
+        }
+      }
+      return updatedForm
+    })
+    // Clear the error when user modifies the field
+    setErrors((prev) => {
+      const newErrors = { ...prev }
+      delete newErrors[name]
+      return newErrors
+    })
+  }
+
+  const validate = () => {
+    const newErrors: { [key: string]: string } = {}
+    journeyFields.forEach((field) => {
+      const value = formValues[field.name]
+      if (field.required) {
+        if (
+          (field.type === 'date' && !dayjs(value).isValid()) ||
+          (!field.type && typeof value === 'string' && !value.trim())
+        ) {
+          newErrors[field.name] = `${field.label} is required`
+        }
+        if (field.type && typeof value === 'string' && !value.trim()) {
+          newErrors[field.name] = `${field.label} is required`
+        }
+        if (
+          typeof formValues.email === 'string' &&
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formValues.email)
+        ) {
+          newErrors.email = 'Invalid email format'
+        }
+        if (typeof formValues.phone === 'string' && !/^\d{10}$/.test(formValues.phone)) {
+          newErrors.phone = 'Phone must be 10 digits'
+        }
+        if (formValues.GCNumber) {
+          // const { name, value } = event.target
+          const { status, errorMsg } = TextfieldValidator(field.name, value as string)
+
+          if (status) {
+            newErrors.GCNumber = errorMsg
+          }
+          // setErrorMessage((prev: { [key: string]: string }) => {
+          //   return {
+          //     ...prev,
+          //     [fieldName]: errorMsg,
+          //   }
+          // })
+          // setFormValues((prev: { [key: string]: string }) => {
+          //   return {
+          //     ...prev,
+          //     [name]: event?.target?.value,
+          //   }
+          // })
+          // formValidation(status, name)
+          // let CardNumber: string = value as string
+          // if (parseInt(CardNumber, 10) > 19) {
+          //   CardNumber = CardNumber.substr(0, 19)
+          // }
+          // const inputVal = CardNumber?.replace(/ /g, '')
+          // let inputNumbersOnly = inputVal?.replace(/\D/g, '')
+          // if (inputNumbersOnly?.length >= 16) {
+          //   inputNumbersOnly = inputNumbersOnly
+          //     .replace(/[`~!$%^@*()_|+\\=?;:'"<>{}/\\[\]\\]/gi, '')
+          //     .substr(0, 16)
+          // }
+          // const splits = inputNumbersOnly?.match(/.{1,4}/g)
+          // let spacedNumber = ''
+          // if (splits) {
+          //   spacedNumber = splits?.join(' ')
+          // }
+          // if (spacedNumber.slice(0, 1) !== '0') {
+          //   setFormValues((prev: { [key: string]: string }) => {
+          //     return {
+          //       ...prev,
+          //       GCNumber: spacedNumber.trim(),
+          //     }
+          //   })
+          // }
+          // const { name, value } = event.target
+          // const { status, errorMsg, fieldName } = TextfieldValidator(name, value)
+          // setErrorMessage((prev: { [key: string]: string }) => {
+          //   return {
+          //     ...prev,
+          //     [fieldName]: errorMsg,
+          //   }
+          // })
+        }
+      }
+    })
+
+    // Extra validation: Check-out after check-in
+    if (
+      formValues.checkIn &&
+      formValues.checkOut &&
+      dayjs(formValues.checkOut).isBefore(dayjs(formValues.checkIn))
+    ) {
+      newErrors.checkOut = 'Check-Out cannot be before Check-In'
+    }
+    // Neucoins validation
+    if (formValues.redeemNeucoins) {
+      const redeemNeucoins = Number(formValues.redeemNeucoins) || 0
+      if (redeemNeucoins <= 0) {
+        newErrors.redeemNeucoins = 'Neucoins to redeem must be greater than zero'
+      } else if (redeemNeucoins > Number(userAmount ?? 0)) {
+        newErrors.redeemNeucoins = `You can redeem a maximum of ${userAmount} ${
+          JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? 'Neucoins' : 'GiftCard Amount'
+        }`
+      } else if (redeemNeucoins > (Number(formValues.invoiceamount) ?? 0)) {
+        newErrors.redeemNeucoins = `You can redeem a maximum of ${formValues.invoiceamount} ${
+          JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? 'Neucoins' : 'GiftCard Amount'
+        }`
+      } else if (redeemNeucoins == 0) {
+        newErrors.redeemNeucoins = `Please enter more than  ${userAmount} ${
+          JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? 'Neucoins' : 'Amount'
+        }`
+      }
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (validate()) {
+      if (journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+        setLoading(true)
+        let validateNeucoinsData
+        try {
+          validateNeucoinsData = await api.post('nc/validate', {
+            customerHash: Guest?.customerHash,
+            points: formValues.redeemNeucoins,
+          })
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        if (validateNeucoinsData?.status !== 200) {
+          setErrors({ redeemNeucoins: validateNeucoinsData?.data?.message })
+        } else if (validateNeucoinsData?.status === 200) {
+          setOpenOTPModal(!openOTPModal)
+        }
+      } else if (journeyType === JOURNEY_TYPES.TEGC_REDEMPTION) {
+        setLoading(true)
+        let gcRedemeptionData
+        try {
+          gcRedemeptionData = await api.post(
+            'gc/redeem',
+            {
+              inputType: '1',
+              cards: [
+                {
+                  CardNumber: Guest?.cardNumber,
+                  CardPin: Guest?.cardPin,
+                  Amount: formValues.redeemNeucoins,
+                },
+              ],
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                amount: formValues?.redeemNeucoins,
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        if (gcRedemeptionData?.status !== 200) {
+          setErrors({ redeemNeucoins: gcRedemeptionData?.data?.message })
+        } else if (gcRedemeptionData?.status === 200) {
+          setOpen(true)
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'TransactionId',
+              value: gcRedemeptionData?.data?.transactionId,
+            },
+            {
+              label: 'Approval Code',
+              value: gcRedemeptionData?.data?.approvalCode,
+            },
+            {
+              label: 'Current Batch Number',
+              value: gcRedemeptionData?.data?.currentBatchNumber,
+            },
+            {
+              label: 'Card Balance',
+              value: gcRedemeptionData?.data?.cards?.[0]?.balance,
+            },
+            {
+              label: 'Amount Debited',
+              value: formValues.redeemNeucoins,
+            },
+          ])
+        }
+      } else if (journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION) {
+        setLoading(true)
+        let voucherRedemptionData
+        try {
+          voucherRedemptionData = await api.post(
+            'voucher/redeem',
+            {
+              h_bit_date: Guest?.createdOn,
+              h_member_id: Guest?.memberID,
+              h_privileges: Guest?.uniquePrivilegeCode,
+              pin: Guest?.pin,
+              type: Guest?.label,
+              hotelSponsorId: '2',
+              h_location: '',
+              h_bit_source: 'PMS',
+              h_bit_source_generated_id: 'NA',
+              h_start_date: formatDateToYYYYMMDD(Guest?.createdOn),
+              h_end_date: formatDateToYYYYMMDD(Guest?.validTill),
+              folio_number: null,
+              rate_code: Guest?.extraData?.promocode,
+              h_comment: '',
+              h_bit_amount: null,
+              h_Representative_Email: null,
+              h_confirmation_number: formValues?.bookingNumber,
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                amount: 0,
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        if (voucherRedemptionData?.status !== 200) {
+          setErrors({ redeemNeucoins: voucherRedemptionData?.data?.message })
+        } else if (voucherRedemptionData?.status === 200) {
+          setOpen(true)
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'TransactionId',
+              value: voucherRedemptionData?.data?.transactionId,
+            },
+            {
+              label: 'Approval Code',
+              value: voucherRedemptionData?.data?.approvalCode,
+            },
+            {
+              label: 'Current Batch Number',
+              value: voucherRedemptionData?.data?.currentBatchNumber,
+            },
+            {
+              label: 'Card Balance',
+              value: voucherRedemptionData?.data?.cards?.[0]?.balance,
+            },
+            {
+              label: 'Amount Debited',
+              value: formValues.redeemNeucoins,
+            },
+          ])
+        }
+      } else if (journeyType === JOURNEY_TYPES.TEGC_REINSTATE) {
+        setLoading(true)
+        let tegcReinstateData
+        try {
+          tegcReinstateData = await api.post(
+            'gc/cancel-redeem',
+            {
+              Cards: [
+                {
+                  CardNumber: formValues?.GCNumber,
+                  OriginalRequest: {
+                    OriginalAmount: formValues?.originalAmount,
+                    OriginalApprovalCode: formValues?.originalApprovalCode,
+                    OriginalBatchNumber: formValues?.originalBatchNumber,
+                    OriginalTransactionId: formValues?.originalTransactionId,
+                  },
+                },
+              ],
+              InputType: 1,
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                amount: formValues?.reinstateGiftCard,
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        setOpen(true)
+        if (
+          tegcReinstateData?.status !== 200 ||
+          (tegcReinstateData?.status === 200 &&
+            tegcReinstateData?.data?.responseMessage === 'Validation Failed.')
+        ) {
+          setModalType('failure')
+          setErrors({ redeemNeucoins: tegcReinstateData?.data?.message })
+          setApiResponseData([
+            {
+              label: 'Error Reason',
+              value:
+                tegcReinstateData?.data?.cards?.[0]?.responseMessage ||
+                'An error occurred while reinstating the card.',
+            },
+          ])
+        } else if (tegcReinstateData?.status === 200) {
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'TransactionId',
+              value: tegcReinstateData?.data?.transactionId,
+            },
+            {
+              label: 'Approval Code',
+              value: tegcReinstateData?.data?.approvalCode,
+            },
+            {
+              label: 'Current Batch Number',
+              value: tegcReinstateData?.data?.currentBatchNumber,
+            },
+            {
+              label: 'Card Balance',
+              value: tegcReinstateData?.data?.cards?.[0]?.balance,
+            },
+          ])
+        }
+      } else {
+        setLoading(true)
+        setTimeout(() => {
+          setLoading(false)
+
+          // setFormValues(initialFormValues);
+          // setErrors({})
+          if (
+            journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS ||
+            journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION ||
+            journeyType === JOURNEY_TYPES.TEGC_REDEMPTION
+          ) {
+            //   handleOTPVerified()
+          } else {
+            //  setOpenOTPModal(!openOTPModal)
+          }
+        }, 1500)
+      }
+    }
+
+    // if (response.status == 200) {
+    // const { refreshToken, user_role, name } = response.data
+    // const { access_token: accessToken } = response?.headers
+    // setAccessToken(accessToken)
+    // // setRefreshToken(refreshToken)
+    // const user = {
+    //   firstName: name,
+    //   email: email || '',
+    //   employeeId: '77878',
+    //   lastName: name,
+    //   propertyId: '898343',
+    //   propertyName: 'Taj lands end',
+    //   role: user_role,
+    // }
+    // setUser(user)
+    // localStorage.setItem('accessToken', accessToken)
+    // localStorage.setItem('refreshToken', refreshToken)
+    // localStorage.setItem('user', JSON.stringify(user))
+    // if (!user_role) return
+    // Cookies.set('userType', user_role, { expires: 1 })
+    // setUserType(user_role)
+    // }
+
+    // setFormValues(initialFormValues);
+    // setErrors({})
+    if (
+      journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS ||
+      journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION ||
+      journeyType === JOURNEY_TYPES.TEGC_REDEMPTION
+    ) {
+      //  handleOTPVerified()
+    } else {
+      // setOpenOTPModal(!openOTPModal)
+    }
+    // }, 1500)
+    // }
+  }
+
+  const handleOTPVerified = async () => {
+    // if (journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+    //   setOpen(true)
+    //   setModalType('success')
+    // }
+  }
+  const responseData = [
+    {
+      label: 'Reference ID',
+      value: 'RVRSL-20250506-XYZ123',
+    },
+    {
+      label: 'Message',
+      value: `Reversal of 150 NeuCoins successful for Customer ID: ${formatMobileNumber(
+        String(formValues.phone || ''),
+        '+91',
+      )}.`,
+    },
+  ]
+
+  const ccAvenuePaymentResponseData = [
+    {
+      label: 'TransactionId',
+      value: 'CCAVE987654321',
+    },
+    {
+      label: 'Request Status',
+      value: 'PENDING',
+    },
+  ]
+  const vouchersExpiryExtensionResponseData = [
+    {
+      label: 'Privilege Code',
+      value: 'VIP789',
+    },
+    {
+      label: 'Request Status',
+      value: 'STATUS',
+    },
+    {
+      label: 'Previous Expiry Date',
+      value: `${Guest?.expiryDate}`,
+    },
+    {
+      label: 'New Expiry Date',
+      value: Guest?.expiryDate ? `${new Date(Guest.expiryDate).toISOString()}` : '',
+    },
+  ]
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          padding: 4,
+          backgroundColor: '#f7f9fc',
+          borderRadius: 3,
+          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+          marginTop: 4,
+        }}
+      >
+        <Typography
+          variant="h5"
+          mb={3}
+          fontWeight="bold"
+          sx={{ color: '#333', textAlign: 'center' }}
+        >
+          Please Enter Booking Details
+        </Typography>
+
+        {/* <Grid container spacing={3}> */}
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 2,
+          }}
+        >
+          {journeyFields.map((field) => {
+            if (field.type === 'date') {
+              return (
+                <DateInput
+                  key={field.name}
+                  name={field.name}
+                  label={field.label}
+                  value={formValues[field.name] as string}
+                  onChange={(name, date) => handleDateChange(name, date ? dayjs(date) : null)}
+                  error={!!errors[field.name]}
+                  helperText={errors[field.name]}
+                  customStyle={{
+                    flex: '1 1 30%',
+                  }}
+                />
+              )
+            }
+
+            if (field.type === 'dropdown') {
+              return (
+                <FormSelect
+                  name={field.name}
+                  label={field.label}
+                  value={formValues[field.name] as string}
+                  onChange={(e: SelectChangeEvent) =>
+                    setFormValues((prev) => ({ ...prev, [field.name]: e.target.value }))
+                  }
+                  options={'options' in field ? (field.options as string[]) : []}
+                  key={field.name}
+                  disabled={field.disable}
+                  placeholder={field.placeHolderText}
+                />
+              )
+            }
+
+            if (field.type === 'string' || field.type === 'number') {
+              return (
+                <FormInput
+                  name={field.name}
+                  label={field.label}
+                  value={formValues[field.name] as string}
+                  onChange={handleChange}
+                  error={!!errors[field.name]}
+                  helperText={errors[field.name]}
+                  type={field.type}
+                  key={field.name}
+                  disabled={field.disable}
+                  placeholder={field.placeHolderText}
+                  customStyle={{
+                    flex: '1 1 30%',
+                  }}
+                />
+              )
+            }
+          })}
+        </Box>
+
+        <Box sx={{ mt: 4, textAlign: 'center' }}>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            color="primary"
+            disabled={loading}
+            startIcon={loading && <CircularProgress size={20} color="inherit" />}
+            sx={{
+              paddingX: 5,
+              paddingY: 1.5,
+              borderRadius: 10,
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              textTransform: 'none',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                backgroundColor: '#005fcc',
+                transform: 'scale(1.05)',
+              },
+            }}
+          >
+            {journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
+            journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE ||
+            journeyType === JOURNEY_TYPES.TEGC_REDEMPTION ||
+            journeyType === JOURNEY_TYPES.TEGC_REINSTATE
+              ? loading
+                ? 'Submitting...'
+                : 'Submit'
+              : journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS
+              ? loading
+                ? 'Generating Link...'
+                : 'Submit'
+              : loading
+              ? 'Verifying Mobile...'
+              : 'Verify Mobile'}
+          </Button>
+        </Box>
+      </Box>
+
+      <OTPComponent
+        open={openOTPModal}
+        onClose={() => setOpenOTPModal(false)}
+        mobileNumber={
+          Guest?.primaryMobile &&
+          typeof Guest.primaryMobile === 'object' &&
+          'phoneNumber' in Guest.primaryMobile
+            ? typeof Guest.primaryMobile === 'object' && 'phoneNumber' in Guest?.primaryMobile
+              ? (Guest?.primaryMobile as { phoneNumber: string })?.phoneNumber
+              : ''
+            : Guest?.primaryMobile
+            ? formatMobileNumber(
+                String(Guest?.primaryMobile?.phoneNumber || ''),
+                String(Guest?.primaryMobile?.isdCode),
+              )
+            : formatMobileNumber(String(formValues.phone || ''), '+91')
+        }
+        extraData={formValues}
+        onVerified={handleOTPVerified} // Update context on OTP verification
+      />
+      {open && (
+        <CombinedModal
+          onClose={() => {
+            guestLogout()
+            setOpen(false)
+            setErrors({})
+            setFormValues(initialFormValues)
+          }}
+          open={open}
+          type={modalType}
+        >
+          {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ? (
+            <KeyValueList data={apiResponseData} />
+          ) : JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType ? (
+            <KeyValueList data={responseData} />
+          ) : JOURNEY_TYPES.TEGC_REINSTATE === journeyType ? (
+            <KeyValueList data={apiResponseData} />
+          ) : JOURNEY_TYPES.CC_AVENUE_PAYMENTS === journeyType ? (
+            <>
+              <KeyValueList data={ccAvenuePaymentResponseData} />
+              <Typography>
+                Want to see your payment status? Just click on the &apos;Order Status&apos; tab!
+              </Typography>
+            </>
+          ) : JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION === journeyType ? (
+            <>
+              <KeyValueList data={vouchersExpiryExtensionResponseData} />
+              <Typography>Voucher expiry date extended successfully.</Typography>
+            </>
+          ) : (
+            <></>
+          )}
+        </CombinedModal>
+      )}
+    </LocalizationProvider>
+  )
+}
+
+export default TabItemRoom
