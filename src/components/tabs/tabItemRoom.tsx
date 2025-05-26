@@ -24,6 +24,8 @@ import {
 } from './constants'
 import { formatDateToYYYYMMDD } from '@/utils/date'
 import { useAuth } from '@/context/authContext'
+// import { QRCodeSVG } from 'qrcode.react'
+// import Link from 'next/link'
 // import Grid from "@mui/material/Grid";
 
 const TabItemRoom = () => {
@@ -50,13 +52,13 @@ const TabItemRoom = () => {
         : field.name == 'propertyName'
         ? 'Taj lands End Mumbai'
         : field.name == 'memberID'
-        ? Guest?.memberId?.toString() || ''
+        ? Guest?.memberID?.toString() || ''
         : field.name == 'bitDate'
         ? Guest?.createdOn?.toString() || ''
         : field.name == 'memberType'
-        ? Guest?.memberType?.toString() || ''
+        ? Guest?.label?.toString() || ''
         : field.name == 'bitId'
-        ? Guest?.bitId?.toString() || ''
+        ? Guest?.bitID?.toString() || ''
         : field.name == 'redeemNeucoins'
         ? '0'
         : ''
@@ -230,7 +232,12 @@ const TabItemRoom = () => {
       newErrors.checkOut = 'Check-Out cannot be before Check-In'
     }
     // Neucoins validation
-    if (formValues.redeemNeucoins) {
+    if (
+      formValues.redeemNeucoins &&
+      JOURNEY_TYPES.VOUCHERS_REDEMPTION !== journeyType &&
+      JOURNEY_TYPES.CC_AVENUE_PAYMENTS !== journeyType &&
+      JOURNEY_TYPES.VOUCHERS_REINSTATE !== journeyType
+    ) {
       const redeemNeucoins = Number(formValues.redeemNeucoins) || 0
       if (redeemNeucoins <= 0) {
         newErrors.redeemNeucoins = 'Neucoins to redeem must be greater than zero'
@@ -247,8 +254,14 @@ const TabItemRoom = () => {
           JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? 'Neucoins' : 'Amount'
         }`
       }
+    } else if (formValues.redeemNeucoins && JOURNEY_TYPES.CC_AVENUE_PAYMENTS !== journeyType) {
+      const redeemNeucoins = Number(formValues.redeemNeucoins) || 0
+      if (redeemNeucoins == 0) {
+        newErrors.redeemNeucoins = `Please enter more than  ${userAmount} ${
+          JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? 'Neucoins' : 'Amount'
+        }`
+      }
     }
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -354,8 +367,8 @@ const TabItemRoom = () => {
               h_member_id: Guest?.memberID,
               h_privileges: Guest?.uniquePrivilegeCode,
               pin: Guest?.pin,
-              type: Guest?.label,
-              hotelSponsorId: '2',
+              type: Guest?.label === 'THE CHAMBERS' ? 'CHAMBERS' : Guest?.label,
+              hotelSponsorId: Guest?.sponsor_id,
               h_location: '',
               h_bit_source: 'PMS',
               h_bit_source_generated_id: 'NA',
@@ -375,7 +388,8 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: 0,
               },
             },
@@ -499,6 +513,203 @@ const TabItemRoom = () => {
               label: 'Card Balance',
               value: tegcReinstateData?.data?.cards?.[0]?.balance,
             },
+          ])
+        }
+      } else if (journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE) {
+        setLoading(true)
+        let neucoinsReinstateData
+        try {
+          neucoinsReinstateData = await api.post(
+            'nc/reverse',
+            {
+              reversalDetails: {
+                redemptionId: formValues?.redemptionId,
+                customerHash: Guest?.customerHash,
+              },
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: user?.firstName + user?.lastName || 'Admin',
+                amount: formValues?.reinstateNeucoins,
+              },
+              userDetails: {
+                mobileNumber: user?.mobileNumber || '9966012856',
+                emailId: user?.email,
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ reinstateNeucoins: (error as any)?.response?.data?.error?.data })
+          return
+        } finally {
+          setLoading(false)
+        }
+        setOpen(true)
+        debugger
+        if (neucoinsReinstateData?.status !== 200) {
+          setModalType('failure')
+          setErrors({ redeemNeucoins: neucoinsReinstateData?.data?.message })
+          setApiResponseData([
+            {
+              label: 'Error Reason',
+              value:
+                neucoinsReinstateData?.data?.cards?.[0]?.responseMessage ||
+                'An error occurred while reinstating the card.',
+            },
+          ])
+        } else if (neucoinsReinstateData?.status === 200) {
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'TransactionId',
+              value: neucoinsReinstateData?.data?.transactionId,
+            },
+            {
+              label: 'Approval Code',
+              value: neucoinsReinstateData?.data?.approvalCode,
+            },
+            {
+              label: 'Current Batch Number',
+              value: neucoinsReinstateData?.data?.currentBatchNumber,
+            },
+            {
+              label: 'Card Balance',
+              value: neucoinsReinstateData?.data?.cards?.[0]?.balance,
+            },
+          ])
+        }
+      } else if (journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE) {
+        setLoading(true)
+        let voucherReinstateData
+        try {
+          voucherReinstateData = await api.post(
+            'voucher/reversal',
+            {
+              h_bit_date: Guest?.createdOn,
+              cancel_bit_id: Guest?.bitID,
+              h_member_id: Guest?.memberID,
+              hotelSponsorId: Guest?.sponsor_id,
+              type: Guest?.label === 'THE CHAMBERS' ? 'CHAMBERS' : Guest?.label,
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: user?.email || 'Admin',
+                amount: 0,
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        if (voucherReinstateData?.status !== 200) {
+          setErrors({ redeemNeucoins: voucherReinstateData?.data?.error })
+        } else if (
+          voucherReinstateData?.status === 200 &&
+          voucherReinstateData?.data?.status === 'SUCCESS'
+        ) {
+          setOpen(true)
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'Cancel Bit ID',
+              value: voucherReinstateData?.data?.original_bit?.header?.cancel_bit_id,
+            },
+            {
+              label: 'Program ID',
+              value: voucherReinstateData?.data?.original_bit?.header?.h_program_id,
+            },
+          ])
+        }
+      } else if (journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS) {
+        setLoading(true)
+        let ccAvenuePaymentResponseData
+        try {
+          ccAvenuePaymentResponseData = await api.post(
+            'ca/generate-invoice',
+            {
+              roomBookingRequest: {
+                bookingNumber: formValues?.bookingNumber,
+                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+                invoiceAmount: formValues?.invoiceamount,
+                invoiceNumber: formValues?.invoiceNumber,
+                propertyId: '71758',
+                propertyName: formValues?.propertyName,
+                transactionBy: user?.email,
+                amount: formValues?.redeemNeucoins,
+              },
+              userDetails: {
+                mobileNumber: formValues?.phone || '',
+                emailId: formValues?.email,
+                name: formValues?.guestName,
+                countryCode: '+91',
+              },
+              invoiceDetails: {
+                billDeliveryType: 'SMS',
+                currency: 'INR',
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                category: 'ROOM',
+              },
+            },
+          )
+        } catch (error) {
+          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          return
+        } finally {
+          setLoading(false)
+        }
+        if (ccAvenuePaymentResponseData?.status !== 200) {
+          setErrors({ redeemNeucoins: ccAvenuePaymentResponseData?.data?.message })
+        } else if (ccAvenuePaymentResponseData?.status === 200) {
+          setOpen(true)
+          setModalType('success')
+          setApiResponseData([
+            {
+              label: 'Invoice Id',
+              value: ccAvenuePaymentResponseData?.data?.invoice_id,
+            },
+            {
+              label: 'Merchant Reference Number',
+              value: ccAvenuePaymentResponseData?.data?.merchant_reference_no,
+            },
+            // {
+            //   label: 'Payment URL',
+            //   value: ccAvenuePaymentResponseData?.data?.tiny_url,
+            // },
+            // {
+            //   label: 'QR Code',
+            //   identifier: 'qrCode',
+            //   value: ccAvenuePaymentResponseData?.data?.qr_code,
+            // },
           ])
         }
       } else {
@@ -720,10 +931,15 @@ const TabItemRoom = () => {
             {journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
             journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE ||
             journeyType === JOURNEY_TYPES.TEGC_REDEMPTION ||
-            journeyType === JOURNEY_TYPES.TEGC_REINSTATE
+            journeyType === JOURNEY_TYPES.TEGC_REINSTATE ||
+            JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType
               ? loading
                 ? 'Submitting...'
                 : 'Submit'
+              : JOURNEY_TYPES.VOUCHERS_REDEMPTION === journeyType
+              ? loading
+                ? 'Redeeming Voucher...'
+                : 'Redeem Voucher'
               : journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS
               ? loading
                 ? 'Generating Link...'
@@ -766,7 +982,8 @@ const TabItemRoom = () => {
           open={open}
           type={modalType}
         >
-          {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ? (
+          {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ||
+          JOURNEY_TYPES.VOUCHERS_REINSTATE === journeyType ? (
             <KeyValueList data={apiResponseData} />
           ) : JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType ? (
             <KeyValueList data={responseData} />
@@ -774,7 +991,22 @@ const TabItemRoom = () => {
             <KeyValueList data={apiResponseData} />
           ) : JOURNEY_TYPES.CC_AVENUE_PAYMENTS === journeyType ? (
             <>
-              <KeyValueList data={ccAvenuePaymentResponseData} />
+              <KeyValueList data={apiResponseData} />
+              {/* <QRCode value={qrCode} size={256} /> */}
+              {/* <QRCodeSVG
+                value={apiResponseData?.filter((data: any) => data?.identifier === 'qrCode')?.value}
+              /> */}
+              {/* <QRCodeSVG
+                value={apiResponseData?.filter((data: any) => data?.identifier === 'qrCode')?.value}
+              /> */}
+              {/* <Typography>Payment Link</Typography> */}
+              {/* <Link
+                href={apiResponseData?.find((data: any) => data.label === 'Payment URL')?.value}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'primary.main', textDecoration: 'underline' }}
+              /> */}
+
               <Typography>
                 Want to see your payment status? Just click on the &apos;Order Status&apos; tab!
               </Typography>

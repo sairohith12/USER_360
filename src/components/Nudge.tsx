@@ -27,7 +27,8 @@ const UserDetails: React.FC = () => {
             icon: <CreditCard sx={{ fontSize: 40, color: theme.palette.primary.main }} />,
           },
         }
-      : journeyType === JOURNEY_TYPES?.NEUCOINS_REDEMPTION
+      : journeyType === JOURNEY_TYPES?.NEUCOINS_REDEMPTION ||
+        journeyType === JOURNEY_TYPES?.NEUCOINS_REINSTATE
       ? {
           'First Name': {
             value: Guest?.nameDetails?.firstName,
@@ -43,6 +44,7 @@ const UserDetails: React.FC = () => {
           },
         }
       : journeyType === JOURNEY_TYPES?.VOUCHERS_REDEMPTION ||
+        journeyType === JOURNEY_TYPES?.VOUCHERS_REINSTATE ||
         journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION
       ? {
           'Voucher Name': {

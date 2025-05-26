@@ -24,6 +24,7 @@ export const JOURNEY_TYPES = {
 
 export const JOURNEYS = {
   NEUCOINS_REDEMPTION_LOGIN: '-redemption-neucoins-login',
+  NEUCOINS_REINSTATE_LOGIN: '-reinstate-neucoins-login',
   TEGC_REDEMPTION: '-redemption-giftcard',
   VOUCHERS_REDEMPTION: '-redemption-vouchers',
   NEUCOINS_REINSTATE: '-reinstate-neucoins',

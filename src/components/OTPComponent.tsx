@@ -98,7 +98,10 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
       return
     }
 
-    if (JOURNEYS.NEUCOINS_REDEMPTION_LOGIN === extraData?.journey) {
+    if (
+      JOURNEYS.NEUCOINS_REDEMPTION_LOGIN === extraData?.journey ||
+      JOURNEYS.NEUCOINS_REINSTATE_LOGIN === extraData?.journey
+    ) {
       const codeVerifier = generateCodeVerifier()
       const codeChallenge = await generateCodeChallenge(codeVerifier)
       const response = await axios.post(

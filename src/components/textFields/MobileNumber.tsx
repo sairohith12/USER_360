@@ -83,7 +83,10 @@ const ReceptionistDashboard: React.FC = () => {
     setErrorMessage('')
     let response
 
-    if (journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+    if (
+      journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
+      journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE
+    ) {
       const recaptchaGenerated = await getRecaptchaToken()
       try {
         response = await axios.post(
@@ -107,11 +110,14 @@ const ReceptionistDashboard: React.FC = () => {
         setApiData(response?.data)
         setOpenOTPModal(true)
       }
-    } else if (journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION) {
+    } else if (
+      journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION ||
+      journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE
+    ) {
       setLoading(true)
       try {
         response = await api.get(
-          `/voucher/fetch-vouchers?limit=250&page=1&${
+          `/voucher/fetch-vouchers?limit=500&page=1&${
             inputMode === 'mobile'
               ? `mobile=${mobileNumber}`
               : `memberId=${memberShipNo}&category=${membership?.toUpperCase()}`
@@ -123,7 +129,6 @@ const ReceptionistDashboard: React.FC = () => {
       } finally {
         setLoading(false)
       }
-      console.log('boloooo', response)
       if (response?.status == 200) {
         // setApiData(response?.data)
         updateGuestVouchers(response?.data)
@@ -164,7 +169,10 @@ const ReceptionistDashboard: React.FC = () => {
   }, [memberShipNo, membership])
 
   const handleOTPVerified = async () => {
-    if (journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+    if (
+      journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION &&
+      journeyType !== JOURNEY_TYPES.NEUCOINS_REINSTATE
+    ) {
       guestLogin({
         firstName: 'John',
         lastName: 'Doe',
@@ -223,7 +231,8 @@ const ReceptionistDashboard: React.FC = () => {
                 {inputMode === 'mobile' ? 'Enter Customer Mobile Number' : 'Enter Membership ID'}
               </Typography>
 
-              {journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION && (
+              {(journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION ||
+                journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE) && (
                 <FormControl fullWidth>
                   <InputLabel>Select Input Mode</InputLabel>
                   <Select
@@ -317,7 +326,8 @@ const ReceptionistDashboard: React.FC = () => {
                   borderRadius: '50px',
                 }}
               >
-                {journeyType === JOURNEY_TYPES?.VOUCHERS_REDEMPTION
+                {journeyType === JOURNEY_TYPES?.VOUCHERS_REDEMPTION ||
+                journeyType === JOURNEY_TYPES?.VOUCHERS_REINSTATE
                   ? loading
                     ? 'Fetching Vouchers ...'
                     : 'Fetch Vouchers'

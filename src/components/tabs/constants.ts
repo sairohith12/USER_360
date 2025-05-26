@@ -1,4 +1,4 @@
-import { GCNumber } from '../textFields/constants'
+import { GCNumber, JOURNEY_TYPES } from '../textFields/constants'
 
 export const fields = [
   {
@@ -105,12 +105,12 @@ export const neuCoinsReInstateFields = [
     placeHolderText: 'ex : WEB_23105',
   },
   {
-    name: 'phone',
-    label: 'Mobile Number',
+    name: 'redemptionId',
+    label: 'Redemption ID',
     required: true,
     disable: false,
     type: 'string',
-    placeHolderText: 'ex : +919966xxxx00',
+    placeHolderText: 'ex : Izjiejjk',
   },
 
   {
@@ -126,7 +126,7 @@ export const neuCoinsReInstateFields = [
     required: true,
     type: 'dropdown',
     placeHolderText: 'ex : Guest didn`t appear at hotel',
-    options: ['Order Cancellation', 'Change in Plans'],
+    options: ['Order Cancellation', 'Change in Plans', 'Cancelled Booking', 'Manual Adjustment'],
   },
 ]
 
@@ -258,38 +258,49 @@ export const voucherReinstateFields = [
     placeHolderText: 'Taj Lands End',
   },
   {
-    name: 'memberID',
-    label: 'Member ID*',
+    name: 'bookingNumber',
+    label: 'Itinerary Number',
     required: true,
-    disable: true,
+    disable: false,
     type: 'string',
-    placeHolderText: 'ex : 5173',
-  },
-
-  {
-    name: 'bitDate',
-    label: 'Created On*',
-    required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'ex : XXX-XX-XXT00:00:00+05:30',
+    placeHolderText: 'ex : 21305B0075626',
   },
   {
-    name: 'bitId',
-    label: 'Bit ID*',
+    name: 'invoiceamount',
+    label: 'Invoice Amount',
     required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'ex : 219I1H7BAD08A28PXXXXXXXC4',
+    type: 'number',
+    disable: false,
+    placeHolderText: 'ex : 2100.00',
   },
-
   {
-    name: 'memberType',
-    label: 'Member Type*',
+    name: 'checkIn',
+    label: 'Check-In Date',
     required: true,
-    disable: true,
+    type: 'date',
+    disable: false,
+  },
+  {
+    name: 'checkOut',
+    label: 'Check-Out Date',
+    required: true,
+    type: 'date',
+    disable: false,
+  },
+  {
+    name: 'invoiceNumber',
+    label: 'Invoice Number',
     type: 'string',
-    placeHolderText: 'ex : Epicure',
+    required: true,
+    disable: false,
+    placeHolderText: 'ex : WEB_23105',
+  },
+  {
+    name: 'redeemNeucoins',
+    label: 'Enter Amount to ReInstate',
+    required: true,
+    type: 'number',
+    placeHolderText: 'ex : 1000',
   },
   {
     name: 'reasonforreversal',
@@ -309,8 +320,55 @@ export const voucherReinstateFields = [
 
 export const ccAvenueGeneratePayments = [
   {
+    name: 'propertyName',
+    label: 'Property Name*',
+    required: true,
+    disable: true,
+    type: 'string',
+    placeHolderText: 'Taj Lands End',
+  },
+  {
+    name: 'bookingNumber',
+    label: 'Itinerary  Number*',
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : 21305B0075626',
+  },
+  {
+    name: 'invoiceamount',
+    label: 'Invoice Amount*',
+    required: true,
+    type: 'number',
+    disable: false,
+    placeHolderText: 'ex : 2100.00',
+  },
+  {
+    name: 'checkIn',
+    label: 'Check-In Date*',
+    required: true,
+    type: 'date',
+    disable: false,
+  },
+  {
+    name: 'checkOut',
+    label: 'Check-Out Date*',
+    required: true,
+    type: 'date',
+    disable: false,
+  },
+  {
+    name: 'invoiceNumber',
+    label: 'Invoice Number*',
+    type: 'string',
+    required: true,
+    disable: false,
+    placeHolderText: 'ex : WEB_23105',
+  },
+
+  {
     name: 'guestName',
-    label: 'Guest Name',
+    label: 'Guest Name*',
     required: true,
     disable: false,
     type: 'string',
@@ -333,20 +391,11 @@ export const ccAvenueGeneratePayments = [
     placeHolderText: 'ex : sxxxxxxx@gmail.com',
   },
   {
-    name: 'orderId',
-    label: 'Order ID',
-    required: true,
-    type: 'string',
-    disable: false,
-    placeHolderText: 'ex : WEB_9981',
-  },
-  {
-    name: 'orderamount',
-    label: 'Order Amount',
+    name: 'redeemNeucoins',
+    label: 'Enter Amount to be Paid*',
     required: true,
     type: 'number',
-    disable: false,
-    placeHolderText: 'ex : 2100.00',
+    placeHolderText: 'ex : 1000',
   },
 ]
 
@@ -408,3 +457,27 @@ export const gcVoucherRedemption = [
     options: ['Order Issue', 'Change in Plans '],
   },
 ]
+
+// Helper function to get journey fields based on journeyType
+export const getJourneyFields = (journeyType: string, Guest: any) => {
+  if (
+    journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
+    journeyType === JOURNEY_TYPES.TEGC_REDEMPTION ||
+    journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION
+  ) {
+    return fields
+  }
+  if (journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE) {
+    return neuCoinsReInstateFields
+  }
+  if (journeyType === JOURNEY_TYPES.TEGC_REINSTATE) {
+    return gcReinstateInstateFields
+  }
+  if (journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE) {
+    return voucherReinstateFields
+  }
+  if (journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION) {
+    return gcVoucherRedemption
+  }
+  return ccAvenueGeneratePayments
+}
