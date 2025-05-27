@@ -52,6 +52,7 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
               alt="Logo"
               width={90}
               height={35}
+              priority={true}
               style={{ marginLeft: '0.5vw' }}
             />
             <Typography fontSize={'0.7rem'} sx={{ fontFamily: 'var(--font-inter)' }}>
