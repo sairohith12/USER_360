@@ -1,461 +1,219 @@
 import { GCNumber, JOURNEY_TYPES } from '../textFields/constants'
 
-export const fields = [
-  {
-    name: 'propertyName',
-    label: 'Property Name',
+// Base field configuration
+const baseField: {
+  required: boolean
+  disable: boolean
+  type: string
+  placeHolderText: string
+  options?: string[]
+} = {
+  required: true,
+  disable: false,
+  type: 'string',
+  placeHolderText: 'string',
+}
+
+// Function to create a field with common properties
+const createField = (name: string, label: string, options: Partial<typeof baseField> = {}) => ({
+  name,
+  label,
+  ...baseField,
+  ...options,
+})
+
+// Common fields
+const commonFields = [
+  createField('propertyName', 'Property Name*', {
     required: true,
     disable: true,
     type: 'string',
     placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: 'bookingNumber',
-    label: 'Itinerary  Number',
+  }),
+  createField('bookingNumber', 'Itinerary Number*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : 21305B0075626',
-  },
-  {
-    name: 'invoiceamount',
-    label: 'Invoice Amount',
+  }),
+  createField('invoiceamount', 'Invoice Amount*', {
     required: true,
     type: 'number',
     disable: false,
     placeHolderText: 'ex : 2100.00',
-  },
-  {
-    name: 'checkIn',
-    label: 'Check-In Date',
+  }),
+  createField('checkIn', 'Check-In Date*', { required: true, type: 'date', disable: false }),
+  createField('checkOut', 'Check-Out Date*', { required: true, type: 'date', disable: false }),
+  createField('invoiceNumber', 'Invoice Number*', {
     required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'checkOut',
-    label: 'Check-Out Date',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'invoiceNumber',
-    label: 'Invoice Number',
     type: 'string',
-    required: true,
     disable: false,
     placeHolderText: 'ex : WEB_23105',
-  },
+  }),
+]
 
-  {
-    name: 'redeemNeucoins',
-    label: 'Enter Amount to Redeem',
+export const fields = [
+  ...commonFields,
+  createField('redeemNeucoins', 'Enter Amount to Redeem', {
     required: true,
     type: 'number',
     placeHolderText: 'ex : 1000',
-  },
+  }),
 ]
 
 export const neuCoinsReInstateFields = [
-  {
-    name: 'propertyName',
-    label: 'Property Name',
-    required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: 'bookingNumber',
-    label: 'Itinerary  Number',
-    required: true,
-    disable: false,
-    type: 'string',
-    placeHolderText: 'ex : 21305B0075626',
-  },
-  {
-    name: 'invoiceamount',
-    label: 'Invoice Amount',
-    required: true,
-    type: 'number',
-    disable: false,
-    placeHolderText: 'ex : 2100.00',
-  },
-  {
-    name: 'checkIn',
-    label: 'Check-In Date',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'checkOut',
-    label: 'Check-Out Date',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'invoiceNumber',
-    label: 'Invoice Number',
-    required: true,
-    disable: false,
-    type: 'string',
-    placeHolderText: 'ex : WEB_23105',
-  },
-  {
-    name: 'redemptionId',
-    label: 'Redemption ID',
+  ...commonFields,
+  createField('redemptionId', 'Redemption ID*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : Izjiejjk',
-  },
-
-  {
-    name: 'reinstateNeucoins',
-    label: 'Enter Neucoins Amount to Reverse',
-    required: true,
+  }),
+  createField('reinstateNeucoins', 'Enter Neucoins Amount to Reverse*', {
     type: 'number',
-    placeHolderText: 'ex : 1000',
-  },
-  {
-    name: 'reasonforreversal',
-    label: 'Select Reson for reversal',
     required: true,
+    placeHolderText: 'ex : 1000',
+  }),
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
     type: 'dropdown',
+    required: true,
     placeHolderText: 'ex : Guest didn`t appear at hotel',
     options: ['Order Cancellation', 'Change in Plans', 'Cancelled Booking', 'Manual Adjustment'],
-  },
+  }),
 ]
 
 export const gcReinstateInstateFields = [
-  {
-    name: 'propertyName',
-    label: 'Property Name',
-    required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: GCNumber,
-    label: 'GiftCard Number*',
+  ...commonFields,
+  createField(GCNumber, 'GiftCard Number*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : XXXX XXXX XXXX XXXX',
-  },
-  {
-    name: 'bookingNumber',
-    label: 'Itinerary  Number',
-    required: true,
-    disable: false,
-    type: 'string',
-    placeHolderText: 'ex : 21305B0075626',
-  },
-  {
-    name: 'invoiceamount',
-    label: 'Invoice Amount',
-    required: true,
-    type: 'number',
-    disable: false,
-    placeHolderText: 'ex : 2100.00',
-  },
-  {
-    name: 'checkIn',
-    label: 'Check-In Date*',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'checkOut',
-    label: 'Check-Out Date*',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'invoiceNumber',
-    label: 'Invoice Number*',
-    required: true,
-    disable: false,
-    type: 'string',
-    placeHolderText: 'ex : WEB_23105',
-  },
-  {
-    name: 'phone',
-    label: 'Mobile Number*',
+  }),
+  createField('phone', 'Mobile Number*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : +919966xxxx00',
-  },
-
-  {
-    name: 'reinstateGiftCard',
-    label: 'Amount to Reverse*',
+  }),
+  createField('reinstateGiftCard', 'Amount to Reverse*', {
     required: true,
+    disable: false,
     type: 'number',
     placeHolderText: 'ex : 1000',
-  },
-  {
-    name: 'originalApprovalCode',
-    label: 'Original ApprovalCode*',
+  }),
+  createField('originalApprovalCode', 'Original ApprovalCode*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : 115152243',
-  },
-  {
-    name: 'originalBatchNumber',
-    label: 'Original BatchNumber*',
+  }),
+  createField('originalBatchNumber', 'Original BatchNumber*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : 14413770',
-  },
-  {
-    name: 'originalTransactionId',
-    label: 'Original TransactionId*',
+  }),
+  createField('originalTransactionId', 'Original TransactionId*', {
     required: true,
+    disable: false,
     type: 'string',
     placeHolderText: 'ex : 98',
-  },
-  {
-    name: 'originalAmount',
-    label: 'Original Amount*',
+  }),
+  createField('originalAmount', 'Original Amount*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : 100',
-  },
-  {
-    name: 'reasonforreversal',
-    label: 'Select Reason for reversal*',
+  }),
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
     required: true,
+    disable: false,
     type: 'dropdown',
     placeHolderText: 'ex : Guest didn`t appear at hotel',
-    options: [
-      // 'Order Cancellation',
-      // 'Change in Plans',
-      'Payment Failure',
-      'Cancelled Booking',
-      'Manual Adjustment',
-    ],
-  },
+    options: ['Payment Failure', 'Cancelled Booking', 'Manual Adjustment'],
+  }),
 ]
 
 export const voucherReinstateFields = [
-  {
-    name: 'propertyName',
-    label: 'Property Name',
-    required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: 'bookingNumber',
-    label: 'Itinerary Number',
+  ...commonFields,
+  createField('redeemNeucoins', 'Enter Amount to Reinstate*', {
     required: true,
     disable: false,
-    type: 'string',
-    placeHolderText: 'ex : 21305B0075626',
-  },
-  {
-    name: 'invoiceamount',
-    label: 'Invoice Amount',
-    required: true,
-    type: 'number',
-    disable: false,
-    placeHolderText: 'ex : 2100.00',
-  },
-  {
-    name: 'checkIn',
-    label: 'Check-In Date',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'checkOut',
-    label: 'Check-Out Date',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'invoiceNumber',
-    label: 'Invoice Number',
-    type: 'string',
-    required: true,
-    disable: false,
-    placeHolderText: 'ex : WEB_23105',
-  },
-  {
-    name: 'redeemNeucoins',
-    label: 'Enter Amount to ReInstate',
-    required: true,
     type: 'number',
     placeHolderText: 'ex : 1000',
-  },
-  {
-    name: 'reasonforreversal',
-    label: 'Select Reason for reversal*',
-    required: true,
+  }),
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
     type: 'dropdown',
+    required: true,
     placeHolderText: 'ex : Guest didn`t appear at hotel',
-    options: [
-      // 'Order Cancellation',
-      // 'Change in Plans',
-      'Payment Failure',
-      'Cancelled Booking',
-      'Manual Adjustment',
-    ],
-  },
+    options: ['Payment Failure', 'Cancelled Booking', 'Manual Adjustment'],
+  }),
 ]
 
 export const ccAvenueGeneratePayments = [
-  {
-    name: 'propertyName',
-    label: 'Property Name*',
-    required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: 'bookingNumber',
-    label: 'Itinerary  Number*',
-    required: true,
-    disable: false,
-    type: 'string',
-    placeHolderText: 'ex : 21305B0075626',
-  },
-  {
-    name: 'invoiceamount',
-    label: 'Invoice Amount*',
-    required: true,
-    type: 'number',
-    disable: false,
-    placeHolderText: 'ex : 2100.00',
-  },
-  {
-    name: 'checkIn',
-    label: 'Check-In Date*',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'checkOut',
-    label: 'Check-Out Date*',
-    required: true,
-    type: 'date',
-    disable: false,
-  },
-  {
-    name: 'invoiceNumber',
-    label: 'Invoice Number*',
-    type: 'string',
-    required: true,
-    disable: false,
-    placeHolderText: 'ex : WEB_23105',
-  },
-
-  {
-    name: 'guestName',
-    label: 'Guest Name*',
+  ...commonFields,
+  createField('guestName', 'Guest Name*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex: XXX XXX',
-  },
-  {
-    name: 'phone',
-    label: 'Mobile Number*',
+  }),
+  createField('phone', 'Mobile Number*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : +919966xxxx00',
-  },
-  {
-    name: 'email',
-    label: 'Guest Email*',
+  }),
+  createField('email', 'Guest Email*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : sxxxxxxx@gmail.com',
-  },
-  {
-    name: 'redeemNeucoins',
-    label: 'Enter Amount to be Paid*',
+  }),
+  createField('redeemNeucoins', 'Enter Amount to be Paid*', {
     required: true,
     type: 'number',
     placeHolderText: 'ex : 1000',
-  },
+  }),
 ]
 
 export const gcVoucherRedemption = [
-  {
-    name: 'propertyName',
-    label: 'Property Name',
+  ...commonFields,
+  createField('newExpiryDate', 'New Expiry Date*', {
     required: true,
-    disable: true,
-    type: 'string',
-    placeHolderText: 'Taj Lands End',
-  },
-  {
-    name: 'newExpiryDate',
-    label: 'New Expiry Date',
-    required: true,
-    type: 'date',
     disable: false,
-  },
-  {
-    name: 'memberID',
-    label: 'Member ID*',
+    type: 'date',
+  }),
+  createField('memberID', 'Member ID*', {
     required: true,
     disable: true,
-    type: 'string',
     placeHolderText: 'ex : 5173',
-  },
-
-  {
-    name: 'bitDate',
-    label: 'Created On*',
+  }),
+  createField('bitDate', 'Created On*', {
     required: true,
     disable: true,
     type: 'string',
     placeHolderText: 'ex : XXX-XX-XXT00:00:00+05:30',
-  },
-  {
-    name: 'phone',
-    label: 'Mobile Number*',
+  }),
+  createField('phone', 'Mobile Number*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : +919966xxxx00',
-  },
-  {
-    name: 'email',
-    label: 'Guest Email*',
+  }),
+  createField('email', 'Guest Email*', {
     required: true,
     disable: false,
     type: 'string',
     placeHolderText: 'ex : sxxxxxxx@gmail.com',
-  },
-  {
-    name: 'reasonforExtension',
-    label: 'Select Reson for Extension',
-    required: true,
+  }),
+  createField('reasonforExtension', 'Select Reason for Extension*', {
     type: 'dropdown',
+    required: true,
     placeHolderText: 'ex : Extended stay due to travel disruption',
-    options: ['Order Issue', 'Change in Plans '],
-  },
+    options: ['Order Issue', 'Change in Plans'],
+  }),
 ]
 
 // Helper function to get journey fields based on journeyType

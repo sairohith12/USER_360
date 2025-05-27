@@ -375,7 +375,12 @@ const TabItemRoom = () => {
               h_start_date: formatDateToYYYYMMDD(Guest?.createdOn),
               h_end_date: formatDateToYYYYMMDD(Guest?.validTill),
               folio_number: null,
-              rate_code: Guest?.extraData?.promocode,
+              rate_code:
+                Guest?.extraData &&
+                typeof Guest.extraData === 'object' &&
+                'promocode' in Guest.extraData
+                  ? Guest?.extraData?.promocode
+                  : '',
               h_comment: '',
               h_bit_amount: null,
               h_Representative_Email: null,
@@ -518,11 +523,17 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: user?.firstName + user?.lastName || 'Admin',
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: formValues?.reinstateNeucoins,
               },
               userDetails: {
-                mobileNumber: user?.mobileNumber || '9966012856',
+                mobileNumber:
+                  Guest?.primaryMobile &&
+                  typeof Guest.primaryMobile === 'object' &&
+                  'phoneNumber' in Guest.primaryMobile
+                    ? Guest?.primaryMobile.phoneNumber
+                    : '',
                 emailId: user?.email,
               },
             },
@@ -799,7 +810,7 @@ const TabItemRoom = () => {
     },
     {
       label: 'New Expiry Date',
-      value: Guest?.expiryDate ? `${new Date(Guest.expiryDate).toISOString()}` : '',
+      value: Guest?.expiryDate ? `${dayjs(Guest.expiryDate).toDate().toISOString()}` : '',
     },
   ]
   return (
@@ -947,8 +958,12 @@ const TabItemRoom = () => {
               : ''
             : Guest?.primaryMobile
             ? formatMobileNumber(
-                String(Guest?.primaryMobile?.phoneNumber || ''),
-                String(Guest?.primaryMobile?.isdCode),
+                typeof Guest?.primaryMobile === 'object' && 'phoneNumber' in Guest?.primaryMobile
+                  ? String(Guest?.primaryMobile.phoneNumber)
+                  : String(Guest?.primaryMobile || ''),
+                typeof Guest?.primaryMobile === 'object' && 'isdCode' in Guest?.primaryMobile
+                  ? String(Guest?.primaryMobile?.isdCode)
+                  : '',
               )
             : formatMobileNumber(String(formValues.phone || ''), '+91')
         }
