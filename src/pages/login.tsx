@@ -46,8 +46,12 @@ const Login = () => {
       try {
         responseData = await login(email)
       } catch (err: unknown) {
-        if (err instanceof Error && 'response' in err && err.response?.data?.message) {
-          setEmailError(err.response.data.message)
+        if (
+          err instanceof Error &&
+          'response' in err &&
+          (err.response as { data?: { message?: string } })?.data?.message
+        ) {
+          setEmailError((err.response as { data: { message: string } }).data.message)
         } else {
           setEmailError('Login failed')
         }
@@ -62,6 +66,7 @@ const Login = () => {
 
   useEffect(() => {
     Cookies.remove('userType')
+    localStorage.clear()
   }, [])
 
   return (

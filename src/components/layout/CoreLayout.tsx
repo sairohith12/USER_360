@@ -23,6 +23,7 @@ const CoreLayout: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!isLoggedIn && router.pathname !== '/login') {
+      localStorage.clear()
       router.push('/login')
     }
     if (isGuestLoggedIn) {

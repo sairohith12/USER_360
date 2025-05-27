@@ -100,6 +100,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         router.pathname !== '/login' ||
         (!savedUserType && !publicRoutes.includes(router.pathname))
       ) {
+        localStorage.clear()
         router.push('/login')
       }
     }
@@ -148,6 +149,7 @@ export const withAuth = (Component: React.FC) => {
 
     useEffect(() => {
       if (!loading && !user) {
+        localStorage.clear()
         router.push('/login')
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

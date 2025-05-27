@@ -35,9 +35,10 @@ import VoucherReinstateAndTabs from '@/components/Reinstate/VoucherReinstateAndT
 // import GiftCardExpiryExtension from '@/components/ExpiryExtensions/GiftCardExpiryExtension'
 // import VoucherExtension from '@/components/ExpiryExtensions/VoucherExtension'
 // import AccessControl from '@/components/admin/AccessControl'
+// import AuditLogs from '@/components/admin/AuditLogs'
+// import AdminDashboard1 from '@/components/admin/AdminDashboard1'
+// import ManageAdmins from '@/components/admin/ManageAdmin'
 import UserDashboard from '@/components/UserDashboard'
-import AdminDashboard1 from '@/components/admin/AdminDashboard1'
-import ManageAdmins from '@/components/admin/ManageAdmin'
 
 export const menuItems: MenuItem[] = [
   {
@@ -163,14 +164,14 @@ export const menuItems: MenuItem[] = [
         path: '/admin/dashboard',
         roles: ['admin', 'super_admin'],
         icon: SpaceDashboard,
-        Component: AdminDashboard1,
+        Component: PlaceholderComponent,
       },
       {
         label: 'Manage Admins',
         path: '/admin/manage-admins',
         roles: ['admin', 'super_admin'],
         icon: SupervisorAccount,
-        Component: ManageAdmins,
+        Component: PlaceholderComponent,
       },
       {
         label: 'Access Control',
