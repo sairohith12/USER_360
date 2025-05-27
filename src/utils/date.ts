@@ -5,7 +5,7 @@ import dayjs, { Dayjs } from 'dayjs'
  * @param date - Dayjs date object
  * @returns formatted date string in YYYY-MM-DD format
  */
-export function formatDateToYYYYMMDD(date: Dayjs): string {
+export function formatDateToYYYYMMDD(date: string | Dayjs | null | undefined | number): string {
   const newDate = dayjs(date)
   const year = newDate.year()
   // month() returns 0-indexed month; add 1 and pad to 2 digits

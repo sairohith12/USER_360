@@ -35,6 +35,7 @@ const mockAuditLogs = [
     module: 'Access Control',
     status: 'Success',
     details: 'Added: GiftCard (Taj Experience), Removed: Vouchers',
+    property: 'Taj Lands End',
   },
   {
     timestamp: '2025-05-22T09:45:00Z',
@@ -44,6 +45,7 @@ const mockAuditLogs = [
     module: 'Redemption',
     status: 'Success',
     details: 'Voucher Code: EPI-7890 used for Room Upgrade',
+    property: 'Taj Mahal Palace',
   },
   {
     timestamp: '2025-05-21T16:30:00Z',
@@ -53,6 +55,7 @@ const mockAuditLogs = [
     module: 'CC Avenue',
     status: 'Failure',
     details: 'Gateway error: Invalid credentials',
+    property: 'Ginger Mumbai Airport',
   },
 ]
 
@@ -122,7 +125,6 @@ const AuditLogs = () => {
               label="Search by action, user or target"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              fullWidth
             />
 
             <Button variant="outlined" onClick={handleExport} sx={{ whiteSpace: 'nowrap' }}>
@@ -147,13 +149,16 @@ const AuditLogs = () => {
                     <strong>Performed By</strong>
                   </TableCell>
                   <TableCell>
-                    <strong>Target</strong>
+                    <strong>Performed To</strong>
                   </TableCell>
                   <TableCell>
                     <strong>Status</strong>
                   </TableCell>
                   <TableCell>
                     <strong>Details</strong>
+                  </TableCell>
+                  <TableCell>
+                    <strong>Property</strong>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -175,6 +180,7 @@ const AuditLogs = () => {
                         />
                       </TableCell>
                       <TableCell>{log.details}</TableCell>
+                      <TableCell>{log.property}</TableCell>
                     </TableRow>
                   ))}
               </TableBody>

@@ -1,1977 +1,3210 @@
 [
   {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "25 Farm House Vedic Village, Kolkata - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "DELAGVG",
-    "hotelName": "49 Golf Villa, Karma Lakelands, Gurugram - amã Stays & Trails"
-  },
-  {
     "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "70 Vale, Goa"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "70 Vale, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aberdeen, Coonoor - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Abhay Manor - Ghanerao, Udaipur - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Abhay Villa, Bisalpur, Jodhpur - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aguada Serenity Villa, Goa - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "IDS9375",
-    "hotelName": "Aguada Shell Villa, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aguada Solitude Villa, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aguada Villas, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Alpenhof, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Ambassador, New Delhi - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Ambika Vilas, Trivandrum - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "HLTDEDAK",
-    "hotelName": "Anand Kashi by the Ganges, Rishikesh - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Anjanagiri, Kotagiri - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Aqua Vista Villas, Nashik - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aqua Vista Watermark, Nashik - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aqua Vista, Nashik - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Aquabliss, Alleppey - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Arabidacool Bungalow, Chikmagalur - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Arcadia, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Asanji Wadi, Alibag - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "AssA 360, Goa, amã Stays & Trails (Opening Soon)"
+    "hotelName": "INACTIVE Eden Farms Aqua Marine, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTNAGBP",
-    "hotelName": "Baghvan, A Taj Safari – Pench National Park"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Ballyhack Cottage, Shimla - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Banjaar Kothi, Kanha National Park, amã Stays & Trails (Opening Soon)"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJLRBT",
-    "hotelName": "Banjaar Tola, A Taj Safari - Kanha National Park"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Baragarh Resort & Spa, Manali - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Barefoot Bungalow, Dhanaulti- amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Beach House Madh Island , Mumbai - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Bliss Villa Dhauj, Haryana - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Bloomsville, Coonoor - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "C4",
-    "hotelName": "Blue Diamond, Pune - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Braganza House, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Butterfly Villa, Nashik - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "CLUSTER Aguada Villas, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Cardozo House, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Casa Kenzo, Kashid - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Chalet 1228 - Kusur, Kamshet - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Chikoo Villa, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Citrus County, Hoshiarpur - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Cliffs Edge Sangrun, Khadakvasla, amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Coonoor Villas - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Coral Pearl, Lakshadweep- IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Cottabetta Bungalow, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "HLTJAIDR",
-    "hotelName": "Devi Ratn, Jaipur - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Dhauj Villas, Haryana - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Diffloo Bungalow, Assam - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Dingley Dell, Mahabaleshwar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Dulwich Estate, Panchgani - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Dulwich Park View, Panchgani - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Dulwich Terrace, Panchgani - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Eden Farms Paradise, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Eden Farms Sapphire, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Eden Farms, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Ekanté Bliss, Tirupati - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Forest Home, Hosur - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Fort House, Diu - IHCL SeleQtions"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Fountain Mahabaleshwar - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Aurangabad Chhatrapati Sambhaji Nagar"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Bekal"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Gateway Calicut"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": "HLTBLRTG",
-    "hotelName": "Gateway Chikmagalur"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": "HLTCJBTG",
-    "hotelName": "Gateway Coonoor"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Coorg"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Diu"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Madurai"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Nashik"
-  },
-  {
-    "brandName": "Gateway",
-    "hotelCode": null,
-    "hotelName": "Gateway Varkala"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Gateway Visakhapatnam"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Agartala"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Ahmedabad, Changodar"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Ahmedabad, RTO Circle"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Ahmedabad, SG Road"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Ahmedabad, Satellite"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Ahmedabad, Vastrapur"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Aurangabad"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Bangalore, IRR"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Bangalore, Whitefield"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Bharuch"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Bhubaneswar"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Candolim, Goa"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Chandigarh, Zirakpur"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Chennai, IITM"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Chennai, OMR"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Chennai, Vadapalani"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Coimbatore Airport, Avinashi Road"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Dehradun"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Delhi, Chanakyapuri"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Diu, Jalandhar Beach"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Durgapur, Rajbandh"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Dwarka"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger East Delhi"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Faridabad"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Gangtok, Bojoghari"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": "2499",
-    "hotelName": "Ginger Goa, Dona Paula"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": "64865",
-    "hotelName": "Ginger Goa, Madgaon"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": "64865",
-    "hotelName": "Ginger Goa, Panjim"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Gondia"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Greater Noida, Pari Chowk"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Guwahati"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Indore"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Jaipur"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Jamshedpur"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Ginger Jamshedpur, Tata Steel - JFC"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Kalinganagar"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Katra"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Kochi  MG Road"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Kochi, Kalamassery"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Lucknow"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mangalore"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mumbai, Airport"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mumbai, Andheri (MIDC)"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mumbai, Andheri East"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mumbai, Goregaon"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Mysore"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Nagpur, Airport Road"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Nagpur, City Centre"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Nashik"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": "229780",
-    "hotelName": "Ginger Noida, City Centre"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Noida, Sector 133"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": "210263",
-    "hotelName": "Ginger Noida, Sector 63"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Pantnagar"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Patna"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Pondicherry"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Pune, Pimpri"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Pune, Wakad"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Sanand"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Srinagar, Barzulla"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Surat"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Surat, City Center"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Thane"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Tirupur"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Trivandrum"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Udaipur, Shastri Circle"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Vadodara"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Ginger Vadodara RCR"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Vapi"
-  },
-  {
-    "brandName": "Ginger",
-    "hotelCode": null,
-    "hotelName": "Ginger Visakhapatnam, Gajuwaka"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Gir Serai, Gujarat - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Glenlorna Bungalow, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Godhuli Bhimal, Naukuchaital - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Godhuli Cottage, Naukuchiyatal - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Godhuli Cottages, Naukuchiatal - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Godhuli Padam, Naukuchaital - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Godhuli Surai, Naukuchaital - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Godhuli Timur, Naukuchiatal - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Gorbandh Palace, IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Hacienda De Bastora, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Hathikuli Bungalow, Assam - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Helen's Garden House, Bhopal - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Highland Breeze, Coimbatore - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "INACTIVE amã Stays & Trails Kihim Courtyard, Alibaug"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Isley Villa Dhauj, Haryana - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Jaagir Manor, Dudhwa - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJAIJM",
-    "hotelName": "Jai Mahal Palace, Jaipur"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kadalaar Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kailash House, Kodaikanal - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kanniamallay Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kashi House, Rishikesh - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kihim Courtyard, Alibag - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kothi Umednagar, Jodhpur - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kumara Villa, Kodaikanal - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Kuteeram, Bengaluru - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "HLTGOILE",
-    "hotelName": "La Estoria, Goa - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "IDS7915",
-    "hotelName": "La Maison Fontainhas, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "IDS9200",
-    "hotelName": "Lily Pad, Kumarakom - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Lotus Villa Dhauj, Haryana - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "L’Attitude by the Lake, Kamshet - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Madupatty Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJLRMK",
-    "hotelName": "Mahua Kothi, A Taj Safari - Bandhavgarh National Park"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Makaibari Bungalow, Darjeeling - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Mangirish Farmhouse, Alur, Bengaluru - amã Stays & trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMEYMS",
-    "hotelName": "Meghauli Serai, A Taj Safari - Chitwan National Park"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Mirayan, Nashik - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Moira by the River, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Moonstone, Bhopal - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Mount Pleasant Villa, Coonoor - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Nettigudi Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Nilaya Amaltaas, Udaipur - amã Stays & Trails"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Nine Palms, Alibag, amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Nine Palms, Alibaug  - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Norbu The Montanna, Dharamshala - IHCL SeleQtions"
-  },
-  {
-    "brandName": null,
-    "hotelCode": "IDS9300",
-    "hotelName": "OLD Eden Farms Emerald, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Palmeira De Saligao, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Palmeira De Socorro, Goa - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Parvathy Bungalow, Munnar  - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTHJRPG",
-    "hotelName": "Pashan Garh, A Taj Safari - Panna National Park"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Pathiramanal Villa, Alappuzha - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Patu′s Haven, Lonavala - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "BHOTLKZ",
-    "hotelName": "Pilibhit House, Haridwar - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Pollibetta Bungalow, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Pranamya, Alibaug - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "A4",
-    "hotelName": "Pratap Mahal, Ajmer - IHCL SeleQtions"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "President, Mumbai - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Puttabong Cottage, Darjeeling - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "44",
-    "hotelName": "Raajkutir, Kolkata - IHCL SeleQtions"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Raajsa, Kumbhalgarh-IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Raman Villa, Shimla - amã Stays & Trails "
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJAIRP",
-    "hotelName": "Rambagh Palace, Jaipur "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Ramgarh Heritage Villa, Manali - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Ramgarh Lodge, Jaipur - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Rang Mahal, Jaipur - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Rare Earth Estate, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Raven's Nest, Kotagiri - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "9",
-    "hotelName": "Savoy, Ooty - IHCL SeleQtions"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Sawai Madhopur Lodge - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "JAISM",
-    "hotelName": "Sawai Man Mahal, Jaipur"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "HLTCOKSM",
-    "hotelName": "Scenic, Munnar - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Serendipity, Ranikhet - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Sevenmallay Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Sherly’s Ente Kumbalanghi, Kochi - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Sholamallay Bungalow, Munnar - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Singapore"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Skanda, Coorg - amã Stays and Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "IDS9349",
-    "hotelName": "Skyfall, Kashid - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Sluice House, Lonavala - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Sneh Villa, Kodaikanal - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTLONSJ",
-    "hotelName": "St. James' Court, A Taj Hotel"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Surgi Bungalow, Coorg - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "TEST  -  Woshully Bungalow, Coorg - amã Stays & Trails "
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "TEST Kashi House, Rishikesh - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTLONBG",
-    "hotelName": "Taj 51 Buckingham Gate Suites & Residences, London"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJAITA",
-    "hotelName": "Taj Amer, Jaipur"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTUDRTA",
-    "hotelName": "Taj Aravali Resort & Spa, Udaipur"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBLRTB",
-    "hotelName": "Taj Bangalore, Bengaluru"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTIXEVI",
-    "hotelName": "Taj Bekal Resort & Spa, Kerala"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTCCUBK",
-    "hotelName": "Taj Bengal, Kolkata"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTCMBTE",
-    "hotelName": "Taj Bentota Resort & Spa, Sri Lanka"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTSFOCP",
-    "hotelName": "Taj Campton Place, San Francisco"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTCPTCT",
-    "hotelName": "Taj Cape Town, South Africa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTIXCTC",
-    "hotelName": "Taj Chandigarh"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTIXBCK",
-    "hotelName": "Taj Chia Kutir Resort & Spa, Darjeeling"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Taj Cidade de Goa Heritage, Goa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Taj Cidade de Goa Horizon, Goa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTCCUNT",
-    "hotelName": "Taj City Centre New Town, Kolkata"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDELGU",
-    "hotelName": "Taj City Centre, Gurugram "
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Taj City Centre, Patna (Opening Soon)"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMAAMR",
-    "hotelName": "Taj Club House, Chennai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Taj Cochin International Airport, Kerala"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMAACN",
-    "hotelName": "Taj Connemara, Chennai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMLETC",
-    "hotelName": "Taj Coral Reef Resort & Spa, Maldives "
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTPGHCO",
-    "hotelName": "Taj Corbett Resort & Spa, Uttarakhand"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMAATC",
-    "hotelName": "Taj Coromandel, Chennai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJAIRP",
-    "hotelName": "Taj Dal View - Gateway"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTHYDTD",
-    "hotelName": "Taj Deccan, Hyderabad"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDXBTD",
-    "hotelName": "Taj Dubai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTIXZTA",
-    "hotelName": "Taj Exotica Resort & Spa, Andamans"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTGOITE",
-    "hotelName": "Taj Exotica Resort & Spa, Goa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMLETE",
-    "hotelName": "Taj Exotica Resort & Spa, Maldives"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDXBERX",
-    "hotelName": "Taj Exotica Resort & Spa, The Palm, Dubai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTHYDFP",
-    "hotelName": "Taj Falaknuma Palace, Hyderabad"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTUDRFP",
-    "hotelName": "Taj Fateh Prakash Palace, Udaipur"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTMAAFC",
-    "hotelName": "Taj Fisherman's Cove Resort & Spa, Chennai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTGOIFA",
-    "hotelName": "Taj Fort Aguada Resort & Spa, Goa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTAMDTG",
-    "hotelName": "Taj Gandhinagar Resort & Spa, Gujarat"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTVNSTG",
-    "hotelName": "Taj Ganges, Varanasi"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTTRVTG",
-    "hotelName": "Taj Green Cove Resort & Spa, Kovalam"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "Taj Guras Kutir Resort & Spa, Gangtok"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJDHTH",
-    "hotelName": "Taj Hari Mahal, Jodhpur"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTGOITH",
-    "hotelName": "Taj Holiday Village Resort & Spa, Goa"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTAGRTA",
-    "hotelName": "Taj Hotel & Convention Centre, Agra"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDXBJL",
-    "hotelName": "Taj Jumeirah Lakes Towers, Dubai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTHYDTK",
-    "hotelName": "Taj Krishna, Hyderabad"
-  },
-  {
-    "brandName": "Taj",
+    "chambersSponsorId": "100",
+    "epicureSponsorId": "62",
     "hotelCode": "HLTCOKTG",
-    "hotelName": "Taj Kumarakom Resort & Spa, Kerala"
+    "hotelName": "Taj Kumarakom Resort & Spa, Kerala",
+    "hsbcSponsorId": "62"
   },
   {
-    "brandName": "Taj",
-    "hotelCode": "HLTUDRTL",
-    "hotelName": "Taj Lake Palace, Udaipur"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBHOTL",
-    "hotelName": "Taj Lakefront, Bhopal"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBOMLE",
-    "hotelName": "Taj Lands End, Mumbai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBLRTR",
-    "hotelName": "Taj MG Road, Bengaluru"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTIXECO",
-    "hotelName": "Taj Madikeri Resort & Spa, Coorg"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBOMTM",
-    "hotelName": "Taj Mahal Tower, Mumbai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTLKOTR",
-    "hotelName": "Taj Mahal, Lucknow"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDELTM",
-    "hotelName": "Taj Mahal, New Delhi"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTCOKTM",
-    "hotelName": "Taj Malabar Resort & Spa, Cochin"
-  },
-  {
-    "brandName": "Taj",
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taj Mussoorie Foothills, Dehradun "
+    "hotelName": "Skanda, Coorg - amã Stays and Trails",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Taj",
-    "hotelCode": "HLTVNSNP",
-    "hotelName": "Taj Nadesar Palace, Varanasi"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTDELTP",
-    "hotelName": "Taj Palace, New Delhi"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTLUNTP",
-    "hotelName": "Taj Pamodzi, Lusaka "
-  },
-  {
-    "brandName": "Taj",
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taj Puri Resort & Spa, Odisha"
+    "hotelName": "Tree of Life Inderpura Resort, Udaipurwati",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
+    "chambersSponsorId": "60",
+    "epicureSponsorId": "102",
+    "hotelCode": "HLTJDHUB",
+    "hotelName": "Umaid Bhawan Palace, Jodhpur",
+    "hsbcSponsorId": "102"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Inactive Ginger Aurangabad, CIDCO",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Dulwich Estate, Panchgani - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "49",
+    "epicureSponsorId": "75",
     "hotelCode": "HLTDEDTR",
-    "hotelName": "Taj Rishikesh Resort & Spa, Uttarakhand"
+    "hotelName": "Taj Rishikesh Resort & Spa, Uttarakhand",
+    "hsbcSponsorId": "75"
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTCMBTS",
-    "hotelName": "Taj Samudra, Colombo"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBOMTS",
-    "hotelName": "Taj Santacruz, Mumbai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTJAIRP",
-    "hotelName": "Taj Sawai, Ranthambore"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTAMDTS",
-    "hotelName": "Taj Skyline, Ahmedabad"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTATQTA",
-    "hotelName": "Taj Swarna, Amritsar"
-  },
-  {
-    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taj Taal Kutir, Kolkata"
+    "hotelName": "Gateway Calicut",
+    "hsbcSponsorId": "91"
   },
   {
-    "brandName": "Taj",
-    "hotelCode": "HLTBOMTT",
-    "hotelName": "Taj The Trees, Mumbai"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTSLVTT",
-    "hotelName": "Taj Theog Resort & Spa, Shimla"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTTIRTT",
-    "hotelName": "Taj Tirupati, Tirupati"
-  },
-  {
-    "brandName": "Taj",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taj Usha Kiran Palace, Gwalior"
+    "hotelName": "Ginger Udaipur, Shastri Circle",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Barefoot Bungalow, Dhanaulti- amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Delhi, Chanakyapuri",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Isley Villa Dhauj, Haryana - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
+    "chambersSponsorId": "147",
+    "epicureSponsorId": "205",
+    "hotelCode": null,
+    "hotelName": "Taj City Centre, Patna",
+    "hsbcSponsorId": "205"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Resort, Dehradun Foothills",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Eden Farms Paradise, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Birdsong Chalets, Dharamshala",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "146",
+    "epicureSponsorId": "187",
     "hotelCode": "HLTCCJTW",
-    "hotelName": "Taj Wayanad Resort & Spa, Kerala"
+    "hotelName": "Taj Wayanad Resort & Spa, Kerala",
+    "hsbcSponsorId": "187"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9374",
+    "hotelName": "Aguada Villas, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Coonoor Villas - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Nagpur, Airport Road",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9210",
+    "hotelName": "Villa Eterna, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
+    "chambersSponsorId": "128",
+    "epicureSponsorId": "180",
     "hotelCode": "HLTMAATW",
-    "hotelName": "Taj Wellington Mews, Chennai"
+    "hotelName": "Taj Wellington Mews, Chennai",
+    "hsbcSponsorId": "180"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Nagpur, City Centre",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9230",
+    "hotelName": "Vivid Foliage, Kasaragod - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTBOMWM",
-    "hotelName": "Taj Wellington Mews, Mumbai"
+    "chambersSponsorId": "94",
+    "epicureSponsorId": "48",
+    "hotelCode": "HLTGOITE",
+    "hotelName": "Taj Exotica Resort & Spa, Goa",
+    "hsbcSponsorId": "48"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Coimbatore Airport, Avinashi Road",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTBLRWE",
-    "hotelName": "Taj West End, Bengaluru"
+    "chambersSponsorId": "6",
+    "epicureSponsorId": "44",
+    "hotelCode": "HLTMAATC",
+    "hotelName": "Taj Coromandel, Chennai",
+    "hsbcSponsorId": "44"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Malabar Villas, Kozhikode - amã Stays & Trails\t",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTBLRYE",
-    "hotelName": "Taj Yeshwantpur, Bengaluru "
+    "chambersSponsorId": "93",
+    "epicureSponsorId": "42",
+    "hotelCode": "HLTMLETC",
+    "hotelName": "Taj Coral Reef Resort & Spa, Maldives ",
+    "hsbcSponsorId": "42"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life VanVilas River Edge, Corbett National Park",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "48",
+    "epicureSponsorId": "74",
+    "hotelCode": null,
+    "hotelName": "Taj Cidade de Goa Horizon, Goa",
+    "hsbcSponsorId": "74"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Diu, Jalandhar Beach",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "43",
+    "epicureSponsorId": "66",
+    "hotelCode": "HLTIXECO",
+    "hotelName": "Taj Madikeri Resort & Spa, Coorg",
+    "hsbcSponsorId": "66"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mumbai, Airport",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "158",
+    "epicureSponsorId": "202",
+    "hotelCode": "HLTJAIRP",
+    "hotelName": "Taj Sawai, Ranthambore",
+    "hsbcSponsorId": "202"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "99",
+    "epicureSponsorId": "58",
+    "hotelCode": "HLTGOITH",
+    "hotelName": "Taj Holiday Village Resort & Spa, Goa",
+    "hsbcSponsorId": "58"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Patu′s Haven, Lonavala - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Palmeira De Socorro, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "SeleQtions",
-    "hotelCode": "4",
-    "hotelName": "Tajview Agra - IHCL SeleQtions"
+    "chambersSponsorId": "16",
+    "epicureSponsorId": "18",
+    "hotelCode": "A4",
+    "hotelName": "Pratap Mahal, Ajmer - IHCL SeleQtions",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Ama",
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "156",
+    "epicureSponsorId": "199",
     "hotelCode": null,
-    "hotelName": "Talia Costa, Udaipur - amã Stays & Trails"
+    "hotelName": "WOW Crest, Indore",
+    "hsbcSponsorId": "199"
   },
   {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Taneerhulla Bungalow, Coorg - amã Stays & Trails"
+    "brandName": "Taj",
+    "chambersSponsorId": "127",
+    "epicureSponsorId": "144",
+    "hotelCode": "HLTBHOTL",
+    "hotelName": "Taj Lakefront, Bhopal",
+    "hsbcSponsorId": "144"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "98",
+    "epicureSponsorId": "57",
+    "hotelCode": "HLTJDHTH",
+    "hotelName": "Taj Hari Mahal, Jodhpur",
+    "hsbcSponsorId": "57"
   },
   {
     "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taneerhulla Bungalow, Coorg, amã Stays & Trails"
+    "hotelName": "Nine Palms, Alibag, amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taneerhulla Bungalows, Coorg - amã Stays & Trails\t"
+    "hotelName": "Highland Breeze, Coimbatore - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taneerhulla Cottage, Coorg - amã Stays & Trails"
+    "hotelName": "Pranamya, Alibaug - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "106",
+    "epicureSponsorId": "76",
+    "hotelCode": "HLTCMBTS",
+    "hotelName": "Taj Samudra, Colombo ",
+    "hsbcSponsorId": "76"
   },
   {
     "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Taneerhulla Cottage, Coorg, amã Stays & Trails"
+    "hotelName": "Inactive Aguada Villas, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "36",
+    "epicureSponsorId": "53",
+    "hotelCode": "HLTMAAFC",
+    "hotelName": "Taj Fisherman's Cove Resort & Spa, Chennai",
+    "hsbcSponsorId": "53"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "83",
+    "epicureSponsorId": "14",
+    "hotelCode": "HLTJAIJM",
+    "hotelName": "Jai Mahal Palace, Jaipur",
+    "hsbcSponsorId": "14"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "39",
+    "epicureSponsorId": "59",
+    "hotelCode": "HLTAGRTA",
+    "hotelName": "Taj Hotel & Convention Centre, Agra",
+    "hsbcSponsorId": "59"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Naukuchia House, Naukuchiatal - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9375",
+    "hotelName": "Inactive Aguada Shell Villa, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Terrance Hall, Mussoorie - amã Stays & Trails"
+    "hotelName": "Godhuli Cottage, Naukuchiyatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "29",
+    "epicureSponsorId": "40",
+    "hotelCode": "HLTMAAMR",
+    "hotelName": "Taj Club House, Chennai",
+    "hsbcSponsorId": "40"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "89",
+    "epicureSponsorId": "29",
+    "hotelCode": "HLTUDRTA",
+    "hotelName": "Taj Aravali Resort & Spa, Udaipur",
+    "hsbcSponsorId": "29"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "26",
+    "epicureSponsorId": "36",
+    "hotelCode": "HLTCPTCT",
+    "hotelName": "Taj Cape Town, South Africa",
+    "hsbcSponsorId": "36"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Ramvilas, Bandhavgarh",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "95",
+    "epicureSponsorId": "49",
+    "hotelCode": "HLTMLETE",
+    "hotelName": "Taj Exotica Resort & Spa, Maldives",
+    "hsbcSponsorId": "49"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taneerhulla Bungalows, Coorg - amã Stays & Trails\t",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Ecotainers, Agra",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "155",
+    "epicureSponsorId": "198",
+    "hotelCode": "HLTBOMTT",
+    "hotelName": "Taj The Trees, Mumbai",
+    "hsbcSponsorId": "198"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Raajsa, Kumbhalgarh-IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taj Dal View, Srinagar",
+    "hsbcSponsorId": "109"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Lotus Villa Dhauj, Haryana - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "44",
+    "epicureSponsorId": "68",
+    "hotelCode": "HLTLKOTR",
+    "hotelName": "Taj Mahal, Lucknow",
+    "hsbcSponsorId": "68"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "25",
+    "epicureSponsorId": "35",
+    "hotelCode": "HLTSFOCP",
+    "hotelName": "Taj Campton Place, San Francisco",
+    "hsbcSponsorId": "35"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "88",
+    "epicureSponsorId": "139",
+    "hotelCode": "HLTLONBG",
+    "hotelName": "Taj 51 Buckingham Gate Suites & Residences, London",
+    "hsbcSponsorId": "139"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "85",
+    "epicureSponsorId": "16",
+    "hotelCode": "HLTMEYMS",
+    "hotelName": "Meghauli Serai, A Taj Safari - Chitwan National Park",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Bhadrajun House, Jodhpur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Dehradun",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Durgapur, Rajbandh",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "30",
+    "epicureSponsorId": "43",
+    "hotelCode": "HLTPGHCO",
+    "hotelName": "Taj Corbett Resort & Spa, Uttarakhand",
+    "hsbcSponsorId": "43"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9200",
+    "hotelName": "Lily Pad, Kumarakom - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Yarkay, Thimphu - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "119",
+    "epicureSponsorId": "101",
+    "hotelCode": "HLTBOMPA",
+    "hotelName": "The Taj Mahal Palace, Mumbai",
+    "hsbcSponsorId": "101"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Banjaar Kothi, Kanha National Park, amã Stays & Trails (Opening Soon)",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Bliss Villa Dhauj, Haryana - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": "164",
+    "epicureSponsorId": "208",
+    "hotelCode": null,
+    "hotelName": "Gateway Bekal",
+    "hsbcSponsorId": "208"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "152",
+    "epicureSponsorId": "195",
+    "hotelCode": "HLTAMDTG",
+    "hotelName": "Taj Gandhinagar Resort & Spa, Gujarat",
+    "hsbcSponsorId": "195"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "24",
+    "epicureSponsorId": "34",
+    "hotelCode": "HLTCMBTE",
+    "hotelName": "Taj Bentota Resort & Spa, Sri Lanka",
+    "hsbcSponsorId": "34"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kihim Courtyard, Alibag - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taj Puri Resort & Spa, Odisha",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "HLTGOILE",
+    "hotelName": "La Estoria, Goa - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Lamp House, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Malabar Villa Hibiscus, Kozhikode - amã Stays and Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Vadodara RCR",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Vivanta Thane, Mumbai ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Hathikuli Bungalow, Assam - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Grand Oak Manor, Binsar Wildlife Sanctuary",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "129",
+    "epicureSponsorId": "179",
+    "hotelCode": "HLTBOMWM",
+    "hotelName": "Taj Wellington Mews, Mumbai",
+    "hsbcSponsorId": "84"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "78",
+    "epicureSponsorId": "4",
+    "hotelCode": "HLTNAGBP",
+    "hotelName": "Baghvan, A Taj Safari – Pench National Park",
+    "hsbcSponsorId": "4"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Fort house, Diu - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Singapore",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "157",
+    "epicureSponsorId": "201",
+    "hotelCode": null,
+    "hotelName": "Taj Taal Kutir, Kolkata",
+    "hsbcSponsorId": "201"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Anjanagiri, Kotagiri - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "51",
+    "epicureSponsorId": "81",
+    "hotelCode": "HLTSLVTT",
+    "hotelName": "Taj Theog Resort & Spa, Shimla",
+    "hsbcSponsorId": "81"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Ahmedabad, Changodar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "140",
+    "epicureSponsorId": "183",
+    "hotelCode": "HLTCCUNT",
+    "hotelName": "Taj City Centre New Town, Kolkata",
+    "hsbcSponsorId": "183"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Vantara Resort & Spa, Udaipur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "92",
+    "epicureSponsorId": "41",
+    "hotelCode": "HLTMAACN",
+    "hotelName": "Taj Connemara, Chennai",
+    "hsbcSponsorId": "41"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "105",
+    "epicureSponsorId": "72",
+    "hotelCode": "HLTDELTP",
+    "hotelName": "Taj Palace, New Delhi",
+    "hsbcSponsorId": "72"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "110",
+    "epicureSponsorId": "83",
+    "hotelCode": null,
+    "hotelName": "Taj Usha Kiran Palace, Gwalior",
+    "hsbcSponsorId": "83"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Dulwich Terrace, Panchgani - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": "207",
+    "hotelCode": null,
+    "hotelName": "Taj Gorbandh Palace, Jaisalmer",
+    "hsbcSponsorId": "207"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Dhauj Villas, Haryana - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "23",
+    "epicureSponsorId": "32",
+    "hotelCode": "HLTIXEVI",
+    "hotelName": "Taj Bekal Resort & Spa, Kerala",
+    "hsbcSponsorId": "32"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Villa Ishatava, Alibag - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "27",
+    "epicureSponsorId": "37",
+    "hotelCode": "HLTIXCTC",
+    "hotelName": "Taj Chandigarh",
+    "hsbcSponsorId": "37"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "HLTCOKSM",
+    "hotelName": "Scenic, Munnar - IHCL SeleQtions",
+    "hsbcSponsorId": "203"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Eden Farms, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "35",
+    "epicureSponsorId": "52",
+    "hotelCode": "HLTUDRFP",
+    "hotelName": "Taj Fateh Prakash Palace, Udaipur",
+    "hsbcSponsorId": "52"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": "99",
+    "hotelCode": null,
+    "hotelName": "Taj Damdama Lake Resort & Spa, Gurugram",
+    "hsbcSponsorId": "99"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": null,
+    "epicureSponsorId": "206",
+    "hotelCode": "HLTIXWVJ",
+    "hotelName": "Vivanta Jamshedpur, Golmuri",
+    "hsbcSponsorId": "206"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": "136",
+    "hotelCode": null,
+    "hotelName": "Taj Alibaug Resort & Spa, Maharashtra",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "HLTSELSU",
+    "hotelName": "Taj Surajkund Resort & Spa, Delhi NCR",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Eden Farms Sapphire, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "79",
+    "epicureSponsorId": "5",
+    "hotelCode": "HLTJLRBT",
+    "hotelName": "Banjaar Tola, A Taj Safari - Kanha National Park",
+    "hsbcSponsorId": "5"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "18",
+    "epicureSponsorId": "136",
+    "hotelCode": "HLTJAIRP",
+    "hotelName": "Rambagh Palace, Jaipur ",
+    "hsbcSponsorId": "136"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Darbargadh, Dared",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kuteeram, Bangalore - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Aquabliss, Alleppey - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVEEEEEEEEEE Godhuli Padam, Naukuchiatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "52",
+    "epicureSponsorId": "82",
+    "hotelCode": "HLTTIRTT",
+    "hotelName": "Taj Tirupati, Tirupati",
+    "hsbcSponsorId": "82"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "IN ACTIVEE Helen's Garden House, Bhopal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9360",
+    "hotelName": "Vintage Halton, Trivandrum - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9391",
+    "hotelName": "Whispering Pines, Bhimtal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Goa, Candolim",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "42",
+    "epicureSponsorId": "65",
+    "hotelCode": "HLTBLRTR",
+    "hotelName": "Taj MG Road, Bengaluru",
+    "hsbcSponsorId": "65"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Alpenhof, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Nilaya Amaltaas, Udaipur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "20",
+    "epicureSponsorId": "138",
+    "hotelCode": "JAISM",
+    "hotelName": "Sawai Man Mahal, Jaipur",
+    "hsbcSponsorId": "138"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "154",
+    "epicureSponsorId": "197",
+    "hotelCode": null,
+    "hotelName": "Vivanta Jammu, City Centre ",
+    "hsbcSponsorId": "197"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Aqua Vista, Nashik - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taj Cochin International Airport, Kerala",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE amã Stays & Trails Kihim Courtyard, Alibaug",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVEEEEEEEEEE Godhuli Surai, Naukuchiatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "113",
+    "epicureSponsorId": "88",
+    "hotelCode": "E0",
+    "hotelName": "The Connaught, New Delhi - IHCL SeleQtions",
+    "hsbcSponsorId": "88"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "108",
+    "epicureSponsorId": "79",
+    "hotelCode": "HLTATQTA",
+    "hotelName": "Taj Swarna, Amritsar",
+    "hsbcSponsorId": "79"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "21",
+    "epicureSponsorId": "30",
+    "hotelCode": "HLTBLRTB",
+    "hotelName": "Taj Bangalore, Bengaluru",
+    "hsbcSponsorId": "30"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taj Mussoorie Foothills, Dehradun ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "148",
+    "epicureSponsorId": "193",
+    "hotelCode": "HLTJAITA",
+    "hotelName": "Taj Amer, Jaipur",
+    "hsbcSponsorId": "193"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Lakeside Cottage, Srinagar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "112",
+    "epicureSponsorId": "86",
+    "hotelCode": "HLTBLRYE",
+    "hotelName": "Taj Yeshwantpur, Bengaluru ",
+    "hsbcSponsorId": "86"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Butterfly Villa, Nashik - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Rang Mahal, Jaipur - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kashi House, Rishikesh - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Srinagar, Barzulla",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "59",
+    "epicureSponsorId": "100",
+    "hotelCode": "HLTNYCTP",
+    "hotelName": "The Pierre, A Taj Hotel, New York",
+    "hsbcSponsorId": "100"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "107",
+    "epicureSponsorId": "78",
+    "hotelCode": "HLTAMDTS",
+    "hotelName": "Taj Skyline, Ahmedabad",
+    "hsbcSponsorId": "78"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "80",
+    "epicureSponsorId": "7",
+    "hotelCode": null,
+    "hotelName": "Taj Cidade de Goa Heritage, Goa",
+    "hsbcSponsorId": "7"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVEEEEEEEEEE Godhuli Bhimal, Naukuchiatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": "82",
+    "epicureSponsorId": "11",
+    "hotelCode": null,
+    "hotelName": "Gateway Varkala",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "17",
+    "epicureSponsorId": "19",
+    "hotelCode": null,
+    "hotelName": "President, Mumbai - IHCL SeleQtions ",
+    "hsbcSponsorId": "19"
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": "81",
+    "epicureSponsorId": "9",
+    "hotelCode": "HLTBLRTG",
+    "hotelName": "Gateway Chikmagalur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "77",
+    "epicureSponsorId": "3",
+    "hotelCode": null,
+    "hotelName": "Ambassador, New Delhi - IHCL SeleQtions",
+    "hsbcSponsorId": "3"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "19",
+    "epicureSponsorId": "137",
+    "hotelCode": null,
+    "hotelName": "Ramgarh Lodge, Jaipur - IHCL SeleQtions",
+    "hsbcSponsorId": "137"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "13",
+    "epicureSponsorId": "8",
+    "hotelCode": "HLTJAIDR",
+    "hotelName": "Devi Ratn, Jaipur - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Gateway Aurangabad Chhatrapati Sambhaji Nagar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "141",
+    "epicureSponsorId": "185",
+    "hotelCode": "HLTDEDAK",
+    "hotelName": "Anand Kashi by the Ganges, Rishikesh - IHCL SeleQtions",
+    "hsbcSponsorId": "185"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "57",
+    "epicureSponsorId": "97",
+    "hotelCode": null,
+    "hotelName": "Vivanta Vijayawada, MG Road",
+    "hsbcSponsorId": "97"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "137",
+    "epicureSponsorId": "181",
+    "hotelCode": "44",
+    "hotelName": "Raaj Kutir, Kolkata - IHCL SeleQtions",
+    "hsbcSponsorId": "181"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "75",
+    "epicureSponsorId": "143",
+    "hotelCode": null,
+    "hotelName": "Vivanta Kathmandu",
+    "hsbcSponsorId": "143"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "142",
+    "epicureSponsorId": "186",
+    "hotelCode": null,
+    "hotelName": "Vivanta Ahmedabad SG Highway",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "55",
+    "epicureSponsorId": "94",
+    "hotelCode": null,
+    "hotelName": "Vivanta Old Port Road, Mangalore",
+    "hsbcSponsorId": "94"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "68",
+    "epicureSponsorId": "114",
+    "hotelCode": null,
+    "hotelName": "Vivanta Kolkata, EM Bypass",
+    "hsbcSponsorId": "114"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Inactive Vivanta Surajkund, NCR",
+    "hsbcSponsorId": "116"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "136",
+    "epicureSponsorId": "178",
+    "hotelCode": null,
+    "hotelName": "Vivanta Sikkim, Pakyong",
+    "hsbcSponsorId": "178"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "71",
+    "epicureSponsorId": "117",
+    "hotelCode": null,
+    "hotelName": "Vivanta New Delhi, Dwarka",
+    "hsbcSponsorId": "117"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "123",
+    "epicureSponsorId": "119",
+    "hotelCode": null,
+    "hotelName": "Vivanta Thiruvananthapuram",
+    "hsbcSponsorId": "119"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": "64",
+    "epicureSponsorId": "109",
+    "hotelCode": null,
+    "hotelName": "Vivanta Dal View, Srinagar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Chennai, IITM",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Indore",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Trivandrum",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "2499",
+    "hotelName": "Ginger Goa, Dona Paula",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Tirupur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Greater Noida, Pari Chowk",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Chandigarh, Zirakpur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "[Inactive] Ginger Vadodara RCR",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Surat, City Center",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mumbai, Goregaon",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mysore",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Vapi",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mumbai, Andheri East",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Chennai, OMR",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taneerhulla Cottage, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Glenlorna Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ambika Vilas, Trivandrum - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Rare Earth Estate, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": "132"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Villa No 1 Saipem Hills, Goa - amã Stays & Trails",
+    "hsbcSponsorId": "135"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Sevenmallay Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Asanji Wadi, Alibag - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Madupatty Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Chikoo Villa, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Cliffs Edge Sangrun, Khadakvasla, amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kanniamallay Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ballyhack Cottage, Shimla - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Old Cattle Shed, Wayanad - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Sholamallay Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kailash House, Kodaikanal - amã Stays & Trails",
+    "hsbcSponsorId": "126"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Mango House, Alibag - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Casa Kenzo, Kashid - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Abhay Manor - Ghanerao, Udaipur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Chalet 1228 - Kusur, Kamshet - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Gondia",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taneerhulla Bungalow, Coorg, amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Mangirish Farmhouse, Alur, Bangalore - amã Stays & trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "144",
+    "epicureSponsorId": "189",
+    "hotelCode": null,
+    "hotelName": "Norbu The Montanna, Dharamshala - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Gir Serai - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "145",
+    "epicureSponsorId": "192",
+    "hotelCode": null,
+    "hotelName": "Baragarh Resort & Spa, Manali - IHCL SeleQtions",
+    "hsbcSponsorId": "192"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "65",
+    "epicureSponsorId": "110",
+    "hotelCode": null,
+    "hotelName": "Vivanta Goa, Panaji",
+    "hsbcSponsorId": "110"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "151",
+    "epicureSponsorId": "194",
+    "hotelCode": null,
+    "hotelName": "The Yellow House, Goa – IHCL SeleQtions",
+    "hsbcSponsorId": "194"
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": "14",
+    "epicureSponsorId": "10",
+    "hotelCode": "HLTCJBTG",
+    "hotelName": "Gateway Coonoor",
+    "hsbcSponsorId": "10"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "86",
+    "epicureSponsorId": "26",
+    "hotelCode": "9",
+    "hotelName": "Savoy, Ooty - IHCL SeleQtions",
+    "hsbcSponsorId": "26"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "66",
+    "epicureSponsorId": "111",
+    "hotelCode": null,
+    "hotelName": "Vivanta Guwahati",
+    "hsbcSponsorId": "111"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "74",
+    "epicureSponsorId": "121",
+    "hotelCode": null,
+    "hotelName": "Vivanta Vadodara",
+    "hsbcSponsorId": "121"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "121",
+    "epicureSponsorId": "104",
+    "hotelCode": null,
+    "hotelName": "Vivanta Bengaluru, Residency Road",
+    "hsbcSponsorId": "104"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "61",
+    "epicureSponsorId": "106",
+    "hotelCode": null,
+    "hotelName": "Vivanta Chennai, IT Expressway",
+    "hsbcSponsorId": "106"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "62",
+    "epicureSponsorId": "107",
+    "hotelCode": null,
+    "hotelName": "Vivanta Coimbatore",
+    "hsbcSponsorId": "107"
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "124",
+    "epicureSponsorId": "141",
+    "hotelCode": null,
+    "hotelName": "Vivanta Bhubaneswar, DN Square",
+    "hsbcSponsorId": "141"
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Chennai, Vadapalani",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mangalore",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Ahmedabad, SG Road",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Guwahati",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger East Delhi",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Pune, Pimpri",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Surat",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Vadodara",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Pantnagar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Aurangabad",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "229780",
+    "hotelName": "Ginger Noida, City Centre",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Gateway Nashik",
+    "hsbcSponsorId": "95"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Cottabetta Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Gateway",
+    "chambersSponsorId": "54",
+    "epicureSponsorId": "90",
+    "hotelCode": null,
+    "hotelName": "Gateway Madurai",
+    "hsbcSponsorId": "90"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Surgi Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taneerhulla Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Pollibetta Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Arabidacool Bungalow, Chikmagalur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": "116",
+    "epicureSponsorId": "92",
+    "hotelCode": null,
+    "hotelName": "Vivanta Ernakulam, Marine Drive",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Pathiramanal Villa, Alappuzha - amã Stays & Trails",
+    "hsbcSponsorId": "131"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Sluice House, Lonavala - amã Stays & Trails",
+    "hsbcSponsorId": "134"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Villa Siolim, Goa - amã Stays & Trails",
+    "hsbcSponsorId": "133"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Beach House Madh Island , Mumbai - amã Stays & Trails",
+    "hsbcSponsorId": "130"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVEEE Kumara Villa, Kodaikanal - amã Stays & Trails",
+    "hsbcSponsorId": "128"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Puttabong Cottage, Darjeeling - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "25 Farm House Vedic Village, Kolkata - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "amã Stays & Trails W567, Dehradun, Uttarakhand",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Makaibari Bungalow, Darjeeling - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Sherly’s Ente Kumbalanghi, Kochi - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Arcadia, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "DELAGVG",
+    "hotelName": "49 Golf Villa, Karma Lakelands, Gurugram - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Werifesteria, Coonoor - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Moonstone, Bhopal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Eden Farms Antonio Manuel, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ramgarh Heritage Villa, Manali - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Bloomsville, Coonoor - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Victory Dawn, Kochi - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Hacienda De Bastora, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Forest Home, Hosur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Serendipity, Ranikhet - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Abhay Villa, Bisalpur, Jodhpur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Moira by the River, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Agartala",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Bangalore, IRR",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Bhubaneswar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Pune, Wakad",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Ahmedabad, Satellite",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Lucknow",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Kalinganagar",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Kochi, Kalamassery",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Ahmedabad, RTO Circle",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Visakhapatnam, Gajuwaka",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "amã Stays & Trails Neeralaya, Nashik, Maharashtra",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Dulwich Park View, Panchgani - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Noida, Sector 133",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "149",
+    "epicureSponsorId": "200",
+    "hotelCode": null,
+    "hotelName": "Taj Guras Kutir Resort & Spa, Gangtok",
+    "hsbcSponsorId": "200"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Mirayan, Nashik - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "153",
+    "epicureSponsorId": "196",
+    "hotelCode": null,
+    "hotelName": "The Crown, Bhubaneswar",
+    "hsbcSponsorId": "196"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "7",
+    "epicureSponsorId": "61",
+    "hotelCode": "HLTHYDTK",
+    "hotelName": "Taj Krishna, Hyderabad",
+    "hsbcSponsorId": "61"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Highlands, Mussoorie",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "HLTJAIRP",
+    "hotelName": "INACTIVE Taj Dal View - Gateway",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Gangtok, Bojoghari",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Resort & Spa, Varanasi",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "3",
+    "epicureSponsorId": "64",
+    "hotelCode": "HLTBOMLE",
+    "hotelName": "Taj Lands End, Mumbai",
+    "hsbcSponsorId": "64"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Coral Pearl, Lakshadweep- IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Vivanta Chitwan, Bharatpur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "111",
+    "epicureSponsorId": "85",
+    "hotelCode": "HLTBLRWE",
+    "hotelName": "Taj West End, Bengaluru",
+    "hsbcSponsorId": "85"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Junoon in the Hills, Kumaon",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Sneh Villa, Kodaikanal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Vivanta",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Vivanta Arunachal Pradesh, Tawang",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "9",
+    "epicureSponsorId": "28",
+    "hotelCode": "HLTLONSJ",
+    "hotelName": "St. James' Court, A Taj Hotel",
+    "hsbcSponsorId": "28"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "37",
+    "epicureSponsorId": "55",
+    "hotelCode": "HLTVNSTG",
+    "hotelName": "Taj Ganges, Varanasi",
+    "hsbcSponsorId": "55"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "84",
+    "epicureSponsorId": "15",
+    "hotelCode": "HLTJLRMK",
+    "hotelName": "Mahua Kothi, A Taj Safari - Bandhavgarh National Park",
+    "hsbcSponsorId": "15"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "32",
+    "epicureSponsorId": "45",
+    "hotelCode": "HLTHYDTD",
+    "hotelName": "Taj Deccan, Hyderabad",
+    "hsbcSponsorId": "45"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "5",
+    "epicureSponsorId": "33",
+    "hotelCode": "HLTCCUBK",
+    "hotelName": "Taj Bengal, Kolkata",
+    "hsbcSponsorId": "33"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "15",
+    "epicureSponsorId": "17",
+    "hotelCode": "HLTHJRPG",
+    "hotelName": "Pashan Garh, A Taj Safari - Panna National Park",
+    "hsbcSponsorId": "17"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "45",
+    "epicureSponsorId": "70",
+    "hotelCode": "HLTCOKTM",
+    "hotelName": "Taj Malabar Resort & Spa, Cochin",
+    "hsbcSponsorId": "70"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "AMSTWN",
+    "hotelName": "Writershill Nahan, Sirmaur Himachal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS8856",
+    "hotelName": "Eden Farms, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "50",
+    "epicureSponsorId": "77",
+    "hotelCode": "HLTBOMTS",
+    "hotelName": "Taj Santacruz, Mumbai",
+    "hsbcSponsorId": "77"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taneerhulla Cottage, Coorg, amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Tree of Life Amara Resort & Spa, Udaipur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "101",
+    "epicureSponsorId": "63",
+    "hotelCode": "HLTUDRTL",
+    "hotelName": "Taj Lake Palace, Udaipur",
+    "hsbcSponsorId": "63"
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Mount Pleasant Villa, Coonoor - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Fountain Mahabaleshwar - IHCL SeleQtions",
+    "hsbcSponsorId": "204"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "97",
+    "epicureSponsorId": "54",
+    "hotelCode": "HLTGOIFA",
+    "hotelName": "Taj Fort Aguada Resort & Spa, Goa",
+    "hsbcSponsorId": "54"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Godhuli Cottages, Naukuchiatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Dingley Dell, Mahabaleshwar - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "AssA 360, Goa, amã Stays & Trails (Opening Soon)",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "8",
+    "epicureSponsorId": "46",
+    "hotelCode": "HLTDXBTD",
+    "hotelName": "Taj Dubai",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "147",
+    "epicureSponsorId": "190",
+    "hotelCode": "HLTDXBERX",
+    "hotelName": "Taj Exotica Resort & Spa, The Palm, Dubai ",
+    "hsbcSponsorId": "190"
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Inactive Aguada Serenity Villa, Goa - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Kochi  MG Road",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "91",
+    "epicureSponsorId": "38",
+    "hotelCode": "HLTIXBCK",
+    "hotelName": "Taj Chia Kutir Resort & Spa, Darjeeling ",
+    "hsbcSponsorId": "38"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Gateway Visakhapatnam",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Diffloo Bungalow, Assam - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Holland House, Nashik - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "105",
+    "epicureSponsorId": "72",
+    "hotelCode": "HLTDELTM",
+    "hotelName": "Taj Mahal, New Delhi",
+    "hsbcSponsorId": "69"
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ekanté Bliss, Tirupati - IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS8863",
+    "hotelName": "The Deck, Girnar Forest, Junagadh - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Aqua Vista Watermark, Nashik - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Taj Puri Resort & Spa, Odisha",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "The Malabar Villa Iris, Kozhikode - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9300",
+    "hotelName": "INACTIVE Eden Farms Emerald, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Resort & Spa, Jaipur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVEEEEEEEEEE Godhuli Timur, Naukuchiatal - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Taj Devi Ratn Resort & Spa, Jaipur ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "46",
+    "epicureSponsorId": "71",
+    "hotelCode": "HLTVNSNP",
+    "hotelName": "Taj Nadesar Palace, Varanasi",
+    "hsbcSponsorId": "71"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "103",
+    "epicureSponsorId": "67",
+    "hotelCode": "HLTBOMTM",
+    "hotelName": "Taj Mahal Tower, Mumbai",
+    "hsbcSponsorId": "67"
+  },
+  {
+    "brandName": "Taj",
+    "chambersSponsorId": "34",
+    "epicureSponsorId": "47",
+    "hotelCode": "HLTIXZTA",
+    "hotelName": "Taj Exotica Resort & Spa, Andamans",
+    "hsbcSponsorId": "47"
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Indra Mandala Hotel, Gangtok",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Tree of Life",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Tree of Life Eila Art Hotel, Manali",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS9349",
+    "hotelName": "Skyfall, Kashid - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Gorbandh Palace, IHCL SeleQtions",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "[inactive] Ginger Coimbatore Airport, Avinashi Road",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "INACTIVE Aqua Vista Villas, Nashik - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Claridges Collection",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Claridges New Delhi "
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": "E0",
-    "hotelName": "The Connaught, New Delhi - IHCL SeleQtions"
-  },
-  {
-    "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "The Crown, Bhubaneshwar - IHCL SeleQtions"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": "IDS8863",
-    "hotelName": "The Deck, Girnar Forest, Junagadh - amã Stays & Trails"
+    "hotelName": "The Claridges New Delhi ",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "The Gateway Hotel Beach Road, Visakhapatnam"
+    "chambersSponsorId": "38",
+    "epicureSponsorId": "56",
+    "hotelCode": "HLTTRVTG",
+    "hotelName": "Taj Green Cove Resort & Spa, Kovalam",
+    "hsbcSponsorId": "56"
   },
   {
     "brandName": "Taj",
-    "hotelCode": null,
-    "hotelName": "The Gateway Resort Damdama Lake, Gurgaon"
+    "chambersSponsorId": "28",
+    "epicureSponsorId": "39",
+    "hotelCode": "HLTDELGU",
+    "hotelName": "Taj City Centre, Gurugram",
+    "hsbcSponsorId": "39"
   },
   {
-    "brandName": "Ama",
-    "hotelCode": "AMSTWN",
-    "hotelName": "The Holland House, Nashik - amã Stays & Trails"
+    "brandName": "Gateway",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Gateway Diu",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "The Holland House, Nashik - amã Stays & Trails"
+    "brandName": "Taj",
+    "chambersSponsorId": "40",
+    "epicureSponsorId": "60",
+    "hotelCode": "HLTDXBJL",
+    "hotelName": "Taj Jumeirah Lakes Towers, Dubai",
+    "hsbcSponsorId": "60"
   },
   {
-    "brandName": "Ama",
+    "brandName": "Gateway",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Lamp House, Goa - amã Stays & Trails"
+    "hotelName": "Gateway Coorg",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "The Malabar Villa Heliconia, Kozhikode - amã Stays & Trails"
+    "brandName": "Taj",
+    "chambersSponsorId": "96",
+    "epicureSponsorId": "51",
+    "hotelCode": "HLTHYDFP",
+    "hotelName": "Taj Falaknuma Palace, Hyderabad",
+    "hsbcSponsorId": "51"
   },
   {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "The Malabar Villa Hibiscus, Kozhikode - amã Stays and Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "The Malabar Villa Iris, Kozhikode - amã Stays & Trails"
+    "brandName": "Taj",
+    "chambersSponsorId": "47",
+    "epicureSponsorId": "73",
+    "hotelCode": "HLTLUNTP",
+    "hotelName": "Taj Pamodzi, Lusaka ",
+    "hsbcSponsorId": "73"
   },
   {
     "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Malabar Villas, Kozhikode - amã Stays & Trails"
+    "hotelName": "Inactive Aguada Solitude Villa, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Ama",
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Malabar Villas, Kozhikode - amã Stays & Trails\t"
+    "hotelName": "Woshully Bungalow, Coorg, amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Ama",
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Mango House, Alibag - amã Stays & Trails"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "The Old Cattle Shed, Wayanad - amã Stays & Trails"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTNYCTP",
-    "hotelName": "The Pierre, A Taj Hotel, New York"
-  },
-  {
-    "brandName": "Taj",
-    "hotelCode": "HLTBOMPA",
-    "hotelName": "The Taj Mahal Palace, Mumbai"
+    "hotelName": "amã Stays & Trails - Aberdeen, Coonoor",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "SeleQtions",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "The Yellow House, Goa – IHCL SeleQtions"
+    "hotelName": "Sawai Madhopur Lodge - IHCL SeleQtions",
+    "hsbcSponsorId": "140"
   },
   {
-    "brandName": "Tree of Life",
-    "hotelCode": null,
-    "hotelName": "Tree of Life Bhadrajun House, Jodhpur"
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "53",
+    "epicureSponsorId": "87",
+    "hotelCode": "4",
+    "hotelName": "TajView Agra - IHCL SeleQtions",
+    "hsbcSponsorId": "87"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "150",
+    "epicureSponsorId": "191",
     "hotelCode": null,
-    "hotelName": "Tree of Life Birdsong Chalets, Dharamshala"
+    "hotelName": "Jaagir Manor, Dudhwa - IHCL SeleQtions",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "63",
+    "epicureSponsorId": "108",
     "hotelCode": null,
-    "hotelName": "Tree of Life Darbargadh, Dared"
+    "hotelName": "Vivanta Colombo, Airport Garden",
+    "hsbcSponsorId": "108"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "135",
+    "epicureSponsorId": "145",
     "hotelCode": null,
-    "hotelName": "Tree of Life Ecotainers, Agra"
+    "hotelName": "Vivanta Goa, Miramar",
+    "hsbcSponsorId": "145"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "122",
+    "epicureSponsorId": "105",
     "hotelCode": null,
-    "hotelName": "Tree of Life Eila Art Hotel, Manali"
+    "hotelName": "Vivanta Bengaluru, Whitefield",
+    "hsbcSponsorId": "105"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "143",
+    "epicureSponsorId": "188",
     "hotelCode": null,
-    "hotelName": "Tree of Life Grand Oak Manor, Binsar Wildlife Sanctuary"
+    "hotelName": "Vivanta Meghalaya, Shillong",
+    "hsbcSponsorId": "188"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "72",
+    "epicureSponsorId": "118",
     "hotelCode": null,
-    "hotelName": "Tree of Life Highlands, Mussoorie"
+    "hotelName": "Vivanta Pune, Hinjawadi",
+    "hsbcSponsorId": "118"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "139",
+    "epicureSponsorId": "184",
     "hotelCode": null,
-    "hotelName": "Tree of Life Inderpura Resort, Udaipurwati"
+    "hotelName": "Vivanta Katra, Vaishno Devi",
+    "hsbcSponsorId": "184"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "138",
+    "epicureSponsorId": "182",
     "hotelCode": null,
-    "hotelName": "Tree of Life Indra Mandala Hotel, Gangtok"
+    "hotelName": "Vivanta Navi Mumbai, Turbhe",
+    "hsbcSponsorId": "182"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Vivanta",
+    "chambersSponsorId": "67",
+    "epicureSponsorId": "112",
     "hotelCode": null,
-    "hotelName": "Tree of Life Junoon in the Hills, Kumaon"
+    "hotelName": "Vivanta Hyderabad, Begumpet",
+    "hsbcSponsorId": "112"
   },
   {
-    "brandName": "Tree of Life",
-    "hotelCode": null,
-    "hotelName": "Tree of Life Lakeside Cottage, Srinagar"
+    "brandName": "SeleQtions",
+    "chambersSponsorId": "12",
+    "epicureSponsorId": "6",
+    "hotelCode": "C4",
+    "hotelName": "Blue Diamond, Pune - IHCL SeleQtions",
+    "hsbcSponsorId": "6"
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Tree of Life Resort & Spa, Jaipur"
+    "hotelName": "Ginger Thane",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Tree of Life Resort & Spa, Varanasi"
+    "hotelName": "Ginger Jaipur",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Tree of Life",
-    "hotelCode": null,
-    "hotelName": "Tree of Life Resort, Dehradun Foothills"
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "64865",
+    "hotelName": "Ginger Goa, Panjim",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Tree of Life VanVilas River Edge, Corbett National Park"
+    "hotelName": "Ginger Faridabad",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": "Tree of Life",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Tree of Life Vantara Resort & Spa, Udaipur"
+    "hotelName": "Ginger Jamshedpur",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Dwarka",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Patna",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Sanand",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": null,
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Inactive Ginger Katra",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Nashik",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Bharuch",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Pondicherry",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Mumbai, Andheri (MIDC)",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "210263",
+    "hotelName": "Ginger Noida, Sector 63",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "8629",
+    "hotelName": "Ginger Goa, Madgaon",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Taj",
-    "hotelCode": "HLTJDHUB",
-    "hotelName": "Umaid Bhawan Palace, Jodhpur"
+    "chambersSponsorId": "118",
+    "epicureSponsorId": "99",
+    "hotelCode": null,
+    "hotelName": "INACTIVE The Gateway Resort Damdama Lake, Gurgaon",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Victory Dawn, Kochi - amã Stays & Trails"
+    "hotelName": "Cardozo House, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
-    "hotelCode": "IDS9210",
-    "hotelName": "Villa Eterna, Goa - amã Stays & Trails"
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Woshully Bungalow, Coorg - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Villa Ishatava, Alibag - amã Stays & Trails"
+    "hotelName": "Braganza House, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "Villa No 1 Saipem Hills, Goa - amã Stays & Trails"
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": "IDS7915",
+    "hotelName": "La Maison Fontainhas, Goa - amã Stays & Trails",
+    "hsbcSponsorId": "129"
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Villa Seven, Lonavala - amã Stays & Trails"
+    "hotelName": "Kadalaar Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Villa Siolim, Goa - amã Stays & Trails"
+    "hotelName": "Nine Palms, Alibaug  - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
-    "hotelCode": "IDS9360",
-    "hotelName": "Vintage Halton, Trivandrum - amã Stays & Trails"
-  },
-  {
-    "brandName": "Vivanta",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Vivanta Ahmedabad, SG Highway"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Arunachal Pradesh, Tawang"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Bengaluru, Residency Road"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Bengaluru, Whitefield"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Bhubaneswar, DN Square"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Chennai, IT Expressway"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Chitwan, Bharatpur"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Coimbatore"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Colombo, Airport Garden"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Dal View, Srinagar"
-  },
-  {
-    "brandName": null,
-    "hotelCode": "HLTDXBTD",
-    "hotelName": "Vivanta Dubai"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": "HLTDXBTD",
-    "hotelName": "Vivanta Dubai"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Ernakulam, Marine Drive"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Goa, Miramar"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Goa, Panaji"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Guwahati"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Hyderabad, Begumpet"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Jammu, City Centre "
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": "HLTIXWVJ",
-    "hotelName": "Vivanta Jamshedpur, Golmuri"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Kathmandu"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Katra, Vaishno Devi"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Kolkata, EM Bypass"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Meghalaya, Shillong"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Navi Mumbai, Turbhe"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta New Delhi, Dwarka"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Old Port Road, Mangalore"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Pune, Hinjawadi"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Sikkim, Pakyong"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "Vivanta Surajkund, NCR"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Thane, Mumbai "
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Thiruvananthapuram"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Vadodara"
-  },
-  {
-    "brandName": "Vivanta",
-    "hotelCode": null,
-    "hotelName": "Vivanta Vijayawada, MG Road"
+    "hotelName": "Nettigudi Bungalow, Munnar - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
-    "hotelCode": "IDS9230",
-    "hotelName": "Vivid Foliage, Kasaragod - amã Stays & Trails"
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "70 Vale, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Wayside, Kurseong - amã Stays & Trails"
+    "hotelName": "Parvathy Bungalow, Munnar  - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Werifesteria, Coonoor - amã Stays & Trails "
+    "hotelName": "amã Stays & Trails, La Quinta Saipem Hills, Goa",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Whispering Heights,  Lonavala - amã Stays & Trails"
+    "hotelName": "L’Attitude by the Lake, Kamshet - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
-    "hotelCode": "IDS9391",
-    "hotelName": "Whispering Pines, Bhimtal - amã Stays & Trails"
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Kothi Umednagar, Jodhpur - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "White House, Lonavala - amã Stays & Trails"
+    "hotelName": "The Malabar Villa Heliconia, Kozhikode - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Woshully Bungalow, Coorg - amã Stays & Trails"
+    "hotelName": "White House, Lonavala - amã Stays & Trails",
+    "hsbcSponsorId": null
   },
   {
-    "brandName": null,
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Woshully Bungalow, Coorg, amã Stays & Trails"
+    "hotelName": "Talia Costa, Udaipur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Raman Villa, Shimla - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Citrus County, Hoshiarpur - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Palmeira De Saligao, Goa - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Wayside, Kurseong - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Aberdeen, Coonoor - amã Stays & Trails ",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Raven's Nest, Kotagiri - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Villa Seven, Lonavala - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ama",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Whispering Heights,  Lonavala - amã Stays & Trails",
+    "hsbcSponsorId": null
+  },
+  {
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
+    "hotelCode": null,
+    "hotelName": "Ginger Bangalore, Whitefield",
+    "hsbcSponsorId": null
   },
   {
     "brandName": "SeleQtions",
-    "hotelCode": null,
-    "hotelName": "Wow Crest, Indore - IHCL SeleQtions"
+    "chambersSponsorId": "76",
+    "epicureSponsorId": "142",
+    "hotelCode": "BHOTLKZ",
+    "hotelName": "Pilibhit House, Haridwar - IHCL SeleQtions",
+    "hsbcSponsorId": "142"
   },
   {
-    "brandName": "Ama",
-    "hotelCode": "AMSTWN",
-    "hotelName": "Writer's Hill Nahan, Sirmaur Himachal - amã Stays & Trails"
-  },
-  {
-    "brandName": "SeleQtions",
+    "brandName": "Ginger",
+    "chambersSponsorId": null,
+    "epicureSponsorId": null,
     "hotelCode": null,
-    "hotelName": "Yarkay, Thimphu - IHCL SeleQtions"
-  },
-  {
-    "brandName": null,
-    "hotelCode": null,
-    "hotelName": "amã Stays & Trails - Aberdeen, Coonoor"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "amã Stays & Trails Neeralaya, Nashik, Maharashtra"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "amã Stays & Trails W567, Dehradun, Uttarakhand"
-  },
-  {
-    "brandName": "Ama",
-    "hotelCode": null,
-    "hotelName": "amã Stays & Trails, La Quinta Saipem Hills, Goa"
+    "hotelName": "Ginger Ahmedabad, Vastrapur",
+    "hsbcSponsorId": null
   }
 ]

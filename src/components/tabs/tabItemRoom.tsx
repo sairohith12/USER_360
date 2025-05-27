@@ -60,7 +60,7 @@ const TabItemRoom = () => {
         : field.name == 'bitId'
         ? Guest?.bitID?.toString() || ''
         : field.name == 'redeemNeucoins'
-        ? '0'
+        ? '1'
         : ''
     return acc
   }, {} as { [key: string]: string | Dayjs | null })
@@ -69,7 +69,7 @@ const TabItemRoom = () => {
       ? Guest?.loyaltyInfo?.[0]?.loyaltyPoints
       : JOURNEY_TYPES.TEGC_REDEMPTION === journeyType
       ? Guest?.balance
-      : 0
+      : 1
   const [formValues, setFormValues] = useState(initialFormValues)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [loading, setLoading] = useState(false)
@@ -363,7 +363,7 @@ const TabItemRoom = () => {
           voucherRedemptionData = await api.post(
             'voucher/redeem',
             {
-              h_bit_date: Guest?.createdOn,
+              h_bit_date: new Date().toISOString(),
               h_member_id: Guest?.memberID,
               h_privileges: Guest?.uniquePrivilegeCode,
               pin: Guest?.pin,
@@ -413,24 +413,8 @@ const TabItemRoom = () => {
           setModalType('success')
           setApiResponseData([
             {
-              label: 'TransactionId',
-              value: voucherRedemptionData?.data?.transactionId,
-            },
-            {
-              label: 'Approval Code',
-              value: voucherRedemptionData?.data?.approvalCode,
-            },
-            {
-              label: 'Current Batch Number',
-              value: voucherRedemptionData?.data?.currentBatchNumber,
-            },
-            {
-              label: 'Card Balance',
-              value: voucherRedemptionData?.data?.cards?.[0]?.balance,
-            },
-            {
-              label: 'Amount Debited',
-              value: formValues.redeemNeucoins,
+              label: 'Availment Bit ID',
+              value: voucherRedemptionData?.data?.data?.availed_privileges?.[0]?.availment_bit_id,
             },
           ])
         }
@@ -983,7 +967,8 @@ const TabItemRoom = () => {
           type={modalType}
         >
           {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ||
-          JOURNEY_TYPES.VOUCHERS_REINSTATE === journeyType ? (
+          JOURNEY_TYPES.VOUCHERS_REINSTATE === journeyType ||
+          JOURNEY_TYPES.VOUCHERS_REDEMPTION === journeyType ? (
             <KeyValueList data={apiResponseData} />
           ) : JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType ? (
             <KeyValueList data={responseData} />

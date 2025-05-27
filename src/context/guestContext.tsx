@@ -1,8 +1,9 @@
+import { Dayjs } from 'dayjs'
 import React, { createContext, useState, useContext, ReactNode } from 'react'
 
 // Define types for the Guest data
 interface Guest {
-  [key: string]: string | number | null | undefined
+  [key: string]: string | number | null | undefined | Dayjs
 }
 //  {
 //   firstName: string;
