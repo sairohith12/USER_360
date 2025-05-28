@@ -9,18 +9,14 @@ import { axios } from 'api/axios-instance'
 import { VERIFY_NEUPASS_OTP } from '@/utils/apiConstants'
 import { generateCodeChallenge, generateCodeVerifier } from '@/utils/apiUtils'
 import { useGuestContext } from '@/context/guestContext'
-import api from 'api/axios'
-import { formatDateToYYYYMMDD } from '@/utils/date'
-import CombinedModal from './modal/ReponseModal'
-import KeyValueList from '@/utils/KeyValueList'
 
 interface OTPComponentProps {
   open: boolean
   onClose: () => void
   email?: string
   mobileNumber?: string
-  onVerified?: () => void
-  extraData?: unknown
+  onVerified?: (otp: string) => void
+  extraData?: { journey?: string; refId?: string }
 }
 
 const OTPComponent: React.FC<OTPComponentProps> = ({
@@ -40,11 +36,9 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const { login, isLoggedIn, verifyOtp, user } = useAuth()
-  const { Guest, journeyType, guestLogin, guestLogout } = useGuestContext()
-  const [openResultModal, setOpenResultModal] = useState(false)
-  const [modalType, setModalType] = useState<'success' | 'failure'>('failure')
-  const [responseData, setResponseData] = useState<any>(null)
+  const { verifyOtp } = useAuth()
+  const { journeyType, guestLogin } = useGuestContext()
+
   useEffect(() => {
     if (open) {
       // resetOtpState()
@@ -123,81 +117,21 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
       )
       if (response?.status == 201) {
         guestLogin({ ...response?.data, accessToken: response?.headers?.['x-access-token'] })
-        onVerified?.()
+        onVerified?.('')
       } else {
         setOtpError(response?.message || 'Please enter a valid OTP.')
       }
     } else if (journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
-      let redeemNeucoinsData
-      try {
-        redeemNeucoinsData = await axios.post(
-          'https://api-devv2.tajhotels.com/user360agg/v1/neucoins/action/redeem-points',
-          {
-            redeemDetails: {
-              customerHash: Guest?.customerHash,
-              otp: otpString,
-            },
-            roomBookingRequest: {
-              bookingNumber: extraData?.bookingNumber,
-              checkInDate: formatDateToYYYYMMDD(extraData?.checkIn),
-              checkOutDate: formatDateToYYYYMMDD(extraData?.checkOut),
-              invoiceAmount: extraData?.invoiceamount,
-              invoiceNumber: extraData?.invoiceNumber,
-              propertyId: '71758',
-              propertyName: extraData?.propertyName,
-              transactionBy: user?.firstName + user?.lastName,
-              amount: extraData?.redeemNeucoins,
-            },
-            userDetails: {
-              mobileNumber: user?.mobileNumber || '9966012856',
-              emailId: user?.email,
-            },
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Category: 'ROOM',
-            },
-          },
-        )
-      } catch (error) {
-        console.error('Error redeeming neucoins:', error)
-        setOtpError(error?.response?.data?.message || 'Error redeeming neucoins')
-      } finally {
-        setLoading(false)
-      }
-      if (
-        redeemNeucoinsData?.status == 200 &&
-        redeemNeucoinsData?.data?.transactionStatus === 'false'
-      ) {
-        setOtpError(redeemNeucoinsData?.data?.responseMessage || 'Please enter a valid OTP.')
-        setModalType('failure')
-        setOpenResultModal(true)
-        setResponseData([
-          {
-            label: 'Transaction ID',
-            value: redeemNeucoinsData?.data?.transactionId,
-          },
-          {
-            label: 'Message',
-            value: `${redeemNeucoinsData?.data?.responseMessage}.`,
-          },
-        ])
-        // guestLogin({ ...redeemNeucoinsData?.data, accessToken: redeemNeucoinsData?.headers?.['x-access-token'] })
-        onVerified?.()
-      }
-      // else {
-      //   setOtpError(redeemNeucoinsData?.message || 'Please enter a valid OTP.')
-      // }
+      onVerified?.(otpString)
     } else if (journeyType === JOURNEY_TYPES.LOGIN) {
-      let responseData
+      let responseData: { success: boolean; [key: string]: any }
       try {
         setLoading(true)
         setOtpError('')
         responseData = await verifyOtp(email, otp.join(''))
         if (responseData?.success) {
           router.push('/')
-          onVerified?.()
+          onVerified?.('')
           onClose()
         } else {
           const newAttempts = attempts + 1
@@ -210,8 +144,8 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
           return
         }
       } catch (err: unknown) {
-        if (err instanceof Error && 'response' in err && err.response?.data?.message) {
-          setOtpError(err?.response?.data?.message)
+        if (err instanceof Error && 'response' in err && (err.response as any)?.data?.message) {
+          setOtpError((err.response as any)?.data?.message)
         } else {
           setOtpError('OTP Verification failed')
         }
@@ -219,10 +153,6 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
         setLoading(false)
       }
     }
-
-    if (otpString == '214263') {
-    }
-
     // if (!isLoggedIn) {
     //   const role: 'admin' | 'editor' | 'viewer' = 'admin'
     //   login(role)
@@ -299,7 +229,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
               variant="contained"
               fullWidth
               sx={{ mt: 2 }}
-              disabled={otp.join('').length < 6 || attempts >= 3}
+              disabled={otp.join('').length < 6 || attempts >= 3 || loading}
             >
               Verify OTP
             </Button>
@@ -337,23 +267,6 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
           )}
         </Box>
       </CustomModal>
-
-      {openResultModal && (
-        <CombinedModal
-          onClose={() => {
-            guestLogout()
-            setOpenResultModal(false)
-          }}
-          open={openResultModal}
-          type={modalType ? 'success' : 'failure'}
-        >
-          {JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ? (
-            <KeyValueList data={responseData} />
-          ) : (
-            <></>
-          )}
-        </CombinedModal>
-      )}
     </>
   )
 }

@@ -87,6 +87,12 @@ const TabItemRoom = () => {
       return newErrors
     })
   }
+  const neuCoinsJourneyMobileNumber =
+    Guest?.primaryMobile &&
+    typeof Guest.primaryMobile === 'object' &&
+    'phoneNumber' in Guest.primaryMobile
+      ? Guest?.primaryMobile.phoneNumber
+      : ''
   //   const validate = () => {
   //     const newErrors: { [key: string]: string } = {};
 
@@ -276,6 +282,7 @@ const TabItemRoom = () => {
           validateNeucoinsData = await api.post('nc/validate', {
             customerHash: Guest?.customerHash,
             points: formValues.redeemNeucoins,
+            storeId: 'HLTBOMLE',
           })
         } catch (error) {
           setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
@@ -514,6 +521,7 @@ const TabItemRoom = () => {
               reversalDetails: {
                 redemptionId: formValues?.redemptionId,
                 customerHash: Guest?.customerHash,
+                storeId: 'HLTBOMLE',
               },
               roomBookingRequest: {
                 bookingNumber: formValues?.bookingNumber,
@@ -528,12 +536,7 @@ const TabItemRoom = () => {
                 amount: formValues?.reinstateNeucoins,
               },
               userDetails: {
-                mobileNumber:
-                  Guest?.primaryMobile &&
-                  typeof Guest.primaryMobile === 'object' &&
-                  'phoneNumber' in Guest.primaryMobile
-                    ? Guest?.primaryMobile.phoneNumber
-                    : '',
+                mobileNumber: neuCoinsJourneyMobileNumber,
                 emailId: user?.email,
               },
             },
@@ -551,36 +554,41 @@ const TabItemRoom = () => {
           setLoading(false)
         }
         setOpen(true)
-        debugger
-        if (neucoinsReinstateData?.status !== 200) {
+        if (
+          (neucoinsReinstateData?.status == 200 &&
+            neucoinsReinstateData?.data?.transactionStatus === 'false') ||
+          neucoinsReinstateData?.status !== 200
+        ) {
           setModalType('failure')
-          setErrors({ redeemNeucoins: neucoinsReinstateData?.data?.message })
+          setOpen(true)
           setApiResponseData([
             {
-              label: 'Error Reason',
-              value:
-                neucoinsReinstateData?.data?.cards?.[0]?.responseMessage ||
-                'An error occurred while reinstating the card.',
-            },
-          ])
-        } else if (neucoinsReinstateData?.status === 200) {
-          setModalType('success')
-          setApiResponseData([
-            {
-              label: 'TransactionId',
+              label: 'Transaction ID',
               value: neucoinsReinstateData?.data?.transactionId,
             },
             {
-              label: 'Approval Code',
-              value: neucoinsReinstateData?.data?.approvalCode,
+              label: 'Message',
+              value: `${neucoinsReinstateData?.data?.responseMessage}.`,
+            },
+          ])
+        } else if (
+          neucoinsReinstateData?.status == 200 &&
+          neucoinsReinstateData?.data?.transactionStatus === 'true'
+        ) {
+          setModalType('success')
+          setOpen(true)
+          setApiResponseData([
+            {
+              label: 'Transaction ID',
+              value: neucoinsReinstateData?.data?.transactionId,
             },
             {
-              label: 'Current Batch Number',
-              value: neucoinsReinstateData?.data?.currentBatchNumber,
+              label: 'Redemption ID',
+              value: neucoinsReinstateData?.data?.redemptionId,
             },
             {
-              label: 'Card Balance',
-              value: neucoinsReinstateData?.data?.cards?.[0]?.balance,
+              label: 'Invoice Number',
+              value: neucoinsReinstateData?.data?.invoiceNumber,
             },
           ])
         }
@@ -765,36 +773,96 @@ const TabItemRoom = () => {
     // }
   }
 
-  const handleOTPVerified = async () => {
+  const handleOTPVerified = async (otp: string) => {
+    if (journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+      let redeemNeucoinsData
+      try {
+        redeemNeucoinsData = await api.post(
+          'nc/reverse',
+          {
+            redeemDetails: {
+              customerHash: Guest?.customerHash,
+              otp: otp,
+              storeId: 'HLTBOMLE',
+            },
+            roomBookingRequest: {
+              bookingNumber: formValues?.bookingNumber,
+              checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+              checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+              invoiceAmount: formValues?.invoiceamount,
+              invoiceNumber: formValues?.invoiceNumber,
+              propertyId: '71758',
+              propertyName: formValues?.propertyName,
+              transactionBy:
+                user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+              amount: formValues?.redeemNeucoins,
+            },
+            userDetails: {
+              mobileNumber: neuCoinsJourneyMobileNumber,
+              emailId: Guest?.primaryEmailId,
+            },
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Category: 'ROOM',
+            },
+          },
+        )
+      } catch (error) {
+        setModalType('failure')
+        console.error('Error redeeming neucoins:', error)
+      } finally {
+        setLoading(false)
+        setOpenOTPModal(false)
+      }
+      if (
+        (redeemNeucoinsData?.status == 200 &&
+          redeemNeucoinsData?.data?.transactionStatus === 'false') ||
+        redeemNeucoinsData?.status !== 200
+      ) {
+        setModalType('failure')
+        setOpen(true)
+        setApiResponseData([
+          {
+            label: 'Transaction ID',
+            value: redeemNeucoinsData?.data?.transactionId,
+          },
+          {
+            label: 'Message',
+            value: `${redeemNeucoinsData?.data?.responseMessage}.`,
+          },
+        ])
+      } else if (
+        redeemNeucoinsData?.status == 200 &&
+        redeemNeucoinsData?.data?.transactionStatus === 'true'
+      ) {
+        setModalType('success')
+        setOpen(true)
+        setApiResponseData([
+          {
+            label: 'Reversal ID',
+            value: redeemNeucoinsData?.data?.reversalId,
+          },
+
+          {
+            label: 'Message',
+            value: `Reversal of ${
+              redeemNeucoinsData?.data?.pointsReversed
+            } NeuCoins successful for Customer ID: ${formatMobileNumber(
+              String(formValues.phone || ''),
+              '+91',
+            )}.`,
+          },
+        ])
+      }
+    }
     // if (journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
     //   setOpen(true)
     //   setModalType('success')
     // }
   }
-  const responseData = [
-    {
-      label: 'Reference ID',
-      value: 'RVRSL-20250506-XYZ123',
-    },
-    {
-      label: 'Message',
-      value: `Reversal of 150 NeuCoins successful for Customer ID: ${formatMobileNumber(
-        String(formValues.phone || ''),
-        '+91',
-      )}.`,
-    },
-  ]
 
-  const ccAvenuePaymentResponseData = [
-    {
-      label: 'TransactionId',
-      value: 'CCAVE987654321',
-    },
-    {
-      label: 'Request Status',
-      value: 'PENDING',
-    },
-  ]
   const vouchersExpiryExtensionResponseData = [
     {
       label: 'Privilege Code',
@@ -950,25 +1018,19 @@ const TabItemRoom = () => {
         open={openOTPModal}
         onClose={() => setOpenOTPModal(false)}
         mobileNumber={
-          Guest?.primaryMobile &&
-          typeof Guest.primaryMobile === 'object' &&
-          'phoneNumber' in Guest.primaryMobile
-            ? typeof Guest.primaryMobile === 'object' && 'phoneNumber' in Guest?.primaryMobile
-              ? (Guest?.primaryMobile as { phoneNumber: string })?.phoneNumber
-              : ''
-            : Guest?.primaryMobile
+          neuCoinsJourneyMobileNumber
             ? formatMobileNumber(
-                typeof Guest?.primaryMobile === 'object' && 'phoneNumber' in Guest?.primaryMobile
-                  ? String(Guest?.primaryMobile.phoneNumber)
-                  : String(Guest?.primaryMobile || ''),
-                typeof Guest?.primaryMobile === 'object' && 'isdCode' in Guest?.primaryMobile
+                String(neuCoinsJourneyMobileNumber),
+                Guest?.primaryMobile &&
+                  typeof Guest.primaryMobile === 'object' &&
+                  'isdCode' in Guest.primaryMobile
                   ? String(Guest?.primaryMobile?.isdCode)
                   : '',
               )
             : formatMobileNumber(String(formValues.phone || ''), '+91')
         }
         extraData={formValues}
-        onVerified={handleOTPVerified} // Update context on OTP verification
+        onVerified={(otp: string) => handleOTPVerified(otp)} // Update context on OTP verification
       />
       {open && (
         <CombinedModal
@@ -983,11 +1045,10 @@ const TabItemRoom = () => {
         >
           {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ||
           JOURNEY_TYPES.VOUCHERS_REINSTATE === journeyType ||
+          JOURNEY_TYPES.NEUCOINS_REDEMPTION === journeyType ||
+          JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType ||
+          JOURNEY_TYPES.TEGC_REINSTATE === journeyType ||
           JOURNEY_TYPES.VOUCHERS_REDEMPTION === journeyType ? (
-            <KeyValueList data={apiResponseData} />
-          ) : JOURNEY_TYPES.NEUCOINS_REINSTATE === journeyType ? (
-            <KeyValueList data={responseData} />
-          ) : JOURNEY_TYPES.TEGC_REINSTATE === journeyType ? (
             <KeyValueList data={apiResponseData} />
           ) : JOURNEY_TYPES.CC_AVENUE_PAYMENTS === journeyType ? (
             <>
