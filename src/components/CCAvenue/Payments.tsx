@@ -172,7 +172,7 @@ const PaymentJourney = () => {
         }}
       >
         <Tab label="Generate Payment" value="generatePayment" />
-        <Tab label="Order Status" value="orderStatus" />
+        <Tab label="Order Insights" value="orderStatus" />
       </Tabs>
 
       {/* <Grid container spacing={3} justifyContent="center">
@@ -219,7 +219,7 @@ const PaymentJourney = () => {
         variant="h2"
         sx={{ fontFamily: 'var(--font-cinzel), serif', fontWeight: 700, mb: 4 }}
       >
-        {convertString(journeyType)}
+        {'CC Avenue Payments'}
       </Typography>
 
       {/* <Box display="flex" gap={3} mb={3}>

@@ -1005,7 +1005,7 @@ const TabItemRoom = () => {
               : journeyType === JOURNEY_TYPES.CC_AVENUE_PAYMENTS
               ? loading
                 ? 'Generating Link...'
-                : 'Submit'
+                : 'Generate Link'
               : loading
               ? 'Verifying Mobile...'
               : 'Verify Mobile'}
@@ -1041,6 +1041,9 @@ const TabItemRoom = () => {
           }}
           open={open}
           type={modalType}
+          title={
+            JOURNEY_TYPES.CC_AVENUE_PAYMENTS === journeyType ? 'Link Generated Successfully' : ''
+          }
         >
           {JOURNEY_TYPES.TEGC_REDEMPTION === journeyType ||
           JOURNEY_TYPES.VOUCHERS_REINSTATE === journeyType ||

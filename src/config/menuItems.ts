@@ -29,16 +29,15 @@ import VoucherRedemptionAndTabs from '@/components/Redemption/VoucherRedemptionA
 import NeucoinsReinstateAndTabs from '@/components/Reinstate/NeucoinsReinstateAndTabs'
 import GiftCardReinstateAndTabs from '@/components/Reinstate/GiftCardReinstateAnsTabs'
 import VoucherReinstateAndTabs from '@/components/Reinstate/VoucherReinstateAndTabs'
-// import PaymentJourney from '@/components/CCAvenue/Payments'
-// import RefundsJourney from '@/components/CCAvenue/Refunds'
-// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import PaymentJourney from '@/components/CCAvenue/Payments'
+import RefundsJourney from '@/components/CCAvenue/Refunds'
+import AccessControl from '@/components/admin/AccessControl'
+import AuditLogs from '@/components/admin/AuditLogs'
+import AdminDashboard1 from '@/components/admin/AdminDashboard1'
+import ManageAdmins from '@/components/admin/ManageAdmin'
+import UserDashboard from '@/components/UserDashboard'
 // import GiftCardExpiryExtension from '@/components/ExpiryExtensions/GiftCardExpiryExtension'
 // import VoucherExtension from '@/components/ExpiryExtensions/VoucherExtension'
-// import AccessControl from '@/components/admin/AccessControl'
-// import AuditLogs from '@/components/admin/AuditLogs'
-// import AdminDashboard1 from '@/components/admin/AdminDashboard1'
-// import ManageAdmins from '@/components/admin/ManageAdmin'
-import UserDashboard from '@/components/UserDashboard'
 
 export const menuItems: MenuItem[] = [
   {
@@ -128,14 +127,14 @@ export const menuItems: MenuItem[] = [
         path: '/cc-avenue/payments',
         roles: ['admin', 'super_admin'],
         icon: CreditCard,
-        Component: PlaceholderComponent,
+        Component: PaymentJourney,
       },
       {
         label: 'Refunds',
         path: '/cc-avenue/refunds',
         roles: ['admin', 'super_admin'],
         icon: Replay,
-        Component: PlaceholderComponent,
+        Component: RefundsJourney,
       },
     ],
   },
@@ -164,28 +163,28 @@ export const menuItems: MenuItem[] = [
         path: '/admin/dashboard',
         roles: ['admin', 'super_admin'],
         icon: SpaceDashboard,
-        Component: PlaceholderComponent,
+        Component: AdminDashboard1,
       },
       {
         label: 'Manage Admins',
         path: '/admin/manage-admins',
         roles: ['admin', 'super_admin'],
         icon: SupervisorAccount,
-        Component: PlaceholderComponent,
+        Component: ManageAdmins,
       },
       {
         label: 'Access Control',
         path: '/admin/access-control',
         roles: ['admin', 'super_admin'],
         icon: KeyOff,
-        Component: PlaceholderComponent,
+        Component: AccessControl,
       },
       {
         label: 'Audit Logs',
         path: '/admin/audit-logs',
         roles: ['admin', 'super_admin'],
         icon: AutoStories,
-        Component: PlaceholderComponent,
+        Component: AuditLogs,
       },
     ],
   },

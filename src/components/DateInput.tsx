@@ -27,7 +27,7 @@ const DateInput: React.FC<DateInputProps> = ({
   return (
     <DesktopDatePicker
       label={label}
-      minDate={oneWeekAgo}
+      //  minDate={oneWeekAgo}
       value={value ? dayjs(value) : null}
       format="DD/MM/YYYY"
       onChange={(newDate) => onChange(name, newDate ? newDate.toDate() : null)}

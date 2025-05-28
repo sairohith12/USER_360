@@ -51,7 +51,19 @@ const VouchersTab = () => {
   const [selectedTab, setSelectedTab] = useState(0)
   const [searchTerm, setSearchTerm] = useState('')
   const [membershipType, setMembershipType] = useState('ALL')
-  const { guestLogin, Guest, journeyType } = useGuestContext()
+  const { guestLogin, Guest, journeyType } = useGuestContext() as {
+    guestLogin: (data: any) => void
+    Guest: {
+      vouchersResponse?: {
+        vouchers?: {
+          chamber?: { pendingVouchers?: any[]; redeemedVouchers?: any[] }
+          epicure?: { pendingVouchers?: any[]; redeemedVouchers?: any[] }
+          hsbc?: { pendingVouchers?: any[]; redeemedVouchers?: any[] }
+        }
+      }
+    }
+    journeyType: string
+  }
   // const [allVouchers, setAllVouchers] = useState([])
   const voucherAPIData = {
     pendingVouchers: [
@@ -129,23 +141,6 @@ const VouchersTab = () => {
       isBenefit: 'isBenefit' in voucher ? String(voucher.isBenefit) : undefined,
     })
   }
-  const journeyTypeData =
-    journeyType === JOURNEY_TYPES.VOUCHERS_REINSTATE
-      ? allVouchers.filter(
-          (voucher) =>
-            (membershipType === 'ALL' || voucher.memberType === membershipType) &&
-            voucher.status?.toLowerCase() == 'used',
-        )
-      : journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION ||
-        journeyType === JOURNEY_TYPES.VOUCHERS_EXPIRY_EXTENSION
-      ? allVouchers.filter(
-          (voucher) =>
-            (membershipType === 'ALL' || voucher.memberType === membershipType) &&
-            voucher.status?.toLowerCase() != 'used',
-        )
-      : allVouchers.filter(
-          (voucher) => membershipType === 'ALL' || voucher.memberType === membershipType,
-        )
 
   return (
     <>
@@ -334,7 +329,7 @@ const VouchersTab = () => {
                         gap: 3,
                       }}
                     >
-                      {filteredData[selectedTab]?.map((voucher, idx) => (
+                      {filteredData[selectedTab]?.map((voucher: any, idx: any) => (
                         <Paper
                           key={idx}
                           elevation={3}
@@ -449,14 +444,6 @@ const VouchersTab = () => {
                             <Typography variant="body2" color="text.secondary">
                               Privilege Code: {voucher.privilegeCode}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Privilege Pin: {voucher.pin}
-                            </Typography>
-                            {voucher.bitID && (
-                              <Typography variant="body2" color="text.secondary">
-                                Bid Id: {voucher.bitID}
-                              </Typography>
-                            )}
                             {JOURNEY_TYPES?.VOUCHERS_REINSTATE === journeyType && (
                               <Typography variant="body2" color="text.secondary">
                                 Bit Date:{' '}

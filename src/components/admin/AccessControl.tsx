@@ -65,7 +65,7 @@ type Permissions = {
   }
 }
 
-const AccessControl: React.FC = () => {
+const AccessControl = () => {
   const [selectedTab, setSelectedTab] = useState(0)
   const [permissions, setPermissions] = useState<Permissions>({})
   const [snackbarOpen, setSnackbarOpen] = useState(false)
