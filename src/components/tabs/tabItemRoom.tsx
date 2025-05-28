@@ -583,12 +583,13 @@ const TabItemRoom = () => {
               value: neucoinsReinstateData?.data?.transactionId,
             },
             {
-              label: 'Redemption ID',
-              value: neucoinsReinstateData?.data?.redemptionId,
-            },
-            {
-              label: 'Invoice Number',
-              value: neucoinsReinstateData?.data?.invoiceNumber,
+              label: 'Message',
+              value: `Reversal of ${
+                neucoinsReinstateData?.data?.pointsReversed
+              } NeuCoins successful for Customer ID: ${formatMobileNumber(
+                String(formValues.phone || ''),
+                '+91',
+              )}.`,
             },
           ])
         }
@@ -778,7 +779,7 @@ const TabItemRoom = () => {
       let redeemNeucoinsData
       try {
         redeemNeucoinsData = await api.post(
-          'nc/reverse',
+          'nc/redeem',
           {
             redeemDetails: {
               customerHash: Guest?.customerHash,
@@ -841,18 +842,16 @@ const TabItemRoom = () => {
         setOpen(true)
         setApiResponseData([
           {
-            label: 'Reversal ID',
-            value: redeemNeucoinsData?.data?.reversalId,
+            label: 'Transaction ID',
+            value: redeemNeucoinsData?.data?.transactionId,
           },
-
           {
-            label: 'Message',
-            value: `Reversal of ${
-              redeemNeucoinsData?.data?.pointsReversed
-            } NeuCoins successful for Customer ID: ${formatMobileNumber(
-              String(formValues.phone || ''),
-              '+91',
-            )}.`,
+            label: 'Redemption ID',
+            value: redeemNeucoinsData?.data?.redemptionId,
+          },
+          {
+            label: 'Invoice Number',
+            value: redeemNeucoinsData?.data?.invoiceNumber,
           },
         ])
       }

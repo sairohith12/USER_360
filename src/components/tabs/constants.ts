@@ -215,7 +215,113 @@ export const gcVoucherRedemption = [
     options: ['Order Issue', 'Change in Plans'],
   }),
 ]
+// Common fields
+const posCommonFields = [
+  createField('propertyName', 'Property Name*', {
+    required: true,
+    disable: true,
+    type: 'string',
+    placeHolderText: 'Taj Lands End',
+  }),
+  createField('outletName', 'Outlet Name', { required: true, placeHolderText: 'ex : Vista' }),
+  createField('invoiceamount', 'Invoice Amount*', {
+    required: true,
+    type: 'number',
+    disable: false,
+    placeHolderText: 'ex : 2100.00',
+  }),
+  createField('invoiceNumber', 'Invoice Number*', {
+    required: true,
+    type: 'string',
+    disable: false,
+    placeHolderText: 'ex : WEB_23105',
+  }),
+]
+export const posNeucoinsRedemption = [
+  ...posCommonFields,
+  createField('redeemNeucoins', 'Enter Amount to Redeem', {
+    required: true,
+    type: 'number',
+    placeHolderText: 'ex : 1000',
+  }),
+]
+export const posNeuCoinsReInstateFields = [
+  ...posCommonFields,
+  createField('redemptionId', 'Redemption ID*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : Izjiejjk',
+  }),
+  createField('reinstateNeucoins', 'Enter Neucoins Amount to Reverse*', {
+    type: 'number',
+    required: true,
+    placeHolderText: 'ex : 1000',
+  }),
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
+    type: 'dropdown',
+    required: true,
+    placeHolderText: 'ex : Guest didn`t appear at hotel',
+    options: ['Order Cancellation', 'Change in Plans', 'Cancelled Booking', 'Manual Adjustment'],
+  }),
+]
 
+export const posGCReinstateInstateFields = [
+  ...posCommonFields,
+  createField(GCNumber, 'GiftCard Number*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : XXXX XXXX XXXX XXXX',
+  }),
+  createField('phone', 'Mobile Number*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : +919966xxxx00',
+  }),
+  createField('reinstateGiftCard', 'Amount to Reverse*', {
+    required: true,
+    disable: false,
+    type: 'number',
+    placeHolderText: 'ex : 1000',
+  }),
+  createField('originalApprovalCode', 'Original ApprovalCode*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : 115152243',
+  }),
+  createField('originalBatchNumber', 'Original BatchNumber*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : 14413770',
+  }),
+  createField('originalTransactionId', 'Original TransactionId*', {
+    required: true,
+    disable: false,
+    type: 'string',
+    placeHolderText: 'ex : 98',
+  }),
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
+    required: true,
+    disable: false,
+    type: 'dropdown',
+    placeHolderText: 'ex : Guest didn`t appear at hotel',
+    options: ['Payment Failure', 'Cancelled Booking', 'Manual Adjustment'],
+  }),
+]
+
+export const posVoucherReinstateFields = [
+  ...posCommonFields,
+  createField('reasonforreversal', 'Select Reason for Reversal*', {
+    type: 'dropdown',
+    required: true,
+    placeHolderText: 'ex : Guest didn`t appear at hotel',
+    options: ['Payment Failure', 'Cancelled Booking', 'Manual Adjustment'],
+  }),
+]
 // Helper function to get journey fields based on journeyType
 export const getJourneyFields = (journeyType: string, Guest: any) => {
   if (
