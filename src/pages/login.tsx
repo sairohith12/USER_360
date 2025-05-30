@@ -51,7 +51,7 @@ const Login = () => {
           'response' in err &&
           (err.response as { data?: { message?: string } })?.data?.message
         ) {
-          setEmailError((err.response as { data: { message: string } }).data.message)
+          setEmailError('You do not have authorization to access this portal.')
         } else {
           setEmailError('Login failed')
         }

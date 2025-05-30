@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import {
   Box,
   Grid,
@@ -22,6 +22,7 @@ import {
   Chip,
   Divider,
   Stack,
+  CircularProgress,
 } from '@mui/material'
 import * as XLSX from 'xlsx'
 import { saveAs } from 'file-saver'
@@ -34,6 +35,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import dayjs, { Dayjs } from 'dayjs'
 import DateInput from './DateInput'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useAuth } from '@/context/authContext'
+import axios from 'axios'
+import { formatDateToYYYYMMDD } from '@/utils/date'
 
 const userRole = 'admin' // dynamic in real case
 
@@ -46,36 +50,12 @@ const userInfo = {
   propertyId: 'PROP001',
 }
 
-const initialTransactions = [
-  { id: 1, date: '2025-04-10', ref: 'TXN001', amount: 1200, mode: 'Pay Online', status: 'Success' },
-  { id: 2, date: '2025-04-08', ref: 'TXN002', amount: 500, mode: 'Pay At Hotel', status: 'Failed' },
-  { id: 3, date: '2025-04-05', ref: 'TXN003', amount: 800, mode: 'Pay Online', status: 'Refunded' },
-  {
-    id: 4,
-    date: '2025-04-02',
-    ref: 'TXN004',
-    amount: 300,
-    mode: 'Pay At Hotel',
-    status: 'Success',
-  },
-  { id: 5, date: '2025-04-10', ref: 'TXN005', amount: 1200, mode: 'Pay Online', status: 'Success' },
-  { id: 6, date: '2025-04-08', ref: 'TXN006', amount: 500, mode: 'Pay At Hotel', status: 'Failed' },
-  { id: 7, date: '2025-04-05', ref: 'TXN007', amount: 800, mode: 'Pay Online', status: 'Refunded' },
-  {
-    id: 8,
-    date: '2025-04-02',
-    ref: 'TXN008',
-    amount: 300,
-    mode: 'Pay At Hotel',
-    status: 'Success',
-  },
-]
 interface Filters {
   date: string
-  ref: string
-  amount: string
-  mode: string
-  status: string
+  referenceNUmber: string
+  transactionAmount: string
+  module: string | null
+  status: string | null
 }
 
 interface SortConfig {
@@ -83,29 +63,62 @@ interface SortConfig {
   direction: 'asc' | 'desc'
 }
 
+interface EditChange {
+  id: number
+  field: keyof Filters
+  value: string
+}
+
+interface RefundChange {
+  id: number
+}
+
+const getInitialDateRange = () => {
+  const today = new Date()
+  const yesterday = new Date(today)
+  yesterday.setDate(today.getDate() - 1)
+
+  const dayBeforeYesterday = new Date(today)
+  dayBeforeYesterday.setDate(today.getDate() - 2)
+
+  return {
+    fromDate: dayBeforeYesterday,
+    toDate: yesterday,
+  }
+}
+
 const UserDashboard = () => {
+  const { user } = useAuth()
   const [page, setPage] = useState(0)
+  const [loading, setLoading] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [filters, setFilters] = useState<Filters>({
     date: '',
-    ref: '',
-    amount: '',
-    mode: '',
-    status: '',
+    referenceNUmber: '',
+    transactionAmount: '',
+    module: null,
+    status: null,
   })
+  const [error, setError] = useState()
   const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'date', direction: 'asc' })
-  const [transactions, setTransactions] = useState(initialTransactions)
+  const [transactions, setTransactions] = useState<any>([])
   const [editRowId, setEditRowId] = useState<number | null>(null)
   const [viewData, setViewData] = useState<null | {
     id: number
     date: string
-    ref: string
-    amount: number
-    mode: string
-    status: string
+    referenceNUmber: string
+    transactionAmount: string
+    module: string | null
+    status: string | null
   }>(null)
-  const [dateRange, setDateRange] = useState<[Dayjs | null, Dayjs | null]>([null, null])
+  const { fromDate, toDate } = getInitialDateRange()
 
+  const [dateRange, setDateRange] = useState<[Dayjs | null, Dayjs | null]>([
+    dayjs(fromDate),
+    dayjs(toDate),
+  ])
+  const [modes, setModes] = useState<any>()
+  const [status, setStatus] = useState<any>()
   const handleFilterChange = (field: keyof Filters, value: string) => {
     setFilters({ ...filters, [field]: value })
   }
@@ -117,31 +130,23 @@ const UserDashboard = () => {
     }))
   }
 
-  interface EditChange {
-    id: number
-    field: keyof Filters
-    value: string
-  }
-
   const handleEditChange = (
     id: EditChange['id'],
     field: EditChange['field'],
     value: EditChange['value'],
   ) => {
-    setTransactions((prev) => prev.map((t) => (t.id === id ? { ...t, [field]: value } : t)))
+    setTransactions((prev: typeof transactions) =>
+      prev.map((t: any) => (t.id === id ? { ...t, [field]: value } : t)),
+    )
   }
 
   const handleArchive = (id: number): void => {
-    setTransactions((prev: typeof initialTransactions) => prev.filter((t) => t.id !== id))
-  }
-
-  interface RefundChange {
-    id: number
+    setTransactions((prev: typeof transactions) => prev.filter((t: any) => t.id !== id))
   }
 
   const handleRefund = (id: RefundChange['id']): void => {
-    setTransactions((prev: typeof initialTransactions) =>
-      prev.map((t) => (t.id === id ? { ...t, status: 'Pending' } : t)),
+    setTransactions((prev: typeof transactions) =>
+      prev.map((t: any) => (t.id === id ? { ...t, status: 'Pending' } : t)),
     )
   }
 
@@ -150,15 +155,16 @@ const UserDashboard = () => {
   }
 
   const filteredTransactions = useMemo(() => {
-    return initialTransactions.filter((row) =>
-      Object.keys(filters).every((key) =>
-        row[key as keyof Filters]
-          .toString()
-          .toLowerCase()
-          .includes(filters[key as keyof Filters].toLowerCase()),
-      ),
-    )
-  }, [filters])
+    return transactions?.length > 0
+      ? transactions?.filter((row: any) =>
+          Object.keys(filters).every((key) =>
+            String(row[key as keyof Filters])
+              .toLowerCase()
+              .includes(filters[key as keyof Filters]?.toLowerCase() || ''),
+          ),
+        )
+      : []
+  }, [filters, transactions])
 
   const sortedTransactions = useMemo(() => {
     return [...filteredTransactions].sort((a, b) => {
@@ -189,6 +195,53 @@ const UserDashboard = () => {
     saveAs(blob, 'transactions.csv')
   }
 
+  const fetchData = async () => {
+    setLoading(true)
+    let ccAvenuePaymentResponseData
+    try {
+      ccAvenuePaymentResponseData = await axios.post(
+        'https://api-devv2.tajhotels.com/user360agg/v1/action/transactions',
+
+        {
+          fromDate: formatDateToYYYYMMDD(dateRange[0]),
+          toDate: formatDateToYYYYMMDD(dateRange[1]),
+          module: filters.module,
+          category: filters.module,
+          status: filters.status,
+          transactionBy: null,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            category: 'ROOM',
+          },
+        },
+      )
+    } catch (error) {
+      setError((error as any)?.response?.data?.message)
+      return
+    } finally {
+      setLoading(false)
+    }
+    if (ccAvenuePaymentResponseData?.status !== 200) {
+      setError((error as any)?.response?.data?.message)
+    } else if (ccAvenuePaymentResponseData?.status === 200) {
+      setTransactions(ccAvenuePaymentResponseData?.data)
+      if (ccAvenuePaymentResponseData?.data?.length > 0) {
+        setStatus([...new Set(ccAvenuePaymentResponseData?.data.map((item: any) => item.status))])
+        setModes([...new Set(ccAvenuePaymentResponseData?.data.map((item: any) => item.module))])
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [filters, dateRange])
+
   return (
     <Box sx={{ p: 4 }}>
       <Typography variant="h4" fontWeight={700} gutterBottom color="primary">
@@ -201,12 +254,12 @@ const UserDashboard = () => {
         </Typography>
         <Grid container spacing={2}>
           {[
-            { label: 'First Name', value: userInfo.firstName },
-            { label: 'Last Name', value: userInfo.lastName },
-            { label: 'Employee ID', value: userInfo.employeeId },
-            { label: 'Email', value: userInfo.email },
-            { label: 'Property Name', value: userInfo.propertyName },
-            { label: 'Property ID', value: userInfo.propertyId },
+            { label: 'First Name', value: user?.firstName },
+            { label: 'Last Name', value: user?.lastName },
+            { label: 'Employee ID', value: user?.employeeId },
+            { label: 'Email', value: user?.email },
+            { label: 'Property Name', value: user?.propertyName },
+            { label: 'Property ID', value: user?.propertyId },
           ].map((item, idx) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={idx}>
               <Typography variant="subtitle2" color="text.secondary">
@@ -219,16 +272,6 @@ const UserDashboard = () => {
           ))}
         </Grid>
         <Divider sx={{ my: 3 }} />
-
-        <Stack spacing={2} direction="row" alignItems="center" flexWrap="wrap">
-          {/* <DateRangePicker
-            value={dateRange}
-            onChange={(newRange: [Date | null, Date | null] | null) =>
-              setDateRange(newRange ? [newRange[0] as Dayjs | null, newRange[1] as Dayjs | null] : [null, null])
-            }
-            slotProps={{ textField: { size: 'small', variant: 'outlined' } }}
-          /> */}
-        </Stack>
       </Paper>
 
       <Grid container spacing={3} sx={{ alignItems: 'center' }}>
@@ -259,19 +302,20 @@ const UserDashboard = () => {
             }}
           />
         </LocalizationProvider>
-
-        {['Pay Online', 'Pay At Hotel'].map((mode: string) => (
+        {modes?.map((module: string) => (
           <Chip
-            key={mode}
-            label={mode}
-            variant={filters.mode === mode ? 'filled' : 'outlined'}
+            key={module}
+            label={module}
+            variant={filters.module === module ? 'filled' : 'outlined'}
             color="primary"
-            onClick={() => handleFilterChange('mode', mode)}
-            onDelete={filters.mode === mode ? () => handleFilterChange('mode', '') : undefined}
+            onClick={() => handleFilterChange('module', module)}
+            onDelete={
+              filters.module === module ? () => handleFilterChange('module', '') : undefined
+            }
           />
         ))}
 
-        {['Success', 'Failed', 'Refunded'].map((status: string) => (
+        {status?.map((status: string) => (
           <Chip
             key={status}
             label={status}
@@ -285,133 +329,174 @@ const UserDashboard = () => {
         ))}
 
         {/* Transactions Table */}
-        <Grid size={{ xs: 12 }}>
-          <Paper elevation={3} sx={{ p: 2, borderRadius: 3 }}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-              <Typography variant="h6" fontWeight={600}>
-                Recent Transactions
-              </Typography>
-              <Box>
-                <Button variant="outlined" onClick={exportToCSV} sx={{ mr: 1 }}>
-                  Export CSV
-                </Button>
-                <Button variant="contained" onClick={exportToExcel}>
-                  Export Excel
-                </Button>
-              </Box>
-            </Box>
-
-            <TableContainer>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    {(['date', 'ref', 'amount', 'mode', 'status'] as (keyof Filters)[]).map(
-                      (key) => (
-                        <TableCell key={key}>
-                          <TableSortLabel
-                            active={sortConfig.key === key}
-                            direction={sortConfig.direction}
-                            onClick={() => handleSort(key)}
-                          >
-                            {key.toUpperCase()}
-                          </TableSortLabel>
-                          <TextField
-                            variant="standard"
-                            value={filters[key]}
-                            onChange={(e) => handleFilterChange(key, e.target.value)}
-                            placeholder={`Search ${key}`}
-                            fullWidth
-                          />
-                        </TableCell>
-                      ),
+        {loading ? (
+          <Box sx={{ textAlign: 'center', width: '100%', marginTop: '5vh' }}>
+            <CircularProgress />
+            <Typography variant="h6" sx={{ marginTop: 2 }}>
+              Loading, please wait...
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            {transactions?.length !== 0 && (
+              <Grid size={{ xs: 12 }}>
+                <Paper elevation={3} sx={{ p: 2, borderRadius: 3 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                    <Typography variant="h6" fontWeight={600}>
+                      Recent Transactions
+                    </Typography>
+                    <Box>
+                      <Button variant="outlined" onClick={exportToCSV} sx={{ mr: 1 }}>
+                        Export CSV
+                      </Button>
+                      <Button variant="contained" onClick={exportToExcel}>
+                        Export Excel
+                      </Button>
+                    </Box>
+                  </Box>
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          {(
+                            [
+                              'date',
+                              'ref',
+                              'category',
+                              'amount',
+                              'module',
+                              'status',
+                            ] as (keyof Filters)[]
+                          ).map((key) => (
+                            <TableCell key={key}>
+                              <TableSortLabel
+                                active={sortConfig.key === key}
+                                direction={sortConfig.direction}
+                                onClick={() => handleSort(key)}
+                              >
+                                {key.toUpperCase()}
+                              </TableSortLabel>
+                              <TextField
+                                variant="standard"
+                                value={filters[key]}
+                                onChange={(e) => handleFilterChange(key, e.target.value)}
+                                placeholder={`Search ${key}`}
+                                fullWidth
+                              />
+                            </TableCell>
+                          ))}
+                          <TableCell>Actions</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {paginatedTransactions.map((row) => (
+                          <TableRow key={row.id}>
+                            <TableCell align="center">{formatDateToYYYYMMDD(row.date)}</TableCell>
+                            <TableCell align="center">
+                              {row.referenceNUmber ? row.referenceNUmber : 'NA'}
+                              {row.referenceNUmber && (
+                                <IconButton
+                                  onClick={() => copyToClipboard(row.referenceNUmber)}
+                                  size="small"
+                                >
+                                  <ContentCopyIcon fontSize="inherit" />
+                                </IconButton>
+                              )}
+                            </TableCell>
+                            <TableCell align="center">{row.category}</TableCell>
+                            <TableCell align="center">
+                              {row.transactionAmount ? row.transactionAmount : 'NA'}
+                            </TableCell>
+                            <TableCell align="center">
+                              {userRole === 'admin' && editRowId === row.id ? (
+                                <TextField
+                                  value={row.module}
+                                  onChange={(e) =>
+                                    handleEditChange(row.id, 'module', e.target.value)
+                                  }
+                                />
+                              ) : (
+                                row.module
+                              )}
+                            </TableCell>
+                            <TableCell align="center">
+                              <Chip
+                                label={row.status}
+                                color={
+                                  row.status === 'Success'
+                                    ? 'success'
+                                    : row.status === 'Failed'
+                                    ? 'error'
+                                    : 'warning'
+                                }
+                                variant="outlined"
+                                size="small"
+                              />
+                            </TableCell>
+                            <TableCell align="center">
+                              <IconButton onClick={() => setViewData(row)}>
+                                <VisibilityIcon />
+                              </IconButton>
+                              {/* {userRole === 'admin' && (
+                            <IconButton
+                              onClick={() => setEditRowId(editRowId === row.id ? null : row.id)}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          )}
+                          <IconButton onClick={() => handleArchive(row.id)}>
+                            <DeleteIcon />
+                          </IconButton> */}
+                              {/* {(row.status === 'Failed' || row.status === 'Refunded') && (
+                            <IconButton onClick={() => handleRefund(row.id)}>
+                              <ReplayIcon />
+                            </IconButton>
+                          )} */}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <TablePagination
+                    component="div"
+                    count={sortedTransactions.length}
+                    page={page}
+                    onPageChange={(e, newPage) => setPage(newPage)}
+                    rowsPerPage={rowsPerPage}
+                    onRowsPerPageChange={(e) => {
+                      setRowsPerPage(parseInt(e.target.value, 10))
+                      setPage(0)
+                    }}
+                    rowsPerPageOptions={Array.from(
+                      { length: Math.ceil(sortedTransactions.length / 5) },
+                      (_, i) => (i + 1) * 5,
                     )}
-                    <TableCell>Actions</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {paginatedTransactions.map((row) => (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.date}</TableCell>
-                      <TableCell>
-                        {row.ref}
-                        <IconButton onClick={() => copyToClipboard(row.ref)} size="small">
-                          <ContentCopyIcon fontSize="inherit" />
-                        </IconButton>
-                      </TableCell>
-                      <TableCell>{row.amount}</TableCell>
-                      <TableCell>
-                        {userRole === 'admin' && editRowId === row.id ? (
-                          <TextField
-                            value={row.mode}
-                            onChange={(e) => handleEditChange(row.id, 'mode', e.target.value)}
-                          />
-                        ) : (
-                          row.mode
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        <Chip
-                          label={row.status}
-                          color={
-                            row.status === 'Success'
-                              ? 'success'
-                              : row.status === 'Failed'
-                              ? 'error'
-                              : 'warning'
-                          }
-                          variant="outlined"
-                          size="small"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <IconButton onClick={() => setViewData(row)}>
-                          <VisibilityIcon />
-                        </IconButton>
-                        {userRole === 'admin' && (
-                          <IconButton
-                            onClick={() => setEditRowId(editRowId === row.id ? null : row.id)}
-                          >
-                            <EditIcon />
-                          </IconButton>
-                        )}
-                        <IconButton onClick={() => handleArchive(row.id)}>
-                          <DeleteIcon />
-                        </IconButton>
-                        {(row.status === 'Failed' || row.status === 'Refunded') && (
-                          <IconButton onClick={() => handleRefund(row.id)}>
-                            <ReplayIcon />
-                          </IconButton>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              component="div"
-              count={sortedTransactions.length}
-              page={page}
-              onPageChange={(e, newPage) => setPage(newPage)}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={(e) => {
-                setRowsPerPage(parseInt(e.target.value, 10))
-                setPage(0)
-              }}
-              rowsPerPageOptions={[5, 10, 25]}
-            />
-          </Paper>
-        </Grid>
+                  />
+                </Paper>
+              </Grid>
+            )}
+          </>
+        )}
       </Grid>
-      <Dialog open={!!viewData} onClose={() => setViewData(null)}>
+      {transactions?.length === 0 && (
+        <Box sx={{ textAlign: 'center', width: '100%', marginTop: '5vh' }}>
+          No Results found for your search Criteria
+        </Box>
+      )}
+      <Dialog open={!!viewData} onClose={() => setViewData(null)} maxWidth="sm" fullWidth>
         <DialogTitle>Transaction Details</DialogTitle>
         <DialogContent>
           {viewData && (
             <Box>
               {Object.entries(viewData).map(([key, value]) => (
-                <Typography key={key} gutterBottom>
-                  <strong>{key.toUpperCase()}:</strong> {value}
-                </Typography>
+                <>
+                  {value && (
+                    <Typography key={key} gutterBottom>
+                      <strong>{key.toUpperCase()}:</strong> {value}
+                    </Typography>
+                  )}
+                </>
               ))}
             </Box>
           )}
