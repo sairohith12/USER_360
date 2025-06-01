@@ -177,7 +177,7 @@ const Login = () => {
               onClick={handleLogin}
               disabled={loading}
             >
-              {loading ? 'Logging in...' : 'Login via OTP'}
+              {loading ? 'Logging in...' : 'Login'}
             </Button>
           </Box>
         </Box>

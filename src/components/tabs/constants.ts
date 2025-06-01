@@ -23,7 +23,7 @@ const createField = (name: string, label: string, options: Partial<typeof baseFi
 })
 
 // Common fields
-const commonFields = [
+export const commonFields = [
   createField('propertyName', 'Property Name*', {
     required: true,
     disable: true,
@@ -223,7 +223,7 @@ const posCommonFields = [
     type: 'string',
     placeHolderText: 'Taj Lands End',
   }),
-  createField('outletName', 'Outlet Name', { required: true, placeHolderText: 'ex : Vista' }),
+  createField('outletName', 'Outlet Name*', { required: true, placeHolderText: 'ex : Vista' }),
   createField('invoiceamount', 'Invoice Amount*', {
     required: true,
     type: 'number',

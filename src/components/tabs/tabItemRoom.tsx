@@ -16,6 +16,7 @@ import KeyValueList from '@/utils/KeyValueList'
 import api from 'api/axios'
 import {
   ccAvenueGeneratePayments,
+  commonFields,
   fields,
   gcReinstateInstateFields,
   gcVoucherRedemption,
@@ -33,9 +34,10 @@ const TabItemRoom = () => {
   const { user } = useAuth()
   const journeyFields =
     journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
-    journeyType === JOURNEY_TYPES.TEGC_REDEMPTION ||
-    journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION
+    journeyType === JOURNEY_TYPES.TEGC_REDEMPTION
       ? fields
+      : journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION
+      ? commonFields
       : journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE
       ? neuCoinsReInstateFields
       : journeyType === JOURNEY_TYPES.TEGC_REINSTATE
@@ -318,7 +320,8 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: formValues?.redeemNeucoins,
               },
             },
@@ -330,7 +333,13 @@ const TabItemRoom = () => {
             },
           )
         } catch (error) {
-          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          setErrors({
+            redeemNeucoins:
+              (error as any)?.response?.data?.message ||
+              'Oops! Something went wrong while redeeming your gift card. Please check your details and try again.',
+            // ||
+            // (error as any)?.response?.data?.error?.errorDescription,
+          })
           return
         } finally {
           setLoading(false)
@@ -418,8 +427,14 @@ const TabItemRoom = () => {
         } finally {
           setLoading(false)
         }
-        if (voucherRedemptionData?.status !== 200) {
-          setErrors({ redeemNeucoins: voucherRedemptionData?.data?.message })
+        if (
+          voucherRedemptionData?.status !== 200 ||
+          (voucherRedemptionData?.status === 200 && voucherRedemptionData?.data?.error?.code)
+        ) {
+          setErrors({
+            redeemNeucoins:
+              voucherRedemptionData?.data?.message || voucherRedemptionData?.data?.error?.message,
+          })
         } else if (voucherRedemptionData?.status === 200) {
           setOpen(true)
           setModalType('success')
@@ -457,7 +472,8 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: formValues?.reinstateGiftCard,
               },
             },
@@ -613,7 +629,8 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: user?.email || 'Admin',
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: 0,
               },
             },
@@ -664,7 +681,8 @@ const TabItemRoom = () => {
                 invoiceNumber: formValues?.invoiceNumber,
                 propertyId: '71758',
                 propertyName: formValues?.propertyName,
-                transactionBy: user?.email,
+                transactionBy:
+                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
                 amount: formValues?.redeemNeucoins,
               },
               userDetails: {
@@ -850,8 +868,8 @@ const TabItemRoom = () => {
             value: redeemNeucoinsData?.data?.redemptionId,
           },
           {
-            label: 'Invoice Number',
-            value: redeemNeucoinsData?.data?.invoiceNumber,
+            label: 'Booking Number',
+            value: redeemNeucoinsData?.data?.bookingNumber,
           },
         ])
       }

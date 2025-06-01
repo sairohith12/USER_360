@@ -41,17 +41,8 @@ import { formatDateToYYYYMMDD } from '@/utils/date'
 
 const userRole = 'admin' // dynamic in real case
 
-const userInfo = {
-  firstName: 'Amit',
-  lastName: 'Verma',
-  employeeId: 'EMP10293',
-  email: 'amit.verma@example.com',
-  propertyName: 'The Grand Palace',
-  propertyId: 'PROP001',
-}
-
 interface Filters {
-  date: string
+  createdDate: string
   referenceNUmber: string
   transactionAmount: string
   module: string | null
@@ -82,8 +73,8 @@ const getInitialDateRange = () => {
   dayBeforeYesterday.setDate(today.getDate() - 2)
 
   return {
-    fromDate: dayBeforeYesterday,
-    toDate: yesterday,
+    fromDate: yesterday,
+    toDate: today,
   }
 }
 
@@ -93,19 +84,19 @@ const UserDashboard = () => {
   const [loading, setLoading] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [filters, setFilters] = useState<Filters>({
-    date: '',
+    createdDate: '',
     referenceNUmber: '',
     transactionAmount: '',
     module: null,
     status: null,
   })
   const [error, setError] = useState()
-  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'date', direction: 'asc' })
+  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'createdDate', direction: 'asc' })
   const [transactions, setTransactions] = useState<any>([])
   const [editRowId, setEditRowId] = useState<number | null>(null)
   const [viewData, setViewData] = useState<null | {
     id: number
-    date: string
+    createdDate: string
     referenceNUmber: string
     transactionAmount: string
     module: string | null
@@ -120,7 +111,8 @@ const UserDashboard = () => {
   const [modes, setModes] = useState<any>()
   const [status, setStatus] = useState<any>()
   const handleFilterChange = (field: keyof Filters, value: string) => {
-    setFilters({ ...filters, [field]: value })
+    const searchFieldKey = field?.toLowerCase() === 'ref' ? 'referenceNUmber' : field
+    setFilters({ ...filters, [searchFieldKey]: value })
   }
 
   const handleSort = (key: keyof Filters) => {
@@ -240,6 +232,7 @@ const UserDashboard = () => {
 
   useEffect(() => {
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, dateRange])
 
   return (
@@ -360,7 +353,7 @@ const UserDashboard = () => {
                         <TableRow>
                           {(
                             [
-                              'date',
+                              'createdDate',
                               'ref',
                               'category',
                               'amount',
@@ -391,7 +384,9 @@ const UserDashboard = () => {
                       <TableBody>
                         {paginatedTransactions.map((row) => (
                           <TableRow key={row.id}>
-                            <TableCell align="center">{formatDateToYYYYMMDD(row.date)}</TableCell>
+                            <TableCell align="center">
+                              {formatDateToYYYYMMDD(row.createdDate)}
+                            </TableCell>
                             <TableCell align="center">
                               {row.referenceNUmber ? row.referenceNUmber : 'NA'}
                               {row.referenceNUmber && (
@@ -405,7 +400,11 @@ const UserDashboard = () => {
                             </TableCell>
                             <TableCell align="center">{row.category}</TableCell>
                             <TableCell align="center">
-                              {row.transactionAmount ? row.transactionAmount : 'NA'}
+                              {row.transactionAmount || row.pointsRedeemed || row.pointsToBeAwarded
+                                ? row.transactionAmount ||
+                                  row.pointsRedeemed ||
+                                  row.pointsToBeAwarded
+                                : 'NA'}
                             </TableCell>
                             <TableCell align="center">
                               {userRole === 'admin' && editRowId === row.id ? (
@@ -423,7 +422,7 @@ const UserDashboard = () => {
                               <Chip
                                 label={row.status}
                                 color={
-                                  row.status === 'Success'
+                                  row.status === 'Success' || row.status === 'true'
                                     ? 'success'
                                     : row.status === 'Failed'
                                     ? 'error'
