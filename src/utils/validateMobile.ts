@@ -22,6 +22,26 @@ export const formatMobileNumber = (mobileNumber: string, countryCode: string): s
   return `${countryCode} ${mobileNumber}`
 }
 
+// a) No special characters except letters, digits, spaces
+export function isValidStringField(value: string) {
+  const regex = /^[a-zA-Z0-9 ]+$/
+  return regex.test(value)
+}
+
+// b) Currency validation: number > 0, max 2 decimals
+export function isValidCurrency(value: string | number) {
+  const strVal = value.toString()
+  const regex = /^\d+(\.\d{1,2})?$/
+  if (!regex.test(strVal)) return false
+  return Number(strVal) > 0
+}
+
+// c) invoiceNumber: letters, digits, underscore only
+export function isValidInvoiceNumber(value: string) {
+  const regex = /^[a-zA-Z0-9_]*$/
+  return regex.test(value)
+}
+
 export const TextfieldValidator = (
   name: string,
   value: string,
@@ -47,7 +67,7 @@ export const TextfieldValidator = (
 
     case GCNumber:
       const regexGCNumber = /^[0-9 ]+$/ //regex for only numbers and spaces
-      status = regexGCNumber.test(value) && value.length === 19
+      status = regexGCNumber.test(value) && value.trim()?.length === 16
       errorMsg = 'Please enter valid 16 Digits Gift Card Number'
       break
 

@@ -201,6 +201,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
 
   useEffect(() => {
     setExpandedAccordion(filteredItems?.[0]?.label)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

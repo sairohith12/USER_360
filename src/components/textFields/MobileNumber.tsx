@@ -26,6 +26,8 @@ import { getRecaptchaToken } from '@/utils/recaptcha'
 import axios from 'axios'
 import { GENERATE_NEUPASS_OTP } from '@/utils/apiConstants'
 import api from 'api/axios'
+// import { parsePhoneNumberFromString } from 'libphonenumber-js/mobile'
+// import { PhoneInputWithCountrySelector } from './PhoneInputWithCountrySelector'
 
 const ReceptionistDashboard: React.FC = () => {
   const theme = useTheme()
@@ -40,6 +42,7 @@ const ReceptionistDashboard: React.FC = () => {
   const [memberShipNo, setMemberShipNo] = useState('')
   const [membership, setMembership] = useState<'epicure' | 'chambers' | 'hsbc'>('epicure')
   const [disable, setDisable] = useState(false)
+  // const [mobileError, setMobileError] = useState<string | null>(null)
 
   const { guestLogin, journeyType, updateGuestVouchers } = useGuestContext()
 
@@ -309,6 +312,16 @@ const ReceptionistDashboard: React.FC = () => {
                   placeholder="Enter Membership ID"
                 />
               )}
+              {/* 
+              <PhoneInputWithCountrySelector
+                value={mobileNumber}
+                onChange={(fullPhone, iso2) => {
+                  setMobileNumber(fullPhone)
+                  setCountryCode(iso2)
+                }}
+                error={mobileError || ''}
+                setError={setMobileError}
+              /> */}
 
               <Button
                 variant="contained"

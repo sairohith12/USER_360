@@ -207,7 +207,7 @@ const OrderStatus = () => {
             </Typography>
           </Collapse>
         </Grid>
-        {records?.length > 0 && (
+        {records?.length === 1 && (
           <Box mt={4}>
             <Card sx={{ borderRadius: 3, bgcolor: '#f4f6fa' }}>
               <CardContent>

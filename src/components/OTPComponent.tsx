@@ -121,7 +121,10 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
       } else {
         setOtpError(response?.message || 'Please enter a valid OTP.')
       }
-    } else if (journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
+    } else if (
+      journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
+      journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION
+    ) {
       onVerified?.(otpString)
     } else if (journeyType === JOURNEY_TYPES.LOGIN) {
       let responseData: { success: boolean; [key: string]: any }

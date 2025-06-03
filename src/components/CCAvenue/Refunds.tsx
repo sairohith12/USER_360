@@ -10,21 +10,19 @@ import {
   Grid,
   Paper,
   CircularProgress,
+  Collapse,
 } from '@mui/material'
 
 import CombinedModal from '@/components/modal/ReponseModal'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import DateInput from '../DateInput'
-import dayjs, { Dayjs } from 'dayjs'
+import { Dayjs } from 'dayjs'
 import KeyValueList from '@/utils/KeyValueList'
+import axios from 'axios'
 
 const Refunds = () => {
   const [reference, setReference] = useState('')
-  const [fromDate, setFromDate] = useState<Dayjs | null>(null)
   const [fetchedData, setFetchedData] = useState<{
-    guest: string
-    amount: number
+    order_bill_name: string
+    order_amt: number
     status: string
     refId: string
     date: Dayjs | null
@@ -36,46 +34,105 @@ const Refunds = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showRefundForm, setShowRefundForm] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [modalType, setModalType] = useState<'success' | 'failure'>('success')
+  const [apiResponseData, setApiResponseData] = useState<any>([])
 
-  const handleFetch = () => {
-    setFetchedData({
-      guest: 'John Doe',
-      amount: 1200,
-      status: 'pending',
-      refId: reference,
-      date: dayjs('2024-03-11'),
-    })
-    setStatus('pending')
+  const handleFetch = async () => {
+    if (!reference) {
+      setErrorMsg('Please correct the highlighted fields.')
+      return
+    }
+    setErrorMsg('')
     setShowRefundForm(false)
-  }
-
-  const handleRefund = () => {
-    setModalOpen(true)
-  }
-
-  const handleRecheckStatus = () => {
-    setLoading(true)
-    setTimeout(() => {
-      setStatus('success')
+    let fetchOrderData
+    try {
+      setLoading(true)
+      fetchOrderData = await axios.post(
+        'https://api-devv2.tajhotels.com/user360agg/v1/ccavenue/order-status',
+        {
+          referenceNo: reference,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Category: 'ROOM',
+          },
+        },
+      )
+    } catch (error) {
+      setErrorMsg('No record found for given criteria.')
+    } finally {
       setLoading(false)
-      setShowRefundForm(false)
-    }, 1500)
+    }
+    if (fetchOrderData?.status == 200) {
+      setFetchedData(fetchOrderData?.data)
+      setStatus(fetchOrderData?.data?.order_status)
+    }
   }
-
-  const refundResponseData = [
-    {
-      label: 'Status',
-      value: 'Success',
-    },
-    {
-      label: 'Refund ID',
-      value: 'CC_uhwnj29',
-    },
-    {
-      label: 'Refund Amount',
-      value: refundAmount,
-    },
-  ]
+  const handleRefund = async () => {
+    setErrorMsg('')
+    setShowRefundForm(false)
+    let refundData
+    try {
+      setLoading(true)
+      refundData = await axios.post(
+        'https://api-devv2.tajhotels.com/user360agg/v1/ccavenue/action/refund',
+        {
+          referenceNo: reference,
+          refundAmount: refundAmount,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Category: 'ROOM',
+          },
+        },
+      )
+    } catch (error) {
+      setModalOpen(true)
+      setModalType('failure')
+      setApiResponseData([
+        {
+          label: 'Refund TransactionId',
+          value: refundData?.data?.refundTransactionId,
+        },
+        {
+          label: 'Error Reason',
+          value: refundData?.data?.reason,
+        },
+      ])
+    } finally {
+      setLoading(false)
+    }
+    if (refundData?.status == 200 && refundData?.data?.errorCode === 200) {
+      setModalOpen(true)
+      setModalType('success')
+      setApiResponseData([
+        {
+          label: 'Refund TransactionId',
+          value: refundData?.data?.refundTransactionId,
+        },
+        {
+          label: 'Refund Amount',
+          value: refundData?.data?.refundAmount,
+        },
+      ])
+    } else {
+      setModalOpen(true)
+      setModalType('failure')
+      setApiResponseData([
+        {
+          label: 'Refund TransactionId',
+          value: refundData?.data?.refundTransactionId,
+        },
+        {
+          label: 'Error Reason',
+          value: refundData?.data?.reason,
+        },
+      ])
+    }
+  }
 
   return (
     <Box sx={{ p: 4 }} textAlign={'center'}>
@@ -113,27 +170,17 @@ const Refunds = () => {
               onChange={(e) => {
                 setReference(e.target.value)
                 setFetchedData(null)
+                setShowRefundForm(false)
+                setErrorMsg('')
               }}
             />
           </Grid>
           <Grid>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateInput
-                key={'fromDate'}
-                name={'fromDate'}
-                label={'From Date'}
-                value={fromDate ? fromDate.toISOString() : ''}
-                onChange={(name, date) => {
-                  setFromDate(date ? dayjs(date) : null)
-                  setFetchedData(null)
-                }}
-                helperText={(!fromDate && 'Please select Valid From Date ') || ''}
-                customStyle={{
-                  flex: '1 1 30%',
-                  backgroundColor: '-moz-initial',
-                }}
-              />
-            </LocalizationProvider>
+            <Collapse in={!!errorMsg}>
+              <Typography color="error" sx={{ fontWeight: 500, textAlign: 'center', mt: 1 }}>
+                {errorMsg}
+              </Typography>
+            </Collapse>
           </Grid>
           <Grid>
             <Button
@@ -160,10 +207,10 @@ const Refunds = () => {
                   justifyContent={'space-between'}
                 >
                   <Typography variant="h6">
-                    <strong>Guest:</strong> {fetchedData.guest}
+                    <strong>Guest:</strong> {fetchedData?.order_bill_name}
                   </Typography>
                   <Typography variant="h6">
-                    <strong>Amount:</strong> ₹{fetchedData.amount}
+                    <strong>Amount:</strong> ₹{fetchedData.order_amt}
                   </Typography>
                 </Box>
 
@@ -178,14 +225,14 @@ const Refunds = () => {
                     <strong>Status:</strong> {status}
                   </Typography>
 
-                  {status === 'pending' &&
+                  {(status?.toLowerCase() === 'awaited' || status?.toLowerCase() === 'initiated') &&
                     (loading ? (
                       <CircularProgress size={24} />
                     ) : (
                       <Button
                         variant="outlined"
                         sx={{ fontWeight: 'bold', px: 3, py: 0.8, borderRadius: 2 }}
-                        onClick={handleRecheckStatus}
+                        onClick={handleFetch}
                       >
                         Re-Check Status
                       </Button>
@@ -194,89 +241,96 @@ const Refunds = () => {
               </CardContent>
             </Card>
 
-            {status === 'success' && !showRefundForm && (
-              <Box mt={4} p={3} sx={{ borderRadius: 2, bgcolor: '#e3f2fd', textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>
-                  Transaction Verified ✅
-                </Typography>
-                <Typography variant="body1" mb={3}>
-                  Do you want to initiate a refund for this transaction?
-                </Typography>
-                <Box display="flex" justifyContent="center" gap={2}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setShowRefundForm(true)}
-                  >
-                    Yes, Initiate Refund
-                  </Button>
-                  <Button variant="outlined" onClick={() => setShowRefundForm(false)}>
-                    No
-                  </Button>
-                </Box>
-              </Box>
-            )}
-
-            {status === 'success' && showRefundForm && (
-              <Box mt={4}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>
-                  Initiate Refund
-                </Typography>
-                <Grid container spacing={3}>
-                  <Grid size={{ md: 6 }}>
-                    <TextField
-                      select
-                      label="Refund Type"
-                      fullWidth
-                      value={refundType}
-                      onChange={(e) => setRefundType(e.target.value)}
-                    >
-                      <MenuItem value="full">Full</MenuItem>
-                      <MenuItem value="partial">Partial</MenuItem>
-                    </TextField>
-                  </Grid>
-                  <Grid size={{ xs: 12, md: 6 }}>
-                    <TextField
-                      label="Refund Amount"
-                      fullWidth
-                      type="number"
-                      disabled={refundType === 'full'}
-                      value={refundType === 'full' ? fetchedData.amount : refundAmount}
-                      error={Number(refundAmount) > fetchedData.amount}
-                      helperText={
-                        Number(refundAmount) > fetchedData.amount &&
-                        'Please select the valid Amount'
-                      }
-                      onChange={(e) => setRefundAmount(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid size={{ xs: 12 }}>
-                    <TextField
-                      label="Reason*"
-                      fullWidth
-                      value={reason}
-                      onChange={(e) => setReason(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid size={{ xs: 12 }}>
+            {(status?.toLowerCase() === 'successful' || status?.toLowerCase() === 'shipped') &&
+              !showRefundForm && (
+                <Box mt={4} p={3} sx={{ borderRadius: 2, bgcolor: '#e3f2fd', textAlign: 'center' }}>
+                  <Typography variant="h6" fontWeight="bold" mb={2}>
+                    Transaction Verified ✅
+                  </Typography>
+                  <Typography variant="body1" mb={3}>
+                    Do you want to initiate a refund for this transaction?
+                  </Typography>
+                  <Box display="flex" justifyContent="center" gap={2}>
                     <Button
                       variant="contained"
-                      color="error"
-                      disabled={
-                        !reason ||
-                        Number(refundAmount) == 0 ||
-                        Number(refundAmount) > Number(fetchedData.amount)
-                      }
-                      onClick={handleRefund}
-                      fullWidth
-                      sx={{ py: 1.5, fontWeight: 'bold', fontSize: '1rem' }}
+                      color="primary"
+                      onClick={() => {
+                        setShowRefundForm(true)
+                      }}
                     >
-                      Initiate Refund
+                      Yes, Initiate Refund
                     </Button>
+                    <Button variant="outlined" onClick={() => setShowRefundForm(false)}>
+                      No
+                    </Button>
+                  </Box>
+                </Box>
+              )}
+
+            {(status?.toLowerCase() === 'successful' || status?.toLowerCase() === 'shipped') &&
+              showRefundForm && (
+                <Box mt={4}>
+                  <Typography variant="h6" fontWeight="bold" mb={2}>
+                    Initiate Refund
+                  </Typography>
+                  <Grid container spacing={3}>
+                    <Grid size={{ md: 6 }}>
+                      <TextField
+                        select
+                        label="Refund Type"
+                        fullWidth
+                        value={refundType}
+                        onChange={(e) => setRefundType(e.target.value)}
+                      >
+                        <MenuItem value="full">Full</MenuItem>
+                        <MenuItem value="partial">Partial</MenuItem>
+                      </TextField>
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 6 }}>
+                      <TextField
+                        label="Refund Amount"
+                        fullWidth
+                        type="number"
+                        disabled={refundType === 'full'}
+                        value={refundType === 'full' ? fetchedData.order_amt : refundAmount}
+                        error={
+                          Number(refundAmount) > fetchedData.order_amt && Number(refundAmount) > 0
+                        }
+                        helperText={
+                          Number(refundAmount) > fetchedData.order_amt &&
+                          Number(refundAmount) > 0 &&
+                          `Please select the Amount less than or equal to ${fetchedData.order_amt}`
+                        }
+                        onChange={(e) => setRefundAmount(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <TextField
+                        label="Reason*"
+                        fullWidth
+                        value={reason}
+                        onChange={(e) => setReason(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        disabled={
+                          !reason ||
+                          Number(refundAmount) == 0 ||
+                          Number(refundAmount) > Number(fetchedData.order_amt)
+                        }
+                        onClick={handleRefund}
+                        fullWidth
+                        sx={{ py: 1.5, fontWeight: 'bold', fontSize: '1rem' }}
+                      >
+                        Initiate Refund
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </Box>
-            )}
+                </Box>
+              )}
           </Box>
         )}
       </Paper>
@@ -288,12 +342,17 @@ const Refunds = () => {
             setFetchedData(null)
             setStatus('pending')
             setReference('')
-            setFromDate(null)
+            setApiResponseData([])
+            setErrorMsg('')
+            setModalType('success')
+            setShowRefundForm(false)
+            setReason('')
+            setRefundAmount('')
           }}
           open={modalOpen}
-          type={'success'}
+          type={modalType}
         >
-          <KeyValueList data={refundResponseData} />
+          <KeyValueList data={apiResponseData} />
         </CombinedModal>
       )}
     </Box>

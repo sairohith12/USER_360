@@ -8,9 +8,14 @@ import dayjs, { Dayjs } from 'dayjs'
 import DateInput from '../DateInput'
 import { useGuestContext } from '@/context/guestContext'
 import OTPComponent from '../OTPComponent'
-import TextfieldValidator, { formatMobileNumber } from '@/utils/validateMobile'
+import TextfieldValidator, {
+  formatMobileNumber,
+  isValidCurrency,
+  isValidInvoiceNumber,
+  isValidStringField,
+} from '@/utils/validateMobile'
 import CombinedModal from '../modal/ReponseModal'
-import { JOURNEY_TYPES } from '../textFields/constants'
+import { GCNumber, JOURNEY_TYPES } from '../textFields/constants'
 import FormSelect from '../textFields/FormSelect'
 import KeyValueList from '@/utils/KeyValueList'
 import api from 'api/axios'
@@ -154,16 +159,64 @@ const TabItemRoom = () => {
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {}
+    const stringFields = [
+      'bookingnumber',
+      'redemptionid',
+      'originalapprovalcode',
+      'originalbatchnumber',
+      'originaltransactionid',
+      'guestname',
+      'outletname',
+    ]
+    const currencyFields = [
+      'invoiceamount',
+      'redeemneucoins',
+      'reinstateneucoins',
+      'reinstategiftcard',
+      'originalamount',
+    ]
     journeyFields.forEach((field) => {
       const value = formValues[field.name]
       if (field.required) {
+        // a) String fields validation
+        if (stringFields.includes(field.name?.toLowerCase()) && value) {
+          if (typeof value === 'string' && !isValidStringField(value)) {
+            newErrors[field.name] = `${field.label} must not contain special characters`
+          } else if (value === '') {
+            newErrors[field.name] = `${field.label} is required`
+          }
+        }
+        // b) Currency fields validation
+        if (
+          currencyFields.includes(field.name?.toLowerCase()) &&
+          value !== undefined &&
+          value !== null &&
+          value !== ''
+        ) {
+          if (
+            !isValidCurrency(
+              typeof value === 'object' && dayjs.isDayjs(value) ? value.toString() : value,
+            )
+          ) {
+            newErrors[
+              field.name
+            ] = `${field.label} must be a valid amount greater than zero, up to 2 decimals allowed`
+          }
+        }
+
+        // c) invoiceNumber validation
+        if (field.name?.toLowerCase() === 'invoicenumber' && value) {
+          if (typeof value === 'string' && !isValidInvoiceNumber(value)) {
+            newErrors.invoiceNumber = `${field.label} can only contain letters, numbers, and underscore`
+          }
+        }
         if (
           (field.type === 'date' && !dayjs(value).isValid()) ||
-          (!field.type && typeof value === 'string' && !value.trim())
+          (field.type &&
+            typeof value === 'string' &&
+            !value.trim() &&
+            field.name?.toLowerCase() !== 'gcnumber')
         ) {
-          newErrors[field.name] = `${field.label} is required`
-        }
-        if (field.type && typeof value === 'string' && !value.trim()) {
           newErrors[field.name] = `${field.label} is required`
         }
         if (
@@ -175,11 +228,11 @@ const TabItemRoom = () => {
         if (typeof formValues.phone === 'string' && !/^\d{10}$/.test(formValues.phone)) {
           newErrors.phone = 'Phone must be 10 digits'
         }
-        if (formValues.GCNumber) {
+        if (field.name?.toLowerCase() === GCNumber?.toLowerCase()) {
           // const { name, value } = event.target
           const { status, errorMsg } = TextfieldValidator(field.name, value as string)
 
-          if (status) {
+          if (!status) {
             newErrors.GCNumber = errorMsg
           }
           // setErrorMessage((prev: { [key: string]: string }) => {
@@ -374,76 +427,23 @@ const TabItemRoom = () => {
         }
       } else if (journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION) {
         setLoading(true)
-        let voucherRedemptionData
+        let generateVouchersOtp
         try {
-          voucherRedemptionData = await api.post(
-            'voucher/redeem',
-            {
-              h_bit_date: new Date().toISOString(),
-              h_member_id: Guest?.memberID,
-              h_privileges: Guest?.uniquePrivilegeCode,
-              pin: Guest?.pin,
-              type: Guest?.label === 'THE CHAMBERS' ? 'CHAMBERS' : Guest?.label,
-              hotelSponsorId: Guest?.sponsor_id,
-              h_location: '',
-              h_bit_source: 'PMS',
-              h_bit_source_generated_id: 'NA',
-              h_start_date: formatDateToYYYYMMDD(Guest?.createdOn),
-              h_end_date: formatDateToYYYYMMDD(Guest?.validTill),
-              folio_number: null,
-              rate_code:
-                Guest?.extraData &&
-                typeof Guest.extraData === 'object' &&
-                'promocode' in Guest.extraData
-                  ? Guest?.extraData?.promocode
-                  : '',
-              h_comment: '',
-              h_bit_amount: null,
-              h_Representative_Email: null,
-              h_confirmation_number: formValues?.bookingNumber,
-              roomBookingRequest: {
-                bookingNumber: formValues?.bookingNumber,
-                checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
-                checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
-                invoiceAmount: formValues?.invoiceamount,
-                invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
-                propertyName: formValues?.propertyName,
-                transactionBy:
-                  user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
-                amount: 0,
-              },
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                category: 'ROOM',
-              },
-            },
+          generateVouchersOtp = await api.get(
+            `voucher/generate-otp?memberId=${Guest?.memberID}&type=${
+              Guest?.label === 'THE CHAMBERS' ? 'CHAMBERS' : Guest?.label
+            }`,
           )
         } catch (error) {
-          setErrors({ redeemNeucoins: (error as any)?.response?.data?.message })
+          setErrors({ invoiceNumber: (error as any)?.response?.data?.message })
           return
         } finally {
           setLoading(false)
         }
-        if (
-          voucherRedemptionData?.status !== 200 ||
-          (voucherRedemptionData?.status === 200 && voucherRedemptionData?.data?.error?.code)
-        ) {
-          setErrors({
-            redeemNeucoins:
-              voucherRedemptionData?.data?.message || voucherRedemptionData?.data?.error?.message,
-          })
-        } else if (voucherRedemptionData?.status === 200) {
-          setOpen(true)
-          setModalType('success')
-          setApiResponseData([
-            {
-              label: 'Availment Bit ID',
-              value: voucherRedemptionData?.data?.data?.availed_privileges?.[0]?.availment_bit_id,
-            },
-          ])
+        if (generateVouchersOtp?.status !== 200) {
+          setErrors({ invoiceNumber: generateVouchersOtp?.data?.message })
+        } else if (generateVouchersOtp?.status === 200) {
+          setOpenOTPModal(!openOTPModal)
         }
       } else if (journeyType === JOURNEY_TYPES.TEGC_REINSTATE) {
         setLoading(true)
@@ -873,6 +873,80 @@ const TabItemRoom = () => {
           },
         ])
       }
+    } else if (journeyType === JOURNEY_TYPES.VOUCHERS_REDEMPTION) {
+      let voucherRedemptionData
+      try {
+        voucherRedemptionData = await api.post(
+          'voucher/redeem',
+          {
+            h_bit_date: new Date().toISOString(),
+            h_member_id: Guest?.memberID,
+            h_privileges: Guest?.uniquePrivilegeCode,
+            pin: Guest?.pin,
+            type: Guest?.label === 'THE CHAMBERS' ? 'CHAMBERS' : Guest?.label,
+            hotelSponsorId: Guest?.sponsor_id,
+            h_location: '',
+            h_bit_source: 'PMS',
+            h_bit_source_generated_id: 'NA',
+            h_start_date: formatDateToYYYYMMDD(Guest?.createdOn),
+            h_end_date: formatDateToYYYYMMDD(Guest?.validTill),
+            folio_number: null,
+            rate_code:
+              Guest?.extraData &&
+              typeof Guest.extraData === 'object' &&
+              'promocode' in Guest.extraData
+                ? Guest?.extraData?.promocode
+                : '',
+            h_comment: '',
+            h_bit_amount: null,
+            h_Representative_Email: null,
+            h_confirmation_number: formValues?.bookingNumber,
+            otp: otp,
+            roomBookingRequest: {
+              bookingNumber: formValues?.bookingNumber,
+              checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
+              checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
+              invoiceAmount: formValues?.invoiceamount,
+              invoiceNumber: formValues?.invoiceNumber,
+              propertyId: '71758',
+              propertyName: formValues?.propertyName,
+              transactionBy:
+                user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
+              amount: 0,
+            },
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              category: 'ROOM',
+            },
+          },
+        )
+      } catch (error) {
+        setErrors({ invoiceNumber: (error as any)?.response?.data?.message })
+        return
+      } finally {
+        setLoading(false)
+        setOpenOTPModal(false)
+      }
+      if (
+        voucherRedemptionData?.status !== 200 ||
+        (voucherRedemptionData?.status === 200 && voucherRedemptionData?.data?.error?.code)
+      ) {
+        setErrors({
+          redeemNeucoins:
+            voucherRedemptionData?.data?.message || voucherRedemptionData?.data?.error?.message,
+        })
+      } else if (voucherRedemptionData?.status === 200) {
+        setOpen(true)
+        setModalType('success')
+        setApiResponseData([
+          {
+            label: 'Availment Bit ID',
+            value: voucherRedemptionData?.data?.data?.availed_privileges?.[0]?.availment_bit_id,
+          },
+        ])
+      }
     }
     // if (journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
     //   setOpen(true)
@@ -1035,7 +1109,9 @@ const TabItemRoom = () => {
         open={openOTPModal}
         onClose={() => setOpenOTPModal(false)}
         mobileNumber={
-          neuCoinsJourneyMobileNumber
+          journeyType === JOURNEY_TYPES?.VOUCHERS_REDEMPTION
+            ? formatMobileNumber(String(Guest?.vouchersResponse?.userDetails?.mobile), '+91')
+            : neuCoinsJourneyMobileNumber
             ? formatMobileNumber(
                 String(neuCoinsJourneyMobileNumber),
                 Guest?.primaryMobile &&
