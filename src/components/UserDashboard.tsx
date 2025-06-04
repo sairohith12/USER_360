@@ -79,7 +79,7 @@ const getInitialDateRange = () => {
 }
 
 const UserDashboard = () => {
-  const { user } = useAuth()
+  const { user, userSelectedProperty } = useAuth()
   const [page, setPage] = useState(0)
   const [loading, setLoading] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
@@ -252,8 +252,7 @@ const UserDashboard = () => {
             { label: 'Last Name', value: user?.lastName },
             { label: 'Employee ID', value: user?.employeeId },
             { label: 'Email', value: user?.email },
-            { label: 'Property Name', value: user?.propertyName },
-            { label: 'Property ID', value: user?.propertyId },
+            { label: 'Property Name', value: userSelectedProperty?.property?.hotel_name },
           ].map((item, idx) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={idx}>
               <Typography variant="subtitle2" color="text.secondary">

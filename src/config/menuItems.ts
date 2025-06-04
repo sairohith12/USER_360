@@ -2,6 +2,7 @@ import { AutoStories, KeyOff, SpaceDashboard, SvgIconComponent } from '@mui/icon
 import React from 'react'
 export interface MenuItem {
   label: string
+  identifier: string
   path?: string
   roles: string[]
   icon?: SvgIconComponent
@@ -44,11 +45,13 @@ export const menuItems: MenuItem[] = [
     label: 'Redemption',
     roles: ['admin', 'editor', 'viewer', 'super_admin'],
     icon: Redeem,
+    identifier: 'redemption',
     subItems: [
       {
         label: 'Neucoins',
         path: '/redemption/neucoins',
         roles: ['admin', 'editor', 'viewer', 'super_admin'],
+        identifier: 'neu coins',
         icon: MonetizationOn,
         Component: NeucoinsRedemptionAndTabs,
       },
@@ -56,12 +59,14 @@ export const menuItems: MenuItem[] = [
         label: 'GiftCard (Taj Experience)',
         path: '/redemption/giftcard',
         roles: ['admin', 'editor', 'viewer', 'super_admin'],
+        identifier: 'gift card',
         icon: VpnKey,
         Component: GiftCardsRedemptionsAndTabs,
       },
       {
         label: 'Vouchers',
         path: '/redemption/vouchers',
+        identifier: 'vouchers',
         roles: ['admin', 'editor', 'viewer', 'super_admin'],
         icon: CardGiftcard,
         Component: VoucherRedemptionAndTabs,
@@ -72,11 +77,13 @@ export const menuItems: MenuItem[] = [
     label: 'Re-Instate',
     roles: ['admin', 'editor', 'super_admin'],
     icon: Autorenew,
+    identifier: 're-instate',
     subItems: [
       {
         label: 'Neucoins',
         path: '/reinstate/neucoins',
         roles: ['admin', 'editor', 'super_admin'],
+        identifier: 'neu coins',
         icon: MonetizationOn,
         Component: NeucoinsReinstateAndTabs,
       },
@@ -84,6 +91,7 @@ export const menuItems: MenuItem[] = [
         label: 'GiftCard (Taj Experience)',
         path: '/reinstate/giftcard',
         roles: ['admin', 'editor', 'super_admin'],
+        identifier: 'gift card',
         icon: VpnKey,
         Component: GiftCardReinstateAndTabs,
       },
@@ -91,6 +99,7 @@ export const menuItems: MenuItem[] = [
         label: 'Vouchers',
         path: '/reinstate/vouchers',
         roles: ['admin', 'editor', 'super_admin'],
+        identifier: 'vouchers',
         icon: CardGiftcard,
         Component: VoucherReinstateAndTabs,
       },
@@ -120,12 +129,14 @@ export const menuItems: MenuItem[] = [
   {
     label: 'CC Avenue',
     roles: ['admin', 'super_admin'],
+    identifier: 'cc avenue',
     icon: CreditCard,
     subItems: [
       {
         label: 'Payments',
         path: '/cc-avenue/payments',
         roles: ['admin', 'super_admin'],
+        identifier: 'payment',
         icon: CreditCard,
         Component: PaymentJourney,
       },
@@ -133,6 +144,7 @@ export const menuItems: MenuItem[] = [
         label: 'Refunds',
         path: '/cc-avenue/refunds',
         roles: ['admin', 'super_admin'],
+        identifier: 'refunds',
         icon: Replay,
         Component: RefundsJourney,
       },
@@ -150,18 +162,21 @@ export const menuItems: MenuItem[] = [
     label: 'MIS & Reports',
     path: '/mis-reports',
     roles: ['admin', 'editor', 'viewer', 'super_admin'],
+    identifier: 'reports',
     icon: Assessment,
     Component: UserDashboard,
   },
   {
     label: 'Control Hub',
     roles: ['admin', 'super_admin'],
+    identifier: '',
     icon: AdminPanelSettings,
     subItems: [
       {
         label: 'Dashboard',
         path: '/admin/dashboard',
         roles: ['admin', 'super_admin'],
+        identifier: '',
         icon: SpaceDashboard,
         Component: AdminDashboard1,
       },
@@ -169,6 +184,7 @@ export const menuItems: MenuItem[] = [
         label: 'Manage Admins',
         path: '/admin/manage-admins',
         roles: ['admin', 'super_admin'],
+        identifier: '',
         icon: SupervisorAccount,
         Component: ManageAdmins,
       },
@@ -176,6 +192,7 @@ export const menuItems: MenuItem[] = [
         label: 'Access Control',
         path: '/admin/access-control',
         roles: ['admin', 'super_admin'],
+        identifier: '',
         icon: KeyOff,
         Component: AccessControl,
       },
@@ -183,6 +200,7 @@ export const menuItems: MenuItem[] = [
         label: 'Audit Logs',
         path: '/admin/audit-logs',
         roles: ['admin', 'super_admin'],
+        identifier: '',
         icon: AutoStories,
         Component: AuditLogs,
       },

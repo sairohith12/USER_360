@@ -371,7 +371,6 @@ const AccessControl = () => {
                               {subItems.map((sub) => {
                                 const checked =
                                   permissions[selectedUser.id]?.[label]?.[sub] ?? false
-                                console.log(permissions[selectedUser.id], 'bolo8888', checked)
                                 return (
                                   <Box
                                     key={sub}

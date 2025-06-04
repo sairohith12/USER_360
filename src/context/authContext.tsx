@@ -11,9 +11,8 @@ interface User {
   firstName: string
   lastName: string
   employeeId: string
-  propertyName: string
-  propertyId: string
   role: UserType
+  accessRecords: any
 }
 
 interface AuthContextType {
@@ -24,6 +23,9 @@ interface AuthContextType {
   logout: () => void
   accessToken: string | null
   isLoggedIn: boolean
+  userType: UserType
+  userSelectedProperty: any
+  setUserSelectedProperty: any
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -34,6 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [accessToken, setAccessToken] = useState<string | null>(null)
+  const [userSelectedProperty, setUserSelectedProperty] = useState<any>()
   // const [refreshToken, setRefreshToken] = useState<string | null>(null)
 
   const login = async (email: string) => {
@@ -51,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await api.post('/auth/verify-otp', { email, otp })
 
       if (response.status == 200) {
-        const { refreshToken, user_role, name } = response.data
+        const { refreshToken, user_role, name, accessRecords } = response.data
         const { access_token: accessToken } = response?.headers
         setAccessToken(accessToken)
         // setRefreshToken(refreshToken)
@@ -60,9 +63,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           email: email || '',
           employeeId: '77878',
           lastName: name,
-          propertyId: '898343',
-          propertyName: 'Taj lands end',
           role: user_role,
+          accessRecords,
         }
         setUser(user)
         localStorage.setItem('accessToken', accessToken)
@@ -130,6 +132,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loading,
     verifyOtp,
     accessToken,
+    userSelectedProperty,
+    setUserSelectedProperty,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

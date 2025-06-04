@@ -1,5 +1,5 @@
 // components/SidenavWithAccordions.tsx
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   Drawer,
   Accordion,
@@ -72,25 +72,83 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
 
 const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle }) => {
   const router = useRouter()
-  const { userType } = useAuth()
+  const { userType, userSelectedProperty } = useAuth()
   const { updatedJourneyType } = useGuestContext()
   const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
-  const filteredItems = menuItems.filter((item) => userType && item.roles.includes(userType))
   const [expandedAccordion, setExpandedAccordion] = useState<string | false>(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const currentPath = router.asPath
 
+  const filteredItems = useMemo(() => {
+    if (!userSelectedProperty) return []
+
+    return menuItems.reduce((acc: any, item) => {
+      const sectionIdentifier = item?.identifier?.toLowerCase()
+      const alwaysVisible = ['reports']
+
+      if (sectionIdentifier && alwaysVisible.includes(sectionIdentifier)) {
+        acc.push(item)
+        return acc
+      }
+
+      if (sectionIdentifier === 'cc avenue') {
+        const hasCCAvenueAccess = userSelectedProperty?.services.some((section: any) =>
+          section.modules.some((mod: any) => mod.name.toLowerCase() === 'cc avenue'),
+        )
+
+        if (hasCCAvenueAccess) {
+          acc.push(item)
+        }
+        return acc
+      }
+
+      if (item?.label === 'Control Hub') {
+        if (userType === 'super_admin') acc.push(item)
+        return acc
+      }
+      const matchingSections = userSelectedProperty?.services?.filter(
+        (record: any) => record?.name?.toLowerCase() === sectionIdentifier,
+      )
+
+      if (matchingSections?.length > 0) {
+        if (item.subItems) {
+          const subItems = item.subItems
+            .map((sub) => {
+              const subIdentifier = sub?.identifier?.toLowerCase()
+
+              for (const section of matchingSections) {
+                const foundModule = section?.modules?.find(
+                  (mod: any) => mod?.name?.toLowerCase() === subIdentifier,
+                )
+                if (foundModule) {
+                  return {
+                    ...sub,
+                    access_type: foundModule?.access_type,
+                  }
+                }
+              }
+              return null
+            })
+            .filter(Boolean)
+
+          if (subItems.length > 0) {
+            acc.push({ ...item, subItems })
+          }
+        } else {
+          acc.push(item)
+        }
+      }
+
+      return acc
+    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userSelectedProperty?.services, userType])
   const renderMenu = () => {
-    return filteredItems.map((item, index) => {
+    return filteredItems?.map((item: any, index: number) => {
       const Icon = item.icon || FolderIcon
       const isDirectMatch = item.path && currentPath === item.path
 
       if (item.subItems && item.subItems.length > 0) {
-        const visibleSubItems = item.subItems.filter(
-          (sub) => userType && sub.roles.includes(userType),
-        )
-        if (!visibleSubItems.length) return null
-
         return (
           <StyledAccordion
             key={index}
@@ -112,7 +170,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
             </AccordionSummary>
             <AccordionDetails sx={{ pt: 0 }}>
               <List disablePadding>
-                {visibleSubItems.map((subItem, subIndex) => {
+                {item?.subItems?.map((subItem: any, subIndex: number) => {
                   const SubIcon = subItem.icon || InsertDriveFileIcon
                   const isSubActive = currentPath === subItem.path
                   if (!subItem.path) return null
