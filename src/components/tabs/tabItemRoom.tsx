@@ -36,7 +36,7 @@ import { useAuth } from '@/context/authContext'
 
 const TabItemRoom = () => {
   const { Guest, guestLogout, journeyType } = useGuestContext()
-  const { user } = useAuth()
+  const { user, userSelectedProperty } = useAuth()
   const journeyFields =
     journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
     journeyType === JOURNEY_TYPES.TEGC_REDEMPTION
@@ -371,7 +371,7 @@ const TabItemRoom = () => {
                 checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
                 invoiceAmount: formValues?.invoiceamount,
                 invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
+                propertyId: userSelectedProperty?.property?.hotel_code,
                 propertyName: formValues?.propertyName,
                 transactionBy:
                   user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -470,7 +470,7 @@ const TabItemRoom = () => {
                 checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
                 invoiceAmount: formValues?.invoiceamount,
                 invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
+                propertyId: userSelectedProperty?.property?.hotel_code,
                 propertyName: formValues?.propertyName,
                 transactionBy:
                   user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -537,7 +537,7 @@ const TabItemRoom = () => {
               reversalDetails: {
                 redemptionId: formValues?.redemptionId,
                 customerHash: Guest?.customerHash,
-                storeId: 'HLTBOMLE',
+                storeId: userSelectedProperty?.property?.hotel_code,
               },
               roomBookingRequest: {
                 bookingNumber: formValues?.bookingNumber,
@@ -545,7 +545,7 @@ const TabItemRoom = () => {
                 checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
                 invoiceAmount: formValues?.invoiceamount,
                 invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
+                propertyId: userSelectedProperty?.property?.hotel_code,
                 propertyName: formValues?.propertyName,
                 transactionBy:
                   user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -627,7 +627,7 @@ const TabItemRoom = () => {
                 checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
                 invoiceAmount: formValues?.invoiceamount,
                 invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
+                propertyId: userSelectedProperty?.property?.hotel_code,
                 propertyName: formValues?.propertyName,
                 transactionBy:
                   user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -679,7 +679,7 @@ const TabItemRoom = () => {
                 checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
                 invoiceAmount: formValues?.invoiceamount,
                 invoiceNumber: formValues?.invoiceNumber,
-                propertyId: '71758',
+                propertyId: userSelectedProperty?.property?.hotel_code,
                 propertyName: formValues?.propertyName,
                 transactionBy:
                   user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -802,7 +802,7 @@ const TabItemRoom = () => {
             redeemDetails: {
               customerHash: Guest?.customerHash,
               otp: otp,
-              storeId: 'HLTBOMLE',
+              storeId: userSelectedProperty?.property?.hotel_code,
             },
             roomBookingRequest: {
               bookingNumber: formValues?.bookingNumber,
@@ -810,7 +810,7 @@ const TabItemRoom = () => {
               checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
               invoiceAmount: formValues?.invoiceamount,
               invoiceNumber: formValues?.invoiceNumber,
-              propertyId: '71758',
+              propertyId: userSelectedProperty?.property?.hotel_code,
               propertyName: formValues?.propertyName,
               transactionBy:
                 user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -837,7 +837,7 @@ const TabItemRoom = () => {
       }
       if (
         (redeemNeucoinsData?.status == 200 &&
-          redeemNeucoinsData?.data?.transactionStatus === 'false') ||
+          redeemNeucoinsData?.data?.transactionStatus !== 'success') ||
         redeemNeucoinsData?.status !== 200
       ) {
         setModalType('failure')
@@ -854,7 +854,7 @@ const TabItemRoom = () => {
         ])
       } else if (
         redeemNeucoinsData?.status == 200 &&
-        redeemNeucoinsData?.data?.transactionStatus === 'true'
+        redeemNeucoinsData?.data?.transactionStatus === 'success'
       ) {
         setModalType('success')
         setOpen(true)
@@ -908,7 +908,7 @@ const TabItemRoom = () => {
               checkOutDate: formatDateToYYYYMMDD(formValues?.checkOut),
               invoiceAmount: formValues?.invoiceamount,
               invoiceNumber: formValues?.invoiceNumber,
-              propertyId: '71758',
+              propertyId: userSelectedProperty?.property?.hotel_code,
               propertyName: formValues?.propertyName,
               transactionBy:
                 user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
@@ -1110,7 +1110,14 @@ const TabItemRoom = () => {
         onClose={() => setOpenOTPModal(false)}
         mobileNumber={
           journeyType === JOURNEY_TYPES?.VOUCHERS_REDEMPTION
-            ? formatMobileNumber(String(Guest?.vouchersResponse?.userDetails?.mobile), '+91')
+            ? formatMobileNumber(
+                Guest?.vouchersResponse &&
+                  typeof Guest.vouchersResponse === 'object' &&
+                  'userDetails' in Guest.vouchersResponse
+                  ? String((Guest.vouchersResponse?.userDetails as { mobile: string })?.mobile)
+                  : '',
+                '+91',
+              )
             : neuCoinsJourneyMobileNumber
             ? formatMobileNumber(
                 String(neuCoinsJourneyMobileNumber),

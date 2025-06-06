@@ -20,7 +20,7 @@ import FormSelect from '../textFields/FormSelect'
 import ensureArray from '@/utils/ensureArray'
 import { formatDateToYYYYMMDD } from '@/utils/date'
 
-type VoucherStatus = 'valid' | 'expired' | 'pending' | 'used' | 'available'
+type VoucherStatus = 'valid' | 'expired' | 'pending' | 'used' | 'available' | 'cancelled'
 
 const statusStyles: Record<VoucherStatus, { color: string; icon: React.JSX.Element }> = {
   available: {
@@ -40,6 +40,10 @@ const statusStyles: Record<VoucherStatus, { color: string; icon: React.JSX.Eleme
     icon: <AccessTime style={{ color: '#ed6c02', marginRight: 4 }} />,
   },
   used: {
+    color: '#d32f2f',
+    icon: <Cancel style={{ color: '#d32f2f', marginRight: 4 }} />,
+  },
+  cancelled: {
     color: '#d32f2f',
     icon: <Cancel style={{ color: '#d32f2f', marginRight: 4 }} />,
   },
@@ -373,7 +377,7 @@ const VouchersTab = () => {
                             </Box>
                             <Chip
                               icon={
-                                statusStyles[voucher.status?.toLowerCase() as VoucherStatus].icon
+                                statusStyles[voucher?.status?.toLowerCase() as VoucherStatus].icon
                               }
                               label={voucher.status?.toLowerCase()}
                               variant="outlined"
