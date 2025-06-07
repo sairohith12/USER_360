@@ -92,7 +92,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
       }
 
       if (sectionIdentifier === 'cc avenue') {
-        const hasCCAvenueAccess = userSelectedProperty?.services.some((section: any) =>
+        const hasCCAvenueAccess = userSelectedProperty?.services?.some((section: any) =>
           section.modules.some((mod: any) => mod.name.toLowerCase() === 'cc avenue'),
         )
 

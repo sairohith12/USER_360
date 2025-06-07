@@ -33,11 +33,11 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
   }
 
   useEffect(() => {
-    if (!userSelectedProperty && user?.accessRecords?.length > 0) {
+    if (!userSelectedProperty?.property?.hotel_name && user?.accessRecords?.length > 0) {
       setUserSelectedProperty(user?.accessRecords[0])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSelectedProperty])
+  }, [user?.accessRecords, userSelectedProperty])
 
   return (
     <AppBar color="primary" elevation={3} sx={{ height: (theme) => theme.spacing(22) }}>
@@ -133,7 +133,7 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <FormControl size="small" sx={{ minWidth: 300 }}>
             <Select
-              value={userSelectedProperty?.property.hotel_name || ''}
+              value={userSelectedProperty?.property?.hotel_name || ''}
               onChange={handleChange}
               startAdornment={
                 <Box component="span" sx={{ mr: 1, fontWeight: 600 }}>

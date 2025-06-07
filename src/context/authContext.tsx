@@ -88,6 +88,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // setRefreshToken(null)
     localStorage.clear()
     router.push('/login')
+    setUserSelectedProperty({})
   }
 
   // Check if user is already authenticated in localStorage
