@@ -80,15 +80,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       throw error
     }
   }
-
-  const logout = async () => {
-    const responseError = await api.post('/auth/logout', { email: user?.email })
+  function clearStorage() {
     setUser(null)
     setAccessToken(null)
     // setRefreshToken(null)
     localStorage.clear()
-    router.push('/login')
     setUserSelectedProperty({})
+    window.location.href = '/login'
+  }
+
+  const logout = async () => {
+    const logoutResponse = await api.post('/auth/logout', { email: user?.email })
+    console.log(logoutResponse, 'bolo9989')
+    if (logoutResponse?.status === 200) {
+      clearStorage()
+    }
   }
 
   // Check if user is already authenticated in localStorage
@@ -103,8 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         router.pathname !== '/login' ||
         (!savedUserType && !publicRoutes.includes(router.pathname))
       ) {
-        localStorage.clear()
-        router.push('/login')
+        clearStorage()
       }
     }
   }, [router])
@@ -153,7 +158,7 @@ export const withAuth = (Component: React.FC) => {
     const router = useRouter()
 
     useEffect(() => {
-      if (!loading && !user) {
+      if (!loading && !user?.role) {
         localStorage.clear()
         router.push('/login')
       }

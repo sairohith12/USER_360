@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Typography,
@@ -14,146 +14,111 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Dialog,
-  DialogTitle,
-  DialogContent,
   TextField,
   MenuItem,
-  FormControlLabel,
-  Checkbox,
-  DialogActions,
   Pagination,
   InputAdornment,
   FormControl,
   InputLabel,
   Select,
+  IconButton,
 } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { useTheme } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import AddIcon from '@mui/icons-material/Add'
+import api from 'api/axios'
+import ClearIcon from '@mui/icons-material/Clear'
+import AddAdminModal from './AddAdminModal'
 
 interface UserAccess {
   [module: string]: string[]
 }
 
-interface NewUser {
-  name: string
-  email: string
-  employeeId: string
-  property: string
-  role: string
-  status: string
-  access: UserAccess
-}
-
-const mockUsers = [
-  {
-    name: 'Amit Verma',
-    email: 'amit.verma@example.com',
-    property: 'The Grand Palace',
-    employeeId: 'EMP001',
-    status: 'Active',
-    access: {
-      Redemption: ['Neucoins', 'GiftCard (Taj Experience)'],
-      'Re-Instate': ['Neucoins', 'Vouchers'],
-      'CC Avenue': ['Payments'],
-    },
-  },
-  {
-    name: 'Nina Rao',
-    email: 'nina.rao@example.com',
-    property: 'Taj Bangalore',
-    employeeId: 'EMP0045',
-    status: 'Inactive',
-    access: {
-      Redemption: ['Vouchers'],
-      'CC Avenue': ['Refunds'],
-    },
-  },
-]
-
 const allModules = [
   {
     label: 'Redemption',
-    subItems: ['Neucoins', 'GiftCard (Taj Experience)', 'Vouchers'],
+    identifier: 'redemption',
+    subItems: [
+      { label: 'Neucoins', identifier: 'Neu Coins' },
+      { label: 'GiftCard (Taj Experience)', identifier: 'Gift Card' },
+      { label: 'Vouchers', identifier: 'Vouchers' },
+    ],
   },
   {
     label: 'Re-Instate',
-    subItems: ['Neucoins', 'GiftCard (Taj Experience)', 'Vouchers'],
+    identifier: 're-instate',
+    subItems: [],
   },
   {
-    label: 'CC Avenue',
-    subItems: ['Payments', 'Refunds'],
+    label: 'Payments',
+    identifier: 'payment',
+    subItems: [{ label: 'CC Avenue', identifier: 'CC Avenue' }],
+  },
+  {
+    label: 'Refunds',
+    identifier: 'refunds',
+    subItems: [],
   },
 ]
 
 const ManageAdmins = () => {
   const theme = useTheme()
-  const [users, setUsers] = useState(mockUsers)
+  const [users, setUsers] = useState<any>([])
   const [open, setOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [propertyFilter, setPropertyFilter] = useState('')
   const [page, setPage] = useState(1)
   const rowsPerPage = 5
-  const [newUser, setNewUser] = useState({
-    name: '',
-    email: '',
-    employeeId: '',
-    property: '',
-    role: 'admin',
-    status: 'Active',
-    access: {
-      Redemption: [],
-      'Re-Instate': [],
-      'CC Avenue': [],
-    },
-  })
+  const [loading, setLoading] = useState(false)
+  const [fetchDataError, setFetchDataError] = useState()
 
-  const filteredUsers = users.filter((user) => {
+  const fetchUserData = async () => {
+    setLoading(true)
+    let userData
+    try {
+      userData = await api.get('admin/usersAccess', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (userData?.status === 200) {
+        if (userData?.data?.usersData?.length > 0) {
+          setUsers(
+            userData?.data?.usersData?.flatMap(({ user, access }) =>
+              access.map((a: any) => ({ user, access: a })),
+            ),
+          )
+        }
+      }
+    } catch (error) {
+      setFetchDataError(
+        (error as any)?.response?.message ||
+          (error as any)?.message ||
+          'Error Occurecd while fetching the user data ',
+      )
+      return
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  const filteredUsers = users?.filter((user: any) => {
     return (
-      (user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.employeeId.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      (!statusFilter || user.status === statusFilter) &&
-      (!propertyFilter || user.property === propertyFilter)
+      (user?.user?.name?.toLowerCase()?.includes(searchQuery.toLowerCase()) ||
+        user?.user?.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user?.user?.employeeId.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (!statusFilter || user?.user?.status === statusFilter) &&
+      (!propertyFilter || user?.access?.property?.hotel_name === propertyFilter)
     )
   })
 
   const paginatedUsers = filteredUsers.slice((page - 1) * rowsPerPage, page * rowsPerPage)
-
-  const handleToggleModuleAccess = (module: string, subItem: string): void => {
-    setNewUser((prev: NewUser) => {
-      const access: UserAccess = { ...prev.access }
-      if (!access[module]) access[module] = []
-      if (access[module].includes(subItem)) {
-        access[module] = access[module].filter((item) => item !== subItem)
-        if (access[module].length === 0) delete access[module]
-      } else {
-        access[module].push(subItem)
-      }
-      return { ...prev, access }
-    })
-  }
-
-  const handleAddUser = () => {
-    setUsers([...users, { ...newUser, id: Date.now() }])
-    setNewUser({
-      name: '',
-      email: '',
-      employeeId: '',
-      property: '',
-      role: 'admin',
-      status: 'Active',
-      access: {
-        Redemption: [],
-        'Re-Instate': [],
-        'CC Avenue': [],
-      },
-    })
-    setOpen(false)
-  }
 
   return (
     <Box p={4}>
@@ -205,11 +170,29 @@ const ManageAdmins = () => {
                   value={propertyFilter}
                   label="Property"
                   onChange={(e) => setPropertyFilter(e.target.value)}
+                  endAdornment={
+                    propertyFilter ? (
+                      <InputAdornment position="end">
+                        <IconButton
+                          size="small"
+                          onClick={() => setPropertyFilter('')}
+                          edge="end"
+                          aria-label="clear selection"
+                        >
+                          <ClearIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ) : null
+                  }
                 >
                   <MenuItem value="">All</MenuItem>
-                  {[...new Set(users.map((u) => u.property))].map((prop, idx) => (
-                    <MenuItem key={idx} value={prop}>
-                      {prop}
+                  {[
+                    ...new Map(
+                      users?.map((u: any) => [u.access.property.hotel_name, u.access.property]),
+                    ).values(),
+                  ].map((prop: any, idx) => (
+                    <MenuItem key={idx} value={prop.hotel_name}>
+                      {prop.hotel_name}
                     </MenuItem>
                   ))}
                 </Select>
@@ -228,7 +211,7 @@ const ManageAdmins = () => {
           </Grid>
         </Paper>
 
-        {paginatedUsers.map((user, index) => (
+        {paginatedUsers.map((user: any, index: any) => (
           <Accordion key={index} sx={{ mb: 2 }}>
             <AccordionSummary
               expandIcon={
@@ -255,14 +238,14 @@ const ManageAdmins = () => {
             >
               <Box sx={{ width: '100%' }}>
                 <Grid container spacing={2} alignItems="center" wrap="wrap">
-                  <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
+                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
                     <Typography variant="subtitle2">Name</Typography>
                     <Typography
                       variant="body1"
                       sx={{ color: theme?.palette?.primary?.main }}
                       fontWeight={700}
                     >
-                      {user.name}
+                      {user?.user?.firstName + ' ' + user?.user?.lastName}
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
@@ -272,24 +255,35 @@ const ManageAdmins = () => {
                       sx={{ color: theme?.palette?.primary?.main, wordBreak: 'break-word' }}
                       fontWeight={700}
                     >
-                      {user.email}
+                      {user?.user?.email}
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
-                    <Typography variant="subtitle2">Property</Typography>
+                    <Typography variant="subtitle2">Property Name</Typography>
                     <Typography
                       variant="body1"
                       sx={{ color: theme?.palette?.primary?.main }}
                       fontWeight={700}
                     >
-                      {user.property}
+                      {user?.access?.property?.hotel_name}
                     </Typography>
                   </Grid>
-                  <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
+                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
+                    <Typography variant="subtitle2">Role</Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{ color: theme?.palette?.primary?.main }}
+                      fontWeight={700}
+                    >
+                      {user?.access?.propertyRole?.name}
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
                     <Typography variant="subtitle2">Status</Typography>
                     <Chip
-                      label={user.status}
-                      color={user.status === 'Active' ? 'success' : 'default'}
+                      label={user?.user?.status || 'Active'}
+                      color={'success'}
+                      // color={user?.user?.status?.toLowerCase() === 'active' ? 'success' : 'default'}
                     />
                   </Grid>
                 </Grid>
@@ -305,25 +299,28 @@ const ManageAdmins = () => {
                         <strong>Module</strong>
                       </TableCell>
                       {allModules
-                        .flatMap((m) => m.subItems)
-                        .map((label, idx) => (
+                        ?.flatMap((m) => m?.subItems)
+                        ?.map((label, idx) => (
                           <TableCell key={idx} align="center">
-                            {label}
+                            {label?.label}
                           </TableCell>
                         ))}
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {allModules.map((module, mIdx) => (
+                    {allModules?.map((module, mIdx) => (
                       <TableRow key={mIdx}>
                         <TableCell>{module.label}</TableCell>
                         {allModules
-                          .flatMap((m) => m.subItems)
-                          .map((subItem, sIdx) => (
+                          ?.flatMap((m) => m?.subItems)
+                          ?.map((subItem, sIdx) => (
                             <TableCell key={sIdx} align="center">
-                              {(user.access as Record<string, string[]>)[module.label]?.includes(
-                                subItem,
-                              )
+                              {user?.access?.services
+                                ?.find(
+                                  (s: any) =>
+                                    s.name?.toLowerCase() === module?.identifier?.toLowerCase(),
+                                )
+                                ?.modules?.some((m: any) => m?.name === subItem?.identifier)
                                 ? '✅'
                                 : '—'}
                             </TableCell>
@@ -345,111 +342,8 @@ const ManageAdmins = () => {
             color="primary"
           />
         </Box>
-
-        {/* <Box textAlign="right" mt={4}>
-          <Button variant="contained" color="primary">
-            + Add New Admin
-          </Button>
-        </Box> */}
       </Paper>
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle>Add New Admin</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} mt={1}>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                label="Name"
-                fullWidth
-                value={newUser.name}
-                onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-              />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                label="Email"
-                fullWidth
-                value={newUser.email}
-                onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-              />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                label="Employee ID"
-                fullWidth
-                value={newUser.employeeId}
-                onChange={(e) => setNewUser({ ...newUser, employeeId: e.target.value })}
-              />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                label="Property"
-                fullWidth
-                value={newUser.property}
-                onChange={(e) => setNewUser({ ...newUser, property: e.target.value })}
-              />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                select
-                label="Role"
-                fullWidth
-                value={newUser.role}
-                onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-              >
-                {['admin', 'editor', 'viewer', 'super_admin'].map((role) => (
-                  <MenuItem key={role} value={role}>
-                    {role}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-          </Grid>
-
-          <Box mt={3}>
-            <Typography variant="h6">Module Access</Typography>
-            {allModules.map((module) => (
-              <Box key={module.label} mt={2}>
-                <Typography fontWeight={600}>{module.label}</Typography>
-                <Grid container spacing={1} mt={1}>
-                  {module.subItems.length > 0 ? (
-                    module.subItems.map((sub) => (
-                      <Grid key={sub}>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked={
-                                (newUser.access as UserAccess)[module.label]?.includes(sub) || false
-                              }
-                              onChange={() => handleToggleModuleAccess(module.label, sub)}
-                            />
-                          }
-                          label={sub}
-                        />
-                      </Grid>
-                    ))
-                  ) : (
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={!!(newUser.access as UserAccess)[module.label]}
-                          onChange={() => handleToggleModuleAccess(module.label, module.label)}
-                        />
-                      }
-                      label={module.label}
-                    />
-                  )}
-                </Grid>
-              </Box>
-            ))}
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleAddUser}>
-            Add User
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <AddAdminModal onClose={() => setOpen(false)} open={open} />
     </Box>
   )
 }
