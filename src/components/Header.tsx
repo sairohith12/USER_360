@@ -12,11 +12,15 @@ import {
   FormControl,
   Select,
   SelectChangeEvent,
+  Menu,
+  Divider,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/context/authContext'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 interface Props {
   onMenuClick: () => void
@@ -25,6 +29,11 @@ interface Props {
 const Header: React.FC<Props> = ({ onMenuClick }) => {
   const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const { userType, logout, user, userSelectedProperty, setUserSelectedProperty } = useAuth()
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => setAnchorEl(null)
   const handleChange = (event: SelectChangeEvent<string>) => {
     const selected = user?.accessRecords.find(
       (item: any) => item.property.hotel_name === event.target.value,
@@ -39,33 +48,40 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessRecords, userSelectedProperty])
 
+  function formatRole(role: string) {
+    return role
+      ?.split('_')
+      ?.map((word) => word?.charAt(0)?.toUpperCase() + word?.slice(1))
+      ?.join(' ')
+  }
+
   return (
-    <AppBar color="primary" elevation={3} sx={{ height: (theme) => theme.spacing(22) }}>
+    <AppBar color="primary" elevation={4} sx={{ height: (theme) => theme.spacing(22) }}>
       <Toolbar
         sx={{
           height: '100%',
           display: 'flex',
           justifyContent: 'space-between',
+          px: 2,
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* Left Section */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           {!isDesktop && (
-            <IconButton color="inherit" edge="start" onClick={onMenuClick} sx={{ mr: 2 }}>
+            <IconButton color="inherit" edge="start" onClick={onMenuClick}>
               <MenuIcon />
             </IconButton>
           )}
           <Link href="/" passHref>
-            <Image
-              src="/logo/IHCL-LOGO-white.png"
-              alt="Logo"
-              width={90}
-              height={35}
-              priority={true}
-              style={{ marginLeft: '0.5vw' }}
-            />
-            <Typography fontSize={'0.7rem'} sx={{ fontFamily: 'var(--font-inter)' }}>
-              Indian Hotels Company Limited
-            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+              <Image src="/logo/IHCL-LOGO-white.png" alt="Logo" width={90} height={35} priority />
+              <Typography
+                fontSize={'0.7rem'}
+                sx={{ fontFamily: 'var(--font-inter)', mt: 0.5, color: '#ddd' }}
+              >
+                Indian Hotels Company Limited
+              </Typography>
+            </Box>
           </Link>
         </Box>
 
@@ -130,8 +146,10 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
             </Button>
           )}
         </Box> */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <FormControl size="small" sx={{ minWidth: 300 }}>
+
+        {/* Right Section */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, marginRight: 10 }}>
+          <FormControl size="small" sx={{ minWidth: 250 }}>
             <Select
               value={userSelectedProperty?.property?.hotel_name || ''}
               onChange={handleChange}
@@ -142,9 +160,14 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
               }
               sx={{
                 backgroundColor: '#fff',
+                borderRadius: 2,
                 fontWeight: 500,
+                boxShadow: 1,
                 '& .MuiSelect-select': {
                   color: '#000',
+                },
+                '&:hover': {
+                  backgroundColor: '#f5f5f5',
                 },
               }}
               displayEmpty
@@ -160,17 +183,41 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
             </Select>
           </FormControl>
 
-          <Box sx={{ textAlign: 'right' }}>
-            <Typography variant="body2" fontWeight="bold">
-              {user?.firstName}
-            </Typography>
-            <Typography variant="caption" sx={{ color: '#ccc' }}>
-              {(userType ?? '').charAt(0).toUpperCase() + (userType ?? '').slice(1)}
-            </Typography>
-          </Box>
-          <Button color="inherit" size="small" onClick={logout} variant="outlined">
-            Logout
-          </Button>
+          {/* User Menu */}
+          <IconButton onClick={handleMenuClick} color="inherit" sx={{ ml: 1 }}>
+            <AccountCircleIcon fontSize="large" />
+            <KeyboardArrowDownIcon fontSize="small" sx={{ ml: 0.5 }} />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            PaperProps={{
+              sx: {
+                p: 2,
+                minWidth: 220,
+                borderRadius: 2,
+                boxShadow: 3,
+              },
+            }}
+            transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+          >
+            <Box>
+              <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+                {(user?.firstName ? user?.firstName : ' ') +
+                  ' ' +
+                  (user?.lastName ? user?.lastName : '')}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                {formatRole(userType || '')}
+              </Typography>
+              <Divider sx={{ my: 1 }} />
+              <Button fullWidth variant="contained" color="primary" size="small" onClick={logout}>
+                Logout
+              </Button>
+            </Box>
+          </Menu>
         </Box>
       </Toolbar>
     </AppBar>

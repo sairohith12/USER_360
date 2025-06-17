@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Typography,
@@ -24,40 +24,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { saveAs } from 'file-saver'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs'
+import api from 'api/axios'
 // import { parse } from 'json2csv'
-
-const mockAuditLogs = [
-  {
-    timestamp: '2025-05-22T10:15:00Z',
-    action: 'Updated Admin Access',
-    performedBy: 'superadmin@example.com',
-    target: 'nina.rao@example.com',
-    module: 'Access Control',
-    status: 'Success',
-    details: 'Added: GiftCard (Taj Experience), Removed: Vouchers',
-    property: 'Taj Lands End',
-  },
-  {
-    timestamp: '2025-05-22T09:45:00Z',
-    action: 'Redeemed Voucher',
-    performedBy: 'amit.verma@example.com',
-    target: 'Guest ID: 123456',
-    module: 'Redemption',
-    status: 'Success',
-    details: 'Voucher Code: EPI-7890 used for Room Upgrade',
-    property: 'Taj Mahal Palace',
-  },
-  {
-    timestamp: '2025-05-21T16:30:00Z',
-    action: 'Refund Initiated',
-    performedBy: 'nina.rao@example.com',
-    target: 'Payment ID: CC1234',
-    module: 'CC Avenue',
-    status: 'Failure',
-    details: 'Gateway error: Invalid credentials',
-    property: 'Ginger Mumbai Airport',
-  },
-]
 
 const AuditLogs = () => {
   const [statusFilter, setStatusFilter] = useState('All')
@@ -66,19 +34,50 @@ const AuditLogs = () => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [logsData, setLogsData] = useState([])
+  const [fetchDataError, setFetchDataError] = useState()
 
-  const filteredLogs = mockAuditLogs.filter((log) => {
+  const filteredLogs = logsData.filter((log: any) => {
     const matchStatus = statusFilter === 'All' || log.status === statusFilter
     const matchSearch =
       search === '' ||
       log.action.toLowerCase().includes(search.toLowerCase()) ||
-      log.performedBy.toLowerCase().includes(search.toLowerCase())
+      log.performed_by.toLowerCase().includes(search.toLowerCase())
     const logDate = dayjs(log.timestamp)
     const matchStartDate = !startDate || logDate >= startDate
     const matchEndDate = !endDate || logDate <= endDate
     return matchStatus && matchSearch && matchStartDate && matchEndDate
   })
 
+  const fetchModuleData = async () => {
+    setLoading(true)
+    let allData
+    try {
+      allData = await api.get('admin/audit-info', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (allData?.status === 200) {
+        if (allData?.data?.data?.length > 0) {
+          setLogsData(allData?.data?.data)
+        }
+      }
+    } catch (error) {
+      setFetchDataError(
+        (error as any)?.response?.message ||
+          (error as any)?.message ||
+          'Error Occured while fetching the logs data ',
+      )
+      return
+    } finally {
+      setLoading(false)
+    }
+  }
+  useEffect(() => {
+    fetchModuleData()
+  }, [])
   const handleExport = () => {
     // const csv = parse(filteredLogs)
     // const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
@@ -154,9 +153,9 @@ const AuditLogs = () => {
                   <TableCell>
                     <strong>Status</strong>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <strong>Details</strong>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <strong>Property</strong>
                   </TableCell>
@@ -165,22 +164,22 @@ const AuditLogs = () => {
               <TableBody>
                 {filteredLogs
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((log, idx) => (
+                  .map((log: any, idx) => (
                     <TableRow key={idx}>
                       <TableCell>{new Date(log.timestamp).toLocaleString()}</TableCell>
                       <TableCell>{log.action}</TableCell>
                       <TableCell>{log.module}</TableCell>
-                      <TableCell>{log.performedBy}</TableCell>
-                      <TableCell>{log.target || '—'}</TableCell>
+                      <TableCell>{log.performed_by}</TableCell>
+                      <TableCell>{log.performed_to || '—'}</TableCell>
                       <TableCell>
                         <Chip
-                          label={log.status}
+                          label={log.status || 'failed'}
                           size="small"
                           color={log.status === 'Success' ? 'success' : 'error'}
                         />
                       </TableCell>
-                      <TableCell>{log.details}</TableCell>
-                      <TableCell>{log.property}</TableCell>
+                      {/* <TableCell>{log.details}</TableCell> */}
+                      <TableCell>{log.hotel_name}</TableCell>
                     </TableRow>
                   ))}
               </TableBody>

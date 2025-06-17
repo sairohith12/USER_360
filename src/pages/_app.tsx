@@ -39,6 +39,8 @@ export default function MyApp({ Component, pageProps }: CustomAppProps) {
       <Head>
         <title>USER 360: The Ultimate Business Portal for Integrated Solutions</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="description" content="The Ultimate Business Portal for Integrated Solutions" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${inter.variable} ${cinzel.variable}`}>
         <ThemeProvider theme={theme}>

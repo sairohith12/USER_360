@@ -54,15 +54,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await api.post('/auth/verify-otp', { email, otp })
 
       if (response.status == 200) {
-        const { refreshToken, user_role, name, accessRecords } = response.data
+        const { refreshToken, user_role, accessRecords, firstName, email, lastName } = response.data
         const { access_token: accessToken } = response?.headers
         setAccessToken(accessToken)
         // setRefreshToken(refreshToken)
         const user = {
-          firstName: name,
+          firstName: firstName,
           email: email || '',
           employeeId: '77878',
-          lastName: name,
+          lastName: lastName,
           role: user_role,
           accessRecords,
         }

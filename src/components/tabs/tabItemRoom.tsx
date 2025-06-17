@@ -830,6 +830,7 @@ const TabItemRoom = () => {
         )
       } catch (error) {
         setModalType('failure')
+        setErrors({ redeemNeucoinsData: (error as any)?.response?.data?.message })
         console.error('Error redeeming neucoins:', error)
       } finally {
         setLoading(false)
@@ -849,7 +850,9 @@ const TabItemRoom = () => {
           },
           {
             label: 'Message',
-            value: `${redeemNeucoinsData?.data?.responseMessage}.`,
+            value: `${
+              redeemNeucoinsData?.data?.responseMessage || redeemNeucoinsData?.data?.message
+            }.`,
           },
         ])
       } else if (

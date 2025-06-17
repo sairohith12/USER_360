@@ -19,197 +19,412 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import api from 'api/axios'
 
-interface User {
-  id: string
+type AccessModule = {
+  id: number
   name: string
-  role: 'admin' | 'viewer'
-  propertyName: string
+  modules: {
+    id: number
+    name: string
+    access_type: string
+  }[]
 }
 
-interface MenuItem {
+type SubItem = {
   label: string
-  subItems: string[]
+  identifier: string
 }
 
-const menuItems: MenuItem[] = [
+type AllModule = {
+  label: string
+  identifier: string
+  subItems: SubItem[]
+}
+
+type AccessStatus = Record<string, Record<string, boolean>>
+
+const allModules = [
   {
     label: 'Redemption',
-    subItems: ['Neucoins', 'GiftCard (Taj Experience)', 'Vouchers'],
+    identifier: 'redemption',
+    subItems: [
+      { label: 'Neucoins', identifier: 'Neu Coins' },
+      { label: 'GiftCard (Taj Experience)', identifier: 'Gift Card' },
+      { label: 'Vouchers', identifier: 'Vouchers' },
+    ],
   },
   {
     label: 'Re-Instate',
-    subItems: ['Neucoins', 'GiftCard (Taj Experience)', 'Vouchers'],
+    identifier: 're-instate',
+    subItems: [
+      { label: 'Neucoins', identifier: 'Neu Coins' },
+      { label: 'GiftCard (Taj Experience)', identifier: 'Gift Card' },
+      { label: 'Vouchers', identifier: 'Vouchers' },
+    ],
   },
   {
     label: 'CC Avenue',
-    subItems: ['Payments', 'Refunds'],
+    identifier: 'CC Avenue',
+    subItems: [
+      { label: 'Payments', identifier: 'payment' },
+      {
+        label: 'Refunds',
+        identifier: 'refunds',
+      },
+    ],
   },
 ]
 
-// Mock existing users
-const existingUsers: User[] = Array.from({ length: 50 }, (_, index) => ({
-  id: `u${index + 1}`,
-  name: `User  ${index + 1}`,
-  role: index % 2 === 0 ? 'admin' : 'viewer',
-  propertyName: index % 2 === 0 ? 'The Grand Palace' : 'Taj Bangalore',
-}))
-
-type Permissions = {
-  [userId: string]: {
-    [module: string]: {
-      [subItem: string]: boolean
-    }
-  }
-}
-
 const AccessControl = () => {
   const [selectedTab, setSelectedTab] = useState(0)
-  const [permissions, setPermissions] = useState<Permissions>({})
+  const [permissions, setPermissions] = useState<AccessStatus>({})
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [selectedProperty, setSelectedProperty] = useState<string>('ALL')
-  const [filteredUsers, setFilteredUsers] = useState<User[]>(existingUsers)
-  const propertyNames = ['ALL', ...Array.from(new Set(existingUsers.map((u) => u.propertyName)))]
+  const [filteredUsers, setFilteredUsers] = useState<any>([])
+  const [loading, setLoading] = useState(false)
+  const [fetchDataError, setFetchDataError] = useState()
+  const selectedUser = filteredUsers[selectedTab] || null
+  const [modulesData, setModuleData] = useState<any>()
 
-  // Initialize permissions state
+  function mapAccess(allModules: AllModule[], apiModules: AccessModule[]): AccessStatus {
+    const accessStatus: AccessStatus = {}
+
+    for (const mod of allModules) {
+      accessStatus[mod.identifier] = {}
+
+      for (const sub of mod.subItems) {
+        let isEnabled = false
+
+        if (mod.identifier === 'CC Avenue') {
+          // SPECIAL CASE: parent = 'CC Avenue', sub = 'payment' or 'refunds'
+          const matchedApiModule = apiModules.find(
+            (api) => api.name.toLowerCase() === sub.identifier.toLowerCase(),
+          )
+
+          if (matchedApiModule) {
+            const matchSub = matchedApiModule.modules.find(
+              (m) => m.name.toLowerCase() === 'cc avenue',
+            )
+            isEnabled =
+              (!!matchSub && matchSub.access_type === 'W') ||
+              (!!matchSub && matchSub.access_type === 'R')
+          }
+        } else {
+          // Normal case
+          const matchedApiModule = apiModules.find(
+            (api) => api.name.toLowerCase() === mod.label.toLowerCase(),
+          )
+
+          if (matchedApiModule) {
+            const matchSub = matchedApiModule.modules.find(
+              (m) => m.name.toLowerCase() === sub.identifier.toLowerCase(),
+            )
+            isEnabled =
+              (!!matchSub && matchSub.access_type === 'W') ||
+              (!!matchSub && matchSub.access_type === 'R')
+          }
+        }
+        accessStatus[mod.identifier][sub.identifier] = isEnabled
+      }
+    }
+
+    return accessStatus
+  }
+
   useEffect(() => {
-    const initialPermissions: Permissions = {}
-    existingUsers.forEach((user) => {
-      initialPermissions[user.id] = {}
-      menuItems.forEach(({ label, subItems }) => {
-        initialPermissions[user.id][label] = {}
-        subItems.forEach((sub) => {
-          initialPermissions[user.id][label][sub] = false
-        })
+    if (selectedUser?.access?.services) {
+      const normalized = mapAccess(allModules, selectedUser?.access?.services)
+      setPermissions(normalized)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedUser])
+
+  const fetchUserData = async () => {
+    setLoading(true)
+    let userData
+    try {
+      userData = await api.get('admin/usersAccess', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-    })
-    setPermissions(initialPermissions)
+      if (userData?.status === 200) {
+        if (userData?.data?.usersData?.length > 0) {
+          setFilteredUsers(
+            userData?.data?.usersData?.flatMap(({ user, access }) =>
+              access.map((a: any) => ({ user, access: a })),
+            ),
+          )
+        }
+      }
+    } catch (error) {
+      setFetchDataError(
+        (error as any)?.response?.message ||
+          (error as any)?.message ||
+          'Error Occurecd while fetching the user data ',
+      )
+      return
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const fetchModuleData = async () => {
+    setLoading(true)
+    let allData
+    try {
+      allData = await api.get('admin/allDetails', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (allData?.status === 200) {
+        if (allData?.data) {
+          setModuleData(allData?.data?.data)
+        }
+      }
+    } catch (error) {
+      setFetchDataError(
+        (error as any)?.response?.message ||
+          (error as any)?.message ||
+          'Error Occurecd while fetching the module data ',
+      )
+      return
+    } finally {
+      setLoading(false)
+    }
+  }
+  useEffect(() => {
+    fetchUserData()
+    fetchModuleData()
   }, [])
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      const results = existingUsers.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      const results = filteredUsers?.filter((user: any) =>
+        user?.user?.firstName?.toLowerCase().includes(searchQuery.toLowerCase()),
       )
       setFilteredUsers(results)
       setSelectedTab(0)
     }, 200)
 
     return () => clearTimeout(handler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery])
 
   useEffect(() => {
-    const initialPermissions: Permissions = {}
-    existingUsers.forEach((user) => {
-      initialPermissions[user.id] = {}
-      menuItems.forEach(({ label, subItems }) => {
-        initialPermissions[user.id][label] = {}
-        subItems.forEach((sub) => {
-          // Give random true/false for variety
-          initialPermissions[user.id][label][sub] = Math.random() > 0.5
-        })
-      })
-    })
-    setPermissions(initialPermissions)
-  }, [])
-
-  useEffect(() => {
-    const results = existingUsers.filter((user) => {
-      const matchesName = user.name.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchesProperty = selectedProperty === 'ALL' || user.propertyName === selectedProperty
+    const results = filteredUsers?.filter((user: any) => {
+      const matchesName =
+        user?.user?.firstName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user?.user?.lastName?.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesProperty =
+        selectedProperty === 'ALL' || user?.access?.property?.hotel_name === selectedProperty
       return matchesName && matchesProperty
     })
     setFilteredUsers(results)
     setSelectedTab(0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, selectedProperty])
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue)
   }
 
-  const selectedUser = filteredUsers[selectedTab] || null
+  const handleTogglePermission = (moduleId: string, subId: string) => {
+    setPermissions((prev) => ({
+      ...prev,
+      [moduleId]: {
+        ...prev[moduleId],
+        [subId]: !prev[moduleId][subId],
+      },
+    }))
+  }
+  function convertToApiFormat(accessMap: AccessStatus): AccessModule[] {
+    const result: AccessModule[] = []
+    console.log(selectedUser, 'bolo777898989898', accessMap, permissions, modulesData)
+    // Object.entries(accessMap).forEach(([moduleKey, subMap]) => {
+    // if (moduleKey === 'CC Avenue') {
+    //   Object.entries(subMap).forEach(([subKey, enabled], index) => {
+    //     const existing = result.find((r) => r.name === subKey)
+    //     if (existing) {
+    //       existing.modules.push({
+    //         id: 4,
+    //         name: 'CC Avenue',
+    //         access_type: enabled
+    //           ? selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer'
+    //             ? 'R'
+    //             : 'W'
+    //           : '',
+    //       })
+    //     } else {
+    //       result.push({
+    //         id: 0,
+    //         name: subKey,
+    //         modules: [
+    //           {
+    //             id: 4,
+    //             name: 'CC Avenue',
+    //             access_type: enabled
+    //               ? selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer'
+    //                 ? 'R'
+    //                 : 'W'
+    //               : '',
+    //           },
+    //         ],
+    //       })
+    //     }
+    //   })
+    //  } else {
+    //     const submodules = Object.entries(subMap).map(([subKey, enabled], index) => ({
+    //       id: index + 1,
+    //       name: subKey,
+    //       access_type: enabled
+    //         ? selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer'
+    //           ? 'R'
+    //           : 'W'
+    //         : '',
+    //     }))
+    //     result.push({
+    //       id: 0,
+    //       name: moduleKey,
+    //       modules: submodules,
+    //     })
+    //   }
+    // })
 
-  const handleTogglePermission = (userId: string, moduleLabel: string, subItemLabel: string) => {
-    setPermissions((prev) => {
-      const userPerms = prev[userId] ?? {}
-      const modulePerms = userPerms[moduleLabel] ?? {}
-      const currentVal = modulePerms[subItemLabel] ?? false
+    return result
+  }
 
-      return {
-        ...prev,
-        [userId]: {
-          ...userPerms,
-          [moduleLabel]: {
-            ...modulePerms,
-            [subItemLabel]: !currentVal,
-          },
-        },
+  const handleSave = async () => {
+    const serviceMap = modulesData?.service?.map((s: any) => [s?.name?.toLowerCase(), s?.id])
+
+    const moduleMap = modulesData?.module?.map((m: any) => [m?.module_name, m?.id])
+    const transformedAccess: any[] = []
+
+    Object.entries(permissions).forEach(([serviceKey, serviceValue]: any) => {
+      console.log(serviceValue, 'bolo457878898989', serviceKey)
+      const serviceId = serviceMap.find(
+        (item: any) => item[0]?.toLowerCase() === serviceKey?.toLowerCase(),
+      )?.[1]
+      if (serviceKey?.toLowerCase() === 'cc avenue') {
+        Object.entries(serviceValue).forEach(([subKey, enabled], index) => {
+          const moduleId = moduleMap.find(
+            (item: any) => item[0]?.toLowerCase() === subKey?.toLowerCase(),
+          )?.[1]
+          console.log(
+            serviceValue,
+            'bolo457878898989',
+            subKey,
+            enabled,
+            transformedAccess,
+            moduleId,
+          )
+
+          const existing = transformedAccess.find((r) => r.name === subKey)
+          if (existing) {
+            // existing.modules.push({
+            //   id: 4,
+            //   name: 'CC Avenue',
+            //   access_type: enabled
+            //     ? selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer'
+            //       ? 'R'
+            //       : 'W'
+            //     : '',
+            // })
+          } else {
+            // result.push({
+            //   id: 0,
+            //   name: subKey,
+            //   modules: [
+            //     {
+            //       id: 4,
+            //       name: 'CC Avenue',
+            //       access_type: enabled
+            //         ? selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer'
+            //           ? 'R'
+            //           : 'W'
+            //         : '',
+            //     },
+            //   ],
+            // })
+          }
+        })
+      } else {
+        // if (serviceValue.enabled) {
+        const serviceId = serviceMap.find(
+          (item: any) => item[0]?.toLowerCase() === serviceKey?.toLowerCase(),
+        )?.[1]
+
+        Object.entries(serviceValue || {}).forEach(([moduleName, enabled]) => {
+          console.log(serviceId, 'bolo7878898989', moduleName, enabled, moduleMap)
+          if (enabled) {
+            const moduleId = moduleMap.find(
+              (item: any) => item[0]?.toLowerCase() === moduleName?.toLowerCase(),
+            )?.[1]
+            console.log(serviceId, moduleId, 'bolo2323889')
+            if (moduleId && serviceId) {
+              transformedAccess.push({
+                module_id: moduleId,
+                service_id: serviceId,
+                access:
+                  selectedUser?.access?.propertyRole?.name?.toLowerCase() === 'viewer' ? 'R' : 'W',
+              })
+            }
+          }
+        })
       }
+      // }
     })
-  }
 
-  const handleSave = () => {
-    setSnackbarOpen(true)
-    // Here you can implement real saving logic, e.g. API call
-  }
+    const apiPayload = {
+      userId: selectedUser?.user?.id,
+      accessList: [
+        {
+          propertyRole_id: selectedUser?.access?.propertyRole?.id,
+          hotel_code: selectedUser?.access?.property?.hotel_code,
+          access: transformedAccess,
+        },
+      ],
+    }
 
+    // let createUserDataAccess
+    // try {
+    //   createUserDataAccess = await api.post('admin/access', apiPayload, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   })
+    //   if (createUserDataAccess?.status === 200) {
+    //     setNewUserData(createUserDataAccess?.data?.data)
+    //     // setPermissions({})
+    //     setSnackbarOpen(true)
+    //   }
+    // } catch (error) {
+    //   setFetchDataError(
+    //     (error as any)?.response?.message ||
+    //       (error as any)?.message ||
+    //       'An error occurred while creating user',
+    //   )
+    //   return
+    // }
+  }
   return (
     <Box sx={{ height: '80vh', display: 'flex', flexDirection: 'column' }}>
-      {/* <Box
-        sx={{
-          bgcolor: 'primary.main',
-          color: 'primary.contrastText',
-          p: 2,
-          display: 'flex',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: 2,
-        }}
-      >
-        <Typography variant="h5" fontWeight={700} sx={{ flexGrow: 1 }}>
-          Access Control Management Dashboard (Super Admin)
-        </Typography>
-        <TextField
-          size="small"
-          placeholder="Search users..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon sx={{ color: 'primary.contrastText' }} />
-              </InputAdornment>
-            ),
-            sx: {
-              color: 'primary.contrastText',
-              '& .MuiInputBase-input': {
-                color: 'primary.contrastText',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'rgba(255, 255, 255, 0.7)',
-              },
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white',
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white',
-              },
-            },
-          }}
-          variant="outlined"
-          sx={{ width: 220 }}
-        />
-      </Box> */}
-
       <Box sx={{ bgcolor: 'primary.main', p: 2 }}>
         <Grid container spacing={2} alignItems="center">
           {/* Title */}
           <Grid size={{ xs: 12, md: 4 }}>
             <Typography variant="h5" fontWeight={700} color="primary.contrastText">
-              Access Control Management Dashboard (Super Admin)
+              Access Control Management Dashboard
             </Typography>
           </Grid>
 
@@ -268,10 +483,17 @@ const AccessControl = () => {
                   },
                 }}
               >
-                <MenuItem value="">All Properties</MenuItem>
-                {propertyNames.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    {name}
+                <MenuItem value="">All</MenuItem>
+                {[
+                  ...new Map(
+                    filteredUsers?.map((u: any) => [
+                      u.access.property.hotel_name,
+                      u.access.property,
+                    ]),
+                  ).values(),
+                ]?.map((prop: any, idx) => (
+                  <MenuItem key={idx} value={prop.hotel_name}>
+                    {prop.hotel_name}
                   </MenuItem>
                 ))}
               </Select>
@@ -295,43 +517,69 @@ const AccessControl = () => {
               value={selectedTab}
               onChange={handleTabChange}
               aria-label="Vertical user tabs"
-              sx={{
-                borderRight: 1,
-                borderColor: 'divider',
-                minWidth: 320,
-                maxHeight: '80vh',
-                overflowY: 'auto',
-                backgroundColor: selectedTab ? 'red' : 'background.paper',
-              }}
             >
-              {filteredUsers.map((user) => (
-                <Tab
-                  key={user.id}
-                  label={
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Typography noWrap>{user.name}</Typography>
-                      <Chip
-                        label={user.role.toUpperCase()}
-                        size="small"
-                        color={user.role === 'admin' ? 'primary' : 'default'}
-                        sx={{ height: 24, fontWeight: 600 }}
-                      />
-                      <Typography variant="caption" color="text.secondary" noWrap>
-                        {user.propertyName}
-                      </Typography>
-                    </Stack>
-                  }
-                  id={`user-tab-${user.id}`}
-                  aria-controls={`user-tabpanel-${user.id}`}
-                  wrapped
-                  sx={{ alignItems: 'flex-start' }}
-                />
-              ))}
+              <Box
+                sx={{
+                  minWidth: '30vw',
+                  maxHeight: '80vh',
+                  overflowY: 'auto',
+                  borderRight: 1,
+                  borderColor: 'divider',
+                  backgroundColor: selectedTab ? '#dde3ed' : 'background.paper',
+                }}
+              >
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <strong>Name</strong>
+                      </TableCell>
+                      <TableCell>
+                        <strong>Role</strong>
+                      </TableCell>
+                      <TableCell>
+                        <strong>Property</strong>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {filteredUsers.map((user: any, index: number) => {
+                      const isSelected = selectedTab === index
+                      return (
+                        <TableRow
+                          key={index}
+                          hover
+                          selected={isSelected}
+                          onClick={() => setSelectedTab(index)}
+                          sx={{ cursor: 'pointer' }}
+                        >
+                          <TableCell>
+                            {user?.user?.firstName + ' ' + user?.user?.lastName}
+                          </TableCell>
+                          <TableCell>
+                            <Chip
+                              label={user?.access?.propertyRole?.name?.toUpperCase()}
+                              size="small"
+                              color={
+                                user?.access?.propertyRole?.name?.toLowerCase() === 'admin'
+                                  ? 'primary'
+                                  : 'default'
+                              }
+                            />
+                          </TableCell>
+                          <TableCell>{user?.access?.property?.hotel_name}</TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+                </Table>
+              </Box>
+              {/* ))} */}
             </Tabs>
           </Box>
           {/* Selected User Details */}
           <Box sx={{ flexGrow: 1, p: 2 }}>
-            {filteredUsers.map((user, index) => (
+            {filteredUsers?.map((user: any, index: any) => (
               <Box
                 key={user.id}
                 role="tabpanel"
@@ -355,25 +603,28 @@ const AccessControl = () => {
                     <Typography variant="h6" mb={2}>
                       Permissions for{' '}
                       <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                        {selectedUser.name}
+                        {selectedUser?.user?.firstName + selectedUser?.user?.lastName}
                       </Box>{' '}
-                      ({selectedUser.role.charAt(0).toUpperCase() + selectedUser.role.slice(1)})
+                      (
+                      {selectedUser?.access?.propertyRole?.name?.charAt(0).toUpperCase() +
+                        selectedUser?.access?.propertyRole?.name?.slice(1)}
+                      ){' - '}
+                      <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                        {selectedUser?.access?.property?.hotel_name}
+                      </Box>{' '}
                     </Typography>
-
                     <Grid container spacing={2}>
-                      {menuItems.map(({ label, subItems }) => (
+                      {allModules?.map(({ label, identifier, subItems }) => (
                         <Grid key={label} size={{ xs: 12, sm: 6, md: 4 }}>
                           <Card elevation={1}>
                             <CardContent>
                               <Typography variant="subtitle1" fontWeight={700} gutterBottom>
                                 {label}
                               </Typography>
-                              {subItems.map((sub) => {
-                                const checked =
-                                  permissions[selectedUser.id]?.[label]?.[sub] ?? false
+                              {subItems?.map((sub) => {
                                 return (
                                   <Box
-                                    key={sub}
+                                    key={sub?.identifier}
                                     sx={{
                                       display: 'flex',
                                       justifyContent: 'space-between',
@@ -386,13 +637,15 @@ const AccessControl = () => {
                                       boxShadow: 1,
                                     }}
                                   >
-                                    <Typography variant="body1">{sub}</Typography>
+                                    <Typography variant="body1">{sub?.label}</Typography>
                                     <Switch
                                       color="primary"
                                       edge="end"
-                                      checked={checked}
+                                      checked={
+                                        permissions?.[identifier]?.[sub?.identifier] ?? false
+                                      }
                                       onChange={() =>
-                                        handleTogglePermission(selectedUser.id, label, sub)
+                                        handleTogglePermission(identifier, sub?.identifier)
                                       }
                                       inputProps={{
                                         'aria-label': `Permission toggle for ${label} / ${sub} for user ${selectedUser.name}`,

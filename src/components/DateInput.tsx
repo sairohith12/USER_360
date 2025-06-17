@@ -1,7 +1,7 @@
 // components/DateInput.tsx
 import React from 'react'
 import { SxProps, Theme } from '@mui/material'
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 
 interface DateInputProps {
@@ -12,6 +12,8 @@ interface DateInputProps {
   error?: boolean
   helperText?: string
   customStyle?: SxProps<Theme>
+  minDate?: Date | string
+  maxDate?: Date | string
 }
 
 const DateInput: React.FC<DateInputProps> = ({
@@ -22,22 +24,31 @@ const DateInput: React.FC<DateInputProps> = ({
   error,
   helperText,
   customStyle = {},
+  minDate,
+  maxDate,
 }) => {
-  const oneWeekAgo = dayjs().subtract(7, 'day')
+  const toDayjs = (date?: Date | string): Dayjs | undefined => (date ? dayjs(date) : undefined)
+
+  const pickerProps: Record<string, any> = {
+    label,
+    value: value ? dayjs(value) : null,
+    format: 'DD/MM/YYYY',
+    onChange: (newDate: Dayjs | null) => onChange(name, newDate ? newDate.toDate() : null),
+  }
+
+  if (minDate) pickerProps.minDate = toDayjs(minDate)
+  if (maxDate) pickerProps.maxDate = toDayjs(maxDate)
+
   return (
     <DesktopDatePicker
-      label={label}
-      //  minDate={oneWeekAgo}
-      value={value ? dayjs(value) : null}
-      format="DD/MM/YYYY"
-      onChange={(newDate) => onChange(name, newDate ? newDate.toDate() : null)}
+      {...pickerProps}
       slotProps={{
         textField: {
           fullWidth: true,
           size: 'medium',
           variant: 'outlined',
-          error: error,
-          helperText: helperText,
+          error,
+          helperText,
           sx: {
             backgroundColor: '#fff',
             borderRadius: 2,
