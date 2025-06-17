@@ -110,6 +110,9 @@ const Login = () => {
 
             backgroundColor: 'rgb(229 218 218 / 80%)', // Transparent cream background for contrast
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)', // Add subtle shadow
+            '@media (max-width:480px)': {
+              maxWidth: '90vw',
+            },
           }}
         >
           <Box sx={{ flex: 1, display: { xs: 'none', sm: 'block' } }}>

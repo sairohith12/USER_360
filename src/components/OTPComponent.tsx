@@ -178,7 +178,13 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   return (
     <>
       <CustomModal open={open} onClose={onClose}>
-        <Box>
+        <Box
+          sx={{
+            '@media (max-width:480px)': {
+              marginTop: '5vh',
+            },
+          }}
+        >
           <Typography variant="h6" align="center" sx={{ mb: 2 }}>
             Enter OTP Sent to Your <b>{email ? 'Email' : 'Mobile'}</b>
           </Typography>

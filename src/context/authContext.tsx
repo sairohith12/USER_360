@@ -37,6 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true)
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [userSelectedProperty, setUserSelectedProperty] = useState<any>()
+  const [error, setError] = useState()
   // const [refreshToken, setRefreshToken] = useState<string | null>(null)
 
   const login = async (email: string) => {
@@ -75,8 +76,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUserType(user_role)
       }
       return { ...response, success: response.status == 200 ? true : false }
-    } catch (error) {
+    } catch (error: any) {
       console.error('OTP verification failed', error)
+      setError(error?.response?.data?.message || error?.message)
       throw error
     }
   }
@@ -91,7 +93,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     const logoutResponse = await api.post('/auth/logout', { email: user?.email })
-    console.log(logoutResponse, 'bolo9989')
     if (logoutResponse?.status === 200) {
       clearStorage()
     }
