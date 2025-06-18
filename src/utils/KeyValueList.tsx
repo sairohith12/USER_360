@@ -1,13 +1,27 @@
 // components/KeyValueList.tsx
 
-import React from 'react'
-import { Box, Typography, Stack } from '@mui/material'
-
+import React, { useState } from 'react'
+import { Box, Typography, Stack, Button, Tooltip, IconButton } from '@mui/material'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 interface KeyValueListProps {
-  data: { label: string; value: string }[]
+  data: { label: string; value: string; copyButton?: boolean }[]
 }
 
 const KeyValueList: React.FC<KeyValueListProps> = ({ data }) => {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const handleCopy = (value: string, index: number) => {
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        setCopiedIndex(index)
+        setTimeout(() => {
+          setCopiedIndex(null)
+        }, 1500)
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err)
+      })
+  }
   return (
     <Stack spacing={1} mb={3}>
       {data.map((item, index) => (
@@ -31,7 +45,19 @@ const KeyValueList: React.FC<KeyValueListProps> = ({ data }) => {
             color="text.primary"
             sx={{ textAlign: 'right', maxWidth: '70%' }}
           >
-            {item.value}
+            {item.value}{' '}
+            {item?.copyButton && (
+              <Tooltip title={copiedIndex === index ? 'Copied' : 'Copy to clipboard'}>
+                <IconButton
+                  size="small"
+                  onClick={() => handleCopy(item.value, index)}
+                  sx={{ ml: 1 }}
+                  aria-label={`Copy ${item.label}`}
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
           </Typography>
         </Box>
       ))}

@@ -67,7 +67,7 @@ const TabItemRoom = () => {
         : field.name == 'bitId'
         ? Guest?.bitID?.toString() || ''
         : field.name == 'redeemNeucoins'
-        ? '1'
+        ? '100'
         : ''
     return acc
   }, {} as { [key: string]: string | Dayjs | null })
@@ -406,14 +406,17 @@ const TabItemRoom = () => {
             {
               label: 'TransactionId',
               value: gcRedemeptionData?.data?.transactionId,
+              copyButton: true,
             },
             {
               label: 'Approval Code',
               value: gcRedemeptionData?.data?.approvalCode,
+              copyButton: true,
             },
             {
               label: 'Current Batch Number',
               value: gcRedemeptionData?.data?.currentBatchNumber,
+              copyButton: true,
             },
             {
               label: 'Card Balance',
@@ -512,10 +515,12 @@ const TabItemRoom = () => {
             {
               label: 'TransactionId',
               value: tegcReinstateData?.data?.transactionId,
+              copyButton: true,
             },
             {
               label: 'Approval Code',
               value: tegcReinstateData?.data?.approvalCode,
+              copyButton: true,
             },
             {
               label: 'Current Batch Number',
@@ -581,6 +586,7 @@ const TabItemRoom = () => {
             {
               label: 'Transaction ID',
               value: neucoinsReinstateData?.data?.transactionId,
+              copyButton: true,
             },
             {
               label: 'Message',
@@ -597,6 +603,7 @@ const TabItemRoom = () => {
             {
               label: 'Transaction ID',
               value: neucoinsReinstateData?.data?.transactionId,
+              copyButton: true,
             },
             {
               label: 'Message',
@@ -659,10 +666,12 @@ const TabItemRoom = () => {
             {
               label: 'Cancel Bit ID',
               value: voucherReinstateData?.data?.original_bit?.header?.cancel_bit_id,
+              copyButton: true,
             },
             {
               label: 'Program ID',
               value: voucherReinstateData?.data?.original_bit?.header?.h_program_id,
+              copyButton: true,
             },
           ])
         }
@@ -718,10 +727,12 @@ const TabItemRoom = () => {
             {
               label: 'Invoice Id',
               value: ccAvenuePaymentResponseData?.data?.invoice_id,
+              copyButton: true,
             },
             {
               label: 'Merchant Reference Number',
               value: ccAvenuePaymentResponseData?.data?.merchant_reference_no,
+              copyButton: true,
             },
             // {
             //   label: 'Payment URL',
@@ -847,6 +858,7 @@ const TabItemRoom = () => {
           {
             label: 'Transaction ID',
             value: redeemNeucoinsData?.data?.transactionId,
+            copyButton: true,
           },
           {
             label: 'Message',
@@ -865,10 +877,12 @@ const TabItemRoom = () => {
           {
             label: 'Transaction ID',
             value: redeemNeucoinsData?.data?.transactionId,
+            copyButton: true,
           },
           {
             label: 'Redemption ID',
             value: redeemNeucoinsData?.data?.redemptionId,
+            copyButton: true,
           },
           {
             label: 'Booking Number',

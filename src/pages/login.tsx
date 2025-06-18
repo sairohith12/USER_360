@@ -124,9 +124,9 @@ const Login = () => {
           </Box>
           <Box sx={{ flex: 1, padding: 2, textAlign: 'center' }}>
             <img
-              src="/logo/user_360_logo.png"
+              src="/logo/user360_login_logo.png"
               alt="user 360"
-              style={{ width: '190px', borderRadius: '8px', height: '120px' }}
+              style={{ width: 200, borderRadius: '8px', height: '100%' }}
             />
             <Typography
               variant="h4"

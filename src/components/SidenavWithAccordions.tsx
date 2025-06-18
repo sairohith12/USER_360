@@ -260,7 +260,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
   useEffect(() => {
     setExpandedAccordion(filteredItems?.[0]?.label)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [userSelectedProperty?.property?.hotel_name])
 
   return (
     <>
@@ -284,42 +284,68 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
           <Box>{renderMenu()}</Box>
           <Box
             sx={{
-              borderTop: '1px solid #ccc',
-              py: 2,
-              px: isCollapsed ? 1 : 2,
+              position: 'absolute',
+              bottom: 16,
+              left: 8,
+              right: 8,
+              overflow: 'hidden',
+              height: '92px',
               textAlign: 'center',
-              transition: 'all 0.3s ease',
             }}
           >
-            <Tooltip title="User360" placement="right">
-              <Box
-                sx={{
-                  display: 'inline-block',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': { transform: 'scale(1.05)' },
-                }}
-              >
-                <Image
-                  src="/logo/user360_logo.png"
-                  alt="User360 Logo"
-                  width={isCollapsed ? 40 : 160}
-                  height={isCollapsed ? 40 : 60}
-                  style={{ objectFit: 'contain', transition: 'width 0.3s ease, height 0.3s ease' }}
-                />
-              </Box>
-            </Tooltip>
-            <Typography
-              variant="caption"
-              color="text.secondary"
+            <Image
+              src="/logo/user360_login_logo.png"
+              alt="User360 Logo"
+              width={isCollapsed ? 40 : 200}
+              height={isCollapsed ? 40 : 60}
+              style={{ objectFit: 'contain' }}
+            />
+
+            <Box
               sx={{
-                mt: 1,
-                display: 'block',
-                transition: 'opacity 0.3s ease',
-                opacity: isCollapsed ? 1 : 0.6,
+                display: 'inline-flex',
+                width: 'max-content',
+                animation: 'scrollLoop 15s linear infinite',
               }}
             >
-              {isCollapsed ? 'U360' : 'v1.0 • User360'}
-            </Typography>
+              {/* Duplicate the content for seamless loop */}
+              {[...Array(2)].map((_, i) => (
+                <Box
+                  key={i}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    pr: 4, // spacing between loops
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      fontWeight: 'bold',
+                      color: '#2e3b55',
+                      fontSize: '16px',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    USER360 - The Ultimate Business Portal for Integrated Solutions · Reversals ·
+                    Payments · Loyalty
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+
+            <style jsx global>{`
+              @keyframes scrollLoop {
+                0% {
+                  transform: translateX(0%);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+            `}</style>
           </Box>
         </Drawer>
       )}

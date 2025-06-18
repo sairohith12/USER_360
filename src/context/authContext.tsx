@@ -54,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const response = await api.post('/auth/verify-otp', { email, otp })
 
-      if (response.status == 200) {
+      if (response?.status == 200) {
         const { refreshToken, user_role, accessRecords, firstName, email, lastName } = response.data
         const { access_token: accessToken } = response?.headers
         setAccessToken(accessToken)
@@ -74,12 +74,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (!user_role) return
         Cookies.set('userType', user_role, { expires: 1 })
         setUserType(user_role)
+      } else {
+        setError((error as any)?.response?.data?.message || (error as any)?.message)
       }
       return { ...response, success: response.status == 200 ? true : false }
     } catch (error: any) {
       console.error('OTP verification failed', error)
       setError(error?.response?.data?.message || error?.message)
-      throw error
+      // throw error
     }
   }
   function clearStorage() {
@@ -92,9 +94,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const logout = async () => {
-    const logoutResponse = await api.post('/auth/logout', { email: user?.email })
-    if (logoutResponse?.status === 200) {
-      clearStorage()
+    try {
+      const logoutResponse = await api.post('/auth/logout', { email: user?.email })
+      if (logoutResponse?.status === 200) {
+        clearStorage()
+      }
+    } catch (error) {
+      setError((error as any)?.response?.data?.message)
     }
   }
 
