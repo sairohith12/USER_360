@@ -308,9 +308,11 @@ const ReceptionistDashboard: React.FC = () => {
                   /> */}
                   <PhoneInputWithCountrySelector
                     value={mobileNumber}
-                    onChange={(fullPhone, iso2) => {
+                    onChange={(fullPhone, countryCode) => {
                       setMobileNumber(fullPhone)
-                      setCountryCode(iso2)
+                      setCountryCode(countryCode)
+                      setErrorMessage('')
+                      setMobileError('')
                     }}
                     error={mobileError || errorMessage || ''}
                     setError={setMobileError}
