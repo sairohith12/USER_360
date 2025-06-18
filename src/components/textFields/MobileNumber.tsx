@@ -26,8 +26,7 @@ import { getRecaptchaToken } from '@/utils/recaptcha'
 import axios from 'axios'
 import { GENERATE_NEUPASS_OTP } from '@/utils/apiConstants'
 import api from 'api/axios'
-// import { parsePhoneNumberFromString } from 'libphonenumber-js/mobile'
-// import { PhoneInputWithCountrySelector } from './PhoneInputWithCountrySelector'
+import { PhoneInputWithCountrySelector } from './PhoneInputWithCountrySelector'
 
 const ReceptionistDashboard: React.FC = () => {
   const theme = useTheme()
@@ -42,7 +41,7 @@ const ReceptionistDashboard: React.FC = () => {
   const [memberShipNo, setMemberShipNo] = useState('')
   const [membership, setMembership] = useState<'epicure' | 'chambers' | 'hsbc'>('epicure')
   const [disable, setDisable] = useState(false)
-  // const [mobileError, setMobileError] = useState<string | null>(null)
+  const [mobileError, setMobileError] = useState<string | null>(null)
 
   const { guestLogin, journeyType, updateGuestVouchers } = useGuestContext()
 
@@ -90,6 +89,7 @@ const ReceptionistDashboard: React.FC = () => {
       journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
       journeyType === JOURNEY_TYPES.NEUCOINS_REINSTATE
     ) {
+      setLoading(true)
       const recaptchaGenerated = await getRecaptchaToken()
       try {
         response = await axios.post(
@@ -105,8 +105,10 @@ const ReceptionistDashboard: React.FC = () => {
             },
           },
         )
-      } catch (error) {
+      } catch (error: any) {
         setErrorMessage(error?.response?.data?.message)
+      } finally {
+        setLoading(false)
       }
 
       if (response?.status == 201 && response?.data?.userType == 'existing') {
@@ -127,7 +129,7 @@ const ReceptionistDashboard: React.FC = () => {
           }`,
           {},
         )
-      } catch (error) {
+      } catch (error: any) {
         setErrorMessage(error?.response?.data?.message)
       } finally {
         setLoading(false)
@@ -224,7 +226,7 @@ const ReceptionistDashboard: React.FC = () => {
                 padding: theme.spacing(3),
                 borderRadius: 2,
                 width: '100%',
-                maxWidth: 400,
+                maxWidth: 420,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 2,
@@ -268,7 +270,7 @@ const ReceptionistDashboard: React.FC = () => {
 
               {inputMode === 'mobile' ? (
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                  <FormControl variant="outlined" sx={{ flex: '0 0 35%', height: 56 }}>
+                  {/* <FormControl variant="outlined" sx={{ flex: '0 0 35%', height: 56 }}>
                     <InputLabel>Country</InputLabel>
                     <Select
                       value={countryCode}
@@ -298,6 +300,20 @@ const ReceptionistDashboard: React.FC = () => {
                     type="string"
                     placeholder="ex : 91XXXXXX87"
                     customStyle={{ backgroundColor: '#f5f5f5' }}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        handleGenerateOTP()
+                      }
+                    }}
+                  /> */}
+                  <PhoneInputWithCountrySelector
+                    value={mobileNumber}
+                    onChange={(fullPhone, iso2) => {
+                      setMobileNumber(fullPhone)
+                      setCountryCode(iso2)
+                    }}
+                    error={mobileError || errorMessage || ''}
+                    setError={setMobileError}
                   />
                 </Box>
               ) : (
@@ -312,16 +328,6 @@ const ReceptionistDashboard: React.FC = () => {
                   placeholder="Enter Membership ID"
                 />
               )}
-              {/* 
-              <PhoneInputWithCountrySelector
-                value={mobileNumber}
-                onChange={(fullPhone, iso2) => {
-                  setMobileNumber(fullPhone)
-                  setCountryCode(iso2)
-                }}
-                error={mobileError || ''}
-                setError={setMobileError}
-              /> */}
 
               <Button
                 variant="contained"

@@ -157,6 +157,11 @@ const Login = () => {
                   </InputAdornment>
                 ),
               }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  handleLogin()
+                }
+              }}
               sx={{
                 '& .MuiInputBase-root': {
                   backgroundColor: 'inherit',

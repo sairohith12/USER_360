@@ -40,13 +40,6 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   const { journeyType, guestLogin } = useGuestContext()
 
   useEffect(() => {
-    if (open) {
-      // resetOtpState()
-      inputRefs.current[0]?.focus()
-    }
-  }, [open])
-
-  useEffect(() => {
     if (resendTimer > 0) {
       const timer = setTimeout(() => {
         setResendTimer((prev) => prev - 1)
@@ -55,17 +48,19 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
     }
   }, [resendTimer])
 
-  // useEffect(() => {
-  //   if (open) {
-  //     setOtp(['', '', '', '', '', ''])
-  //     setOtpError('')
-  //     setAttempts(0)
-  //     setResendCount(0)
-  //     setResendTimer(0)
-  //     setIsLockedOut(false)
-  //     inputRefs.current[0]?.focus()
-  //   }
-  // }, [open])
+  useEffect(() => {
+    if (open) {
+      setOtp(['', '', '', '', '', ''])
+      setOtpError('')
+      setAttempts(0)
+      setResendCount(0)
+      setResendTimer(0)
+      setIsLockedOut(false)
+      setTimeout(() => {
+        inputRefs.current[0]?.focus()
+      }, 0)
+    }
+  }, [open])
 
   const handleOtpChange = (index: number, value: string) => {
     if (!/^\d?$/.test(value)) return
@@ -119,7 +114,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
         guestLogin({ ...response?.data, accessToken: response?.headers?.['x-access-token'] })
         onVerified?.('')
       } else {
-        setOtpError(response?.message || 'Please enter a valid OTP.')
+        setOtpError((response as any)?.message || 'Please enter a valid OTP.')
       }
     } else if (
       journeyType === JOURNEY_TYPES.NEUCOINS_REDEMPTION ||
@@ -127,7 +122,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
     ) {
       onVerified?.(otpString)
     } else if (journeyType === JOURNEY_TYPES.LOGIN) {
-      let responseData: { success: boolean; [key: string]: any }
+      let responseData: any
       try {
         setLoading(true)
         setOtpError('')

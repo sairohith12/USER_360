@@ -14,6 +14,7 @@ interface FormInputProps {
   customStyle?: SxProps<Theme>
   disabled?: boolean
   placeholder?: string
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -27,6 +28,7 @@ const FormInput: React.FC<FormInputProps> = ({
   customStyle = {},
   disabled = false,
   placeholder = '',
+  onKeyDown,
 }) => {
   return (
     <TextField
@@ -43,6 +45,7 @@ const FormInput: React.FC<FormInputProps> = ({
       type={type}
       disabled={disabled}
       placeholder={placeholder}
+      onKeyDown={onKeyDown}
       sx={{
         backgroundColor: disabled ? '#f5f5f5' : '#fff',
         borderRadius: 2,

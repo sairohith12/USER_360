@@ -68,7 +68,7 @@ export const PhoneInputWithCountrySelector: React.FC<Props> = ({
     const rawValue = e.target.value
     if (selectedCountry) {
       const full = `${selectedCountry.dialCode}${rawValue}`
-      onChange(full, selectedCountry.iso2)
+      onChange(rawValue, selectedCountry.dialCode)
       validatePhone(rawValue)
     }
   }
