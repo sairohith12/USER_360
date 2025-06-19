@@ -112,7 +112,7 @@ const VouchersTab = () => {
     'ALL',
     ...Array.from(
       new Set(
-        vouchersFilteredByMembership
+        vouchersFilteredByStatus
           ?.map((voucherArr: { label: string }[]) =>
             voucherArr?.map((voucher: { label: string }) => voucher?.label),
           )
