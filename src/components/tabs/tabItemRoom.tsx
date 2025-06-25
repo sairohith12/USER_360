@@ -919,6 +919,7 @@ const TabItemRoom = () => {
             h_Representative_Email: null,
             h_confirmation_number: formValues?.bookingNumber,
             otp: otp,
+            userEmail: Guest?.vouchersResponse?.userDetails?.user?.email,
             roomBookingRequest: {
               bookingNumber: formValues?.bookingNumber,
               checkInDate: formatDateToYYYYMMDD(formValues?.checkIn),
@@ -929,7 +930,6 @@ const TabItemRoom = () => {
               propertyName: formValues?.propertyName,
               transactionBy:
                 user?.email || `${user?.firstName || ''} ${user?.lastName || ''}`.trim(),
-              amount: 0,
             },
           },
           {
@@ -940,11 +940,19 @@ const TabItemRoom = () => {
           },
         )
       } catch (error) {
-        setErrors({ invoiceNumber: (error as any)?.response?.data?.message })
+        setOpen(true)
+        setModalType('failure')
+        setApiResponseData([
+          {
+            label: 'Error Reason',
+            value: (error as any)?.response?.data?.message,
+          },
+        ])
         return
       } finally {
         setLoading(false)
         setOpenOTPModal(false)
+        setOpen(true)
       }
       if (
         voucherRedemptionData?.status !== 200 ||
@@ -954,8 +962,15 @@ const TabItemRoom = () => {
           redeemNeucoins:
             voucherRedemptionData?.data?.message || voucherRedemptionData?.data?.error?.message,
         })
+        setModalType('failure')
+        setApiResponseData([
+          {
+            label: 'Error Reason',
+            value:
+              voucherRedemptionData?.data?.message || voucherRedemptionData?.data?.error?.message,
+          },
+        ])
       } else if (voucherRedemptionData?.status === 200) {
-        setOpen(true)
         setModalType('success')
         setApiResponseData([
           {
@@ -965,10 +980,6 @@ const TabItemRoom = () => {
         ])
       }
     }
-    // if (journeyType !== JOURNEY_TYPES.NEUCOINS_REDEMPTION) {
-    //   setOpen(true)
-    //   setModalType('success')
-    // }
   }
 
   const vouchersExpiryExtensionResponseData = [
