@@ -96,29 +96,7 @@ const AddAdminModal: React.FC<Props> = ({ open, onClose }) => {
   const [createUserError, setCreateUserError] = useState()
   const [newUserData, setNewUserData] = useState<any>()
   const [allServices, setAllServices] = useState<any>()
-  const fetchUserProperties = async () => {
-    setLoading(true)
-    let allPropertiesData
-    try {
-      allPropertiesData = await api.get('admin/properties', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (allPropertiesData?.status === 200) {
-        setAllProperties(allPropertiesData?.data?.data)
-      }
-    } catch (error) {
-      setFetchPropertiesError(
-        (error as any)?.response?.message ||
-          (error as any)?.message ||
-          'An error occurred while fetching properties',
-      )
-      return
-    } finally {
-      setLoading(false)
-    }
-  }
+
   const clearData = () => {
     setFirstName('')
     setLastName('')
@@ -128,71 +106,27 @@ const AddAdminModal: React.FC<Props> = ({ open, onClose }) => {
     setAccessMap({})
     setNewUserData({})
   }
-  const fetchAllServices = async () => {
+
+  const fetchAllDetails = async () => {
     setLoading(true)
     let allServicesData
     try {
-      allServicesData = await api.get('admin/service', {
+      allServicesData = await api.get('admin/allDetails', {
         headers: {
           'Content-Type': 'application/json',
         },
       })
       if (allServicesData?.status === 200) {
-        setAllServices(allServicesData?.data?.data)
+        setAllServices(allServicesData?.data?.data?.service)
+        setPropertyRoles(allServicesData?.data?.data?.propertyRole)
+        setModules(allServicesData?.data?.data?.module)
+        setAllProperties(allServicesData?.data?.data?.property)
       }
     } catch (error) {
       setFetchPropertiesError(
         (error as any)?.response?.message ||
           (error as any)?.message ||
           'An error occurred while fetching services',
-      )
-      return
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const fetchPropertyRoles = async () => {
-    setLoading(true)
-    let propertyRoles
-    try {
-      propertyRoles = await api.get('admin/property-roles', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (propertyRoles?.status === 200) {
-        setPropertyRoles(propertyRoles?.data?.data)
-      }
-    } catch (error) {
-      setFetchPropertiesError(
-        (error as any)?.response?.message ||
-          (error as any)?.message ||
-          'An error occurred while fetching properties',
-      )
-      return
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const fetchModules = async () => {
-    setLoading(true)
-    let modulesData
-    try {
-      modulesData = await api.get('admin/modules', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (modulesData?.status === 200) {
-        setModules(modulesData?.data?.data)
-      }
-    } catch (error) {
-      setFetchPropertiesError(
-        (error as any)?.response?.message ||
-          (error as any)?.message ||
-          'An error occurred while fetching properties',
       )
       return
     } finally {
@@ -332,10 +266,7 @@ const AddAdminModal: React.FC<Props> = ({ open, onClose }) => {
   }
 
   useEffect(() => {
-    fetchUserProperties()
-    fetchPropertyRoles()
-    fetchModules()
-    fetchAllServices()
+    fetchAllDetails()
   }, [])
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>

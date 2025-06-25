@@ -343,7 +343,7 @@ const ManageAdmins = () => {
           />
         </Box>
       </Paper>
-      <AddAdminModal onClose={() => setOpen(false)} open={open} />
+      {open && <AddAdminModal onClose={() => setOpen(false)} open={open} />}
     </Box>
   )
 }
