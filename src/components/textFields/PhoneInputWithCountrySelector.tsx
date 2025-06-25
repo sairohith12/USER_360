@@ -74,7 +74,14 @@ export const PhoneInputWithCountrySelector: React.FC<Props> = ({
   }
 
   return (
-    <Box display="flex" gap={2}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: 2,
+        width: '100%',
+      }}
+    >
       <Autocomplete
         options={countryList}
         value={selectedCountry}
@@ -95,28 +102,26 @@ export const PhoneInputWithCountrySelector: React.FC<Props> = ({
           </ListItem>
         )}
         isOptionEqualToValue={(option, value) => option.iso2 === value?.iso2}
-        renderInput={(params) => {
-          return (
-            <TextField
-              {...params}
-              label="Select Country"
-              InputProps={{
-                ...params.InputProps,
-                startAdornment: (
-                  <>
-                    {selectedCountry && (
-                      <InputAdornment position="start" sx={{ mr: 1 }}>
-                        <FlagIcon iso2={selectedCountry.iso2} size={24} />
-                      </InputAdornment>
-                    )}
-                    {params.InputProps.startAdornment}
-                  </>
-                ),
-              }}
-            />
-          )
-        }}
-        sx={{ flex: 5 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Select Country"
+            InputProps={{
+              ...params.InputProps,
+              startAdornment: (
+                <>
+                  {selectedCountry && (
+                    <InputAdornment position="start" sx={{ mr: 1 }}>
+                      <FlagIcon iso2={selectedCountry.iso2} size={24} />
+                    </InputAdornment>
+                  )}
+                  {params.InputProps.startAdornment}
+                </>
+              ),
+            }}
+          />
+        )}
+        sx={{ flex: 1, minWidth: { xs: '100%', sm: 'auto' } }}
       />
       <TextField
         label="Phone Number"
@@ -125,7 +130,7 @@ export const PhoneInputWithCountrySelector: React.FC<Props> = ({
         placeholder="Enter phone number"
         error={!!error}
         helperText={error || ''}
-        sx={{ flex: 5 }}
+        sx={{ flex: 1, minWidth: { xs: '100%', sm: 'auto' } }}
       />
     </Box>
   )

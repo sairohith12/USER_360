@@ -99,7 +99,7 @@ const DynamicPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path])
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box sx={{ padding: { xs: 0, sm: 3 } }}>
       {ComponentToRender ? <ComponentToRender /> : <Typography>Page Not Found</Typography>}
     </Box>
   )

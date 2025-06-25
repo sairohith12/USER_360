@@ -37,10 +37,6 @@ const CoreLayout: React.FC<Props> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [journeyType])
 
-  // if (!isLoggedIn && router.pathname !== '/login') {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <Header onMenuClick={handleDrawerToggle} />
@@ -49,16 +45,14 @@ const CoreLayout: React.FC<Props> = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          width: { md: `calc(100% - ${drawerWidth}px)` },
+          width: { xs: '100%', md: `calc(100% - ${drawerWidth}px)` },
           overflowY: 'auto',
           bgcolor: 'background.default',
-          p: 3,
+          p: { xs: 2, md: 3 },
           mt: (theme) => theme.spacing(22),
           display: 'flex',
           flexDirection: 'column',
-          ml: ` ${drawerWidth}px`,
-          // backgroundColor: theme.palette.background.default,
-          // }}
+          ml: { xs: 0, md: `${drawerWidth}px` },
         }}
       >
         {children}

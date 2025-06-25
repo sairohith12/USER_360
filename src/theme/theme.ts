@@ -1,5 +1,5 @@
 // src/theme/theme.ts
-import { createTheme } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { Inter, Cinzel } from 'next/font/google'
 
 // Load fonts with desired subsets and weights
@@ -17,15 +17,49 @@ const cinzel = Cinzel({
 })
 
 // Light Theme
-const lightTheme = createTheme({
+let lightTheme = createTheme({
   typography: {
     fontFamily: inter.style.fontFamily,
-    h1: { fontFamily: cinzel.style.fontFamily },
-    h2: { fontFamily: cinzel.style.fontFamily },
-    h3: { fontFamily: cinzel.style.fontFamily },
-    h4: { fontFamily: cinzel.style.fontFamily },
-    h5: { fontFamily: cinzel.style.fontFamily },
-    h6: { fontFamily: cinzel.style.fontFamily },
+    h1: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 700,
+      fontSize: '4.25rem', // ~68px
+      lineHeight: 1.2,
+    },
+    h2: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 700,
+      fontSize: '3.75rem', // ~60px — as you had earlier
+      lineHeight: 1.3,
+    },
+    h3: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 600,
+      fontSize: '3rem', // ~48px
+    },
+    h4: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 600,
+      fontSize: '2.25rem', // ~36px
+    },
+    h5: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 500,
+      fontSize: '1.75rem', // ~28px
+    },
+    h6: {
+      fontFamily: cinzel.style.fontFamily,
+      fontWeight: 500,
+      fontSize: '1.375rem', // ~22px
+    },
+    // body1: {
+    //   fontFamily: inter.style.fontFamily,
+    //   fontSize: '1rem', // ~16px
+    // },
+    // body2: {
+    //   fontFamily: inter.style.fontFamily,
+    //   fontSize: '0.875rem', // ~14px
+    // },
   },
   palette: {
     mode: 'light',
@@ -111,6 +145,8 @@ const lightTheme = createTheme({
     },
   },
 })
+
+lightTheme = responsiveFontSizes(lightTheme)
 
 // Dark Theme
 const darkTheme = createTheme({
