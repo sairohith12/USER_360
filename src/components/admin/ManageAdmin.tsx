@@ -184,7 +184,7 @@ const ManageAdmins = () => {
             </Grid>
           </Box>
           <Button
-            endIcon={expanded ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+            endIcon={expanded ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
             variant="contained"
             size="small"
             sx={{
