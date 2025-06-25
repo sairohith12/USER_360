@@ -1,5 +1,5 @@
 // components/GuestForm.tsx
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Typography, CircularProgress, SelectChangeEvent } from '@mui/material'
 import FormInput from '../textFields/FormInput'
 import { LocalizationProvider } from '@mui/x-date-pickers'
@@ -57,7 +57,7 @@ const TabItemRoom = () => {
       field.type === 'date'
         ? null
         : field.name == 'propertyName'
-        ? 'Taj lands End Mumbai'
+        ? userSelectedProperty?.property?.hotel_name || ''
         : field.name == 'memberID'
         ? Guest?.memberID?.toString() || ''
         : field.name == 'bitDate'
@@ -989,6 +989,12 @@ const TabItemRoom = () => {
       value: Guest?.expiryDate ? `${dayjs(Guest.expiryDate).toDate().toISOString()}` : '',
     },
   ]
+  useEffect(() => {
+    setFormValues((prev) => ({
+      ...prev,
+      ['propertyName']: userSelectedProperty?.property?.hotel_name || '',
+    }))
+  }, [userSelectedProperty?.property?.hotel_name])
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box

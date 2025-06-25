@@ -12,6 +12,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  InputAdornment,
+  IconButton,
 } from '@mui/material'
 import { CheckCircle, AccessTime, Cancel, ExpandMore, Search } from '@mui/icons-material'
 import { useGuestContext } from '@/context/guestContext'
@@ -19,6 +21,9 @@ import { JOURNEY_TYPES } from '../textFields/constants'
 import FormSelect from '../textFields/FormSelect'
 import ensureArray from '@/utils/ensureArray'
 import { formatDateToYYYYMMDD } from '@/utils/date'
+import ClearIcon from '@mui/icons-material/Clear'
+import { useEligibleVouchers } from '@/utils/useEligibleVouchers'
+import { useAuth } from '@/context/authContext'
 
 type VoucherStatus = 'valid' | 'expired' | 'pending' | 'used' | 'available' | 'cancelled'
 
@@ -55,6 +60,11 @@ const VouchersTab = () => {
   const [selectedTab, setSelectedTab] = useState(0)
   const [searchTerm, setSearchTerm] = useState('')
   const [membershipType, setMembershipType] = useState('ALL')
+  const { userSelectedProperty } = useAuth()
+  const cmsVouchersData = global?.window?.localStorage?.getItem('sanity-special-page-cache')
+    ? JSON.parse(global?.window?.localStorage?.getItem('sanity-special-page-cache') || '{}')?.data
+        ?.cmsVouchers
+    : null
   const { guestLogin, Guest, journeyType } = useGuestContext() as {
     guestLogin: (data: any) => void
     Guest: {
@@ -88,17 +98,23 @@ const VouchersTab = () => {
     isStatusAvailable ? voucherAPIData?.redeemedVouchers : voucherAPIData?.pendingVouchers,
   ) //Getting voucher based on status from the store
 
+  const updatedVouchers = useEligibleVouchers(
+    cmsVouchersData,
+    vouchersFilteredByStatus,
+    userSelectedProperty?.property?.hotel_code,
+  )
+
   useEffect(() => {
     setSelectedTab(0)
     setSearchTerm('')
   }, [membershipType])
 
   //Filtering vouchers from selected membership in dropdown
-  const vouchersFilteredByMembership = vouchersFilteredByStatus
+  const vouchersFilteredByMembership = updatedVouchers
     ?.map((vouchers: any) =>
       membershipType?.toLocaleLowerCase() === 'all'
-        ? vouchers
-        : vouchers?.filter(
+        ? vouchers?.vouchers
+        : vouchers?.vouchers?.filter(
             (voucher: any) =>
               voucher?.label?.toLocaleLowerCase() === membershipType?.toLocaleLowerCase(),
           ),
@@ -112,9 +128,9 @@ const VouchersTab = () => {
     'ALL',
     ...Array.from(
       new Set(
-        vouchersFilteredByStatus
+        updatedVouchers
           ?.map((voucherArr: { label: string }[]) =>
-            voucherArr?.map((voucher: { label: string }) => voucher?.label),
+            voucherArr?.vouchers?.map((voucher: { label: string }) => voucher?.label),
           )
           ?.flat(),
       ),
@@ -198,6 +214,20 @@ const VouchersTab = () => {
               startAdornment={<Search sx={{ mr: 1 }} />}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              endAdornment={
+                searchTerm?.length > 0 ? (
+                  <InputAdornment position="end">
+                    <IconButton
+                      size="small"
+                      onClick={() => setSearchTerm('')}
+                      edge="end"
+                      aria-label="clear selection"
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ) : null
+              }
               sx={{
                 border: '1px solid #ccc',
                 borderRadius: 2,

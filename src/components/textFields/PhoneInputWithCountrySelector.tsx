@@ -28,7 +28,7 @@ type Props = {
   value: string
   onChange: (fullPhone: string, iso2: string) => void
   error?: string
-  setError?: (error: string | null) => void
+  setError?: (error: string) => void
 }
 
 export const PhoneInputWithCountrySelector: React.FC<Props> = ({
@@ -58,7 +58,7 @@ export const PhoneInputWithCountrySelector: React.FC<Props> = ({
     if (!selectedCountry) return
     const parsed = parsePhoneNumberFromString(`${selectedCountry.dialCode}${raw}`)
     if (parsed?.isValid()) {
-      setError?.(null)
+      setError?.('')
     } else {
       setError?.('Invalid phone number for selected country')
     }

@@ -41,7 +41,7 @@ const ReceptionistDashboard: React.FC = () => {
   const [memberShipNo, setMemberShipNo] = useState('')
   const [membership, setMembership] = useState<'epicure' | 'chambers' | 'hsbc'>('epicure')
   const [disable, setDisable] = useState(false)
-  const [mobileError, setMobileError] = useState<string | null>(null)
+  const [mobileError, setMobileError] = useState<string>('')
 
   const { guestLogin, journeyType, updateGuestVouchers } = useGuestContext()
 
@@ -66,9 +66,7 @@ const ReceptionistDashboard: React.FC = () => {
     setIsSubmitted(true)
 
     if (inputMode === 'mobile') {
-      const isValid = validateMobileNumber(mobileNumber, countryCode)
-      if (!isValid) {
-        setErrorMessage('Please enter valid mobile number')
+      if (errorMessage?.length > 0) {
         return
       }
     } else {
@@ -336,7 +334,12 @@ const ReceptionistDashboard: React.FC = () => {
                 color="primary"
                 onClick={handleGenerateOTP}
                 disabled={
-                  loading || (inputMode === 'mobile' ? mobileNumber.length === 0 : !disable)
+                  loading ||
+                  (inputMode === 'mobile'
+                    ? errorMessage?.length > 0 ||
+                      mobileError?.length > 0 ||
+                      mobileNumber?.length < 5
+                    : !disable)
                 }
                 startIcon={loading && <CircularProgress size={20} color="inherit" />}
                 sx={{

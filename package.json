@@ -17,6 +17,7 @@
     "@mui/material": "^7.0.2",
     "@mui/x-data-grid": "^8.2.0",
     "@mui/x-date-pickers": "^7.29.1",
+    "@sanity/client": "^7.6.0",
     "axios": "^1.9.0",
     "country-telephone-data": "^0.6.3",
     "dayjs": "^1.11.13",
