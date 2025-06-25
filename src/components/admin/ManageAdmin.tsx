@@ -24,6 +24,7 @@ import {
   IconButton,
 } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useTheme } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
 import AddIcon from '@mui/icons-material/Add'
@@ -120,6 +121,135 @@ const ManageAdmins = () => {
 
   const paginatedUsers = filteredUsers.slice((page - 1) * rowsPerPage, page * rowsPerPage)
 
+  const AccordianUserData = ({ user, index }: any) => {
+    const [expanded, setExpanded] = useState(false)
+    return (
+      <Accordion
+        key={index}
+        sx={{ mb: 2 }}
+        expanded={expanded}
+        onChange={() => setExpanded(!expanded)}
+      >
+        <AccordionSummary>
+          <Box sx={{ width: '100%' }}>
+            <Grid container spacing={2} alignItems="center" wrap="wrap">
+              <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
+                <Typography variant="subtitle2">Name</Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: theme?.palette?.primary?.main }}
+                  fontWeight={700}
+                >
+                  {user?.user?.firstName + ' ' + user?.user?.lastName}
+                </Typography>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
+                <Typography variant="subtitle2">Email</Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: theme?.palette?.primary?.main, wordBreak: 'break-word' }}
+                  fontWeight={700}
+                >
+                  {user?.user?.email}
+                </Typography>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
+                <Typography variant="subtitle2">Property Name</Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: theme?.palette?.primary?.main }}
+                  fontWeight={700}
+                >
+                  {user?.access?.property?.hotel_name}
+                </Typography>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
+                <Typography variant="subtitle2">Role</Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: theme?.palette?.primary?.main }}
+                  fontWeight={700}
+                >
+                  {user?.access?.propertyRole?.name}
+                </Typography>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
+                <Typography variant="subtitle2">Status</Typography>
+                <Chip
+                  label={user?.user?.status || 'Active'}
+                  color={'success'}
+                  // color={user?.user?.status?.toLowerCase() === 'active' ? 'success' : 'default'}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+          <Button
+            endIcon={expanded ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+            variant="contained"
+            size="small"
+            sx={{
+              paddingX: 4,
+              paddingY: 1.2,
+              borderRadius: 10,
+              textTransform: 'none',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+              '&:hover': {
+                transform: 'scale(1.05)',
+              },
+              minWidth: '11%',
+            }}
+          >
+            {expanded ? 'Hide Matrix' : 'View Matrix'}
+          </Button>
+        </AccordionSummary>
+
+        <AccordionDetails>
+          <Box sx={{ overflowX: 'auto' }}>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    <strong>Module</strong>
+                  </TableCell>
+                  {allModules
+                    ?.flatMap((m) => m?.subItems)
+                    ?.map((label, idx) => (
+                      <TableCell key={idx} align="center">
+                        {label?.label}
+                      </TableCell>
+                    ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {allModules?.map((module, mIdx) => (
+                  <TableRow key={mIdx}>
+                    <TableCell>{module.label}</TableCell>
+                    {allModules
+                      ?.flatMap((m) => m?.subItems)
+                      ?.map((subItem, sIdx) => (
+                        <TableCell key={sIdx} align="center">
+                          {user?.access?.services
+                            ?.find(
+                              (s: any) =>
+                                s.name?.toLowerCase() === module?.identifier?.toLowerCase(),
+                            )
+                            ?.modules?.some((m: any) => m?.name === subItem?.identifier)
+                            ? '✅'
+                            : '—'}
+                        </TableCell>
+                      ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+    )
+  }
+
   return (
     <Box p={4}>
       <Typography variant="h4" gutterBottom fontWeight={700}>
@@ -212,126 +342,7 @@ const ManageAdmins = () => {
         </Paper>
 
         {paginatedUsers.map((user: any, index: any) => (
-          <Accordion key={index} sx={{ mb: 2 }}>
-            <AccordionSummary
-              expandIcon={
-                <Button
-                  endIcon={<ArrowDropDownIcon />}
-                  variant="contained"
-                  size="small"
-                  sx={{
-                    paddingX: 4,
-                    paddingY: 1.2,
-                    borderRadius: 10,
-                    textTransform: 'none',
-                    fontWeight: 'bold',
-                    fontSize: '1rem',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                    '&:hover': {
-                      transform: 'scale(1.05)',
-                    },
-                  }}
-                >
-                  View Matrix
-                </Button>
-              }
-            >
-              <Box sx={{ width: '100%' }}>
-                <Grid container spacing={2} alignItems="center" wrap="wrap">
-                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
-                    <Typography variant="subtitle2">Name</Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: theme?.palette?.primary?.main }}
-                      fontWeight={700}
-                    >
-                      {user?.user?.firstName + ' ' + user?.user?.lastName}
-                    </Typography>
-                  </Grid>
-                  <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
-                    <Typography variant="subtitle2">Email</Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: theme?.palette?.primary?.main, wordBreak: 'break-word' }}
-                      fontWeight={700}
-                    >
-                      {user?.user?.email}
-                    </Typography>
-                  </Grid>
-                  <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
-                    <Typography variant="subtitle2">Property Name</Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: theme?.palette?.primary?.main }}
-                      fontWeight={700}
-                    >
-                      {user?.access?.property?.hotel_name}
-                    </Typography>
-                  </Grid>
-                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
-                    <Typography variant="subtitle2">Role</Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: theme?.palette?.primary?.main }}
-                      fontWeight={700}
-                    >
-                      {user?.access?.propertyRole?.name}
-                    </Typography>
-                  </Grid>
-                  <Grid size={{ xs: 12, sm: 6, md: 2, lg: 2 }}>
-                    <Typography variant="subtitle2">Status</Typography>
-                    <Chip
-                      label={user?.user?.status || 'Active'}
-                      color={'success'}
-                      // color={user?.user?.status?.toLowerCase() === 'active' ? 'success' : 'default'}
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            </AccordionSummary>
-
-            <AccordionDetails>
-              <Box sx={{ overflowX: 'auto' }}>
-                <Table size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>
-                        <strong>Module</strong>
-                      </TableCell>
-                      {allModules
-                        ?.flatMap((m) => m?.subItems)
-                        ?.map((label, idx) => (
-                          <TableCell key={idx} align="center">
-                            {label?.label}
-                          </TableCell>
-                        ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {allModules?.map((module, mIdx) => (
-                      <TableRow key={mIdx}>
-                        <TableCell>{module.label}</TableCell>
-                        {allModules
-                          ?.flatMap((m) => m?.subItems)
-                          ?.map((subItem, sIdx) => (
-                            <TableCell key={sIdx} align="center">
-                              {user?.access?.services
-                                ?.find(
-                                  (s: any) =>
-                                    s.name?.toLowerCase() === module?.identifier?.toLowerCase(),
-                                )
-                                ?.modules?.some((m: any) => m?.name === subItem?.identifier)
-                                ? '✅'
-                                : '—'}
-                            </TableCell>
-                          ))}
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
+          <AccordianUserData user={user} index={index} key={index} />
         ))}
 
         <Box mt={2} display="flex" justifyContent="center">
