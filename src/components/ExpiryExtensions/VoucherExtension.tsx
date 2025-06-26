@@ -9,7 +9,12 @@ import TabItemRoom from '../tabs/tabItemRoom'
 const VoucherExtension: React.FC = () => {
   const { isGuestLoggedIn, Guest } = useGuestContext()
   return (
-    <Box padding={'0 3vw'} alignContent={'center'}>
+    <Box
+      sx={{
+        px: { xs: 0, sm: '3vw' },
+        alignContent: 'center',
+      }}
+    >
       {!isGuestLoggedIn ? (
         <MobileNumberInput />
       ) : isGuestLoggedIn && !Guest?.privilegeCode ? (

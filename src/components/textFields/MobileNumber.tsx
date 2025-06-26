@@ -95,10 +95,12 @@ const ReceptionistDashboard: React.FC = () => {
           JSON.stringify({
             phone: mobileNumber,
             countryCode: countryCode?.slice(1),
+            sendOtp: true,
             recaptchaToken: recaptchaGenerated,
           }),
           {
             headers: {
+              Authorization: localStorage.getItem('accessToken'),
               'Content-Type': 'application/json',
             },
           },
@@ -268,42 +270,6 @@ const ReceptionistDashboard: React.FC = () => {
 
               {inputMode === 'mobile' ? (
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
-                  {/* <FormControl variant="outlined" sx={{ flex: '0 0 35%', height: 56 }}>
-                    <InputLabel>Country</InputLabel>
-                    <Select
-                      value={countryCode}
-                      onChange={handleCountryChange}
-                      label="Country"
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 2,
-                          fontSize: theme.typography.body2.fontSize,
-                          padding: theme.spacing(1, 2),
-                        },
-                      }}
-                    >
-                      <MenuItem value="+1">+1 (USA)</MenuItem>
-                      <MenuItem value="+91">+91 (India)</MenuItem>
-                      <MenuItem value="+44">+44 (UK)</MenuItem>
-                    </Select>
-                  </FormControl>
-
-                  <FormInput
-                    name={MobilePhoneNumber}
-                    label="Enter Mobile Number"
-                    value={mobileNumber}
-                    onChange={handleMobileNumberChange}
-                    error={!!errorMessage}
-                    helperText={errorMessage}
-                    type="string"
-                    placeholder="ex : 91XXXXXX87"
-                    customStyle={{ backgroundColor: '#f5f5f5' }}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter') {
-                        handleGenerateOTP()
-                      }
-                    }}
-                  /> */}
                   <PhoneInputWithCountrySelector
                     value={mobileNumber}
                     onChange={(fullPhone, countryCode) => {

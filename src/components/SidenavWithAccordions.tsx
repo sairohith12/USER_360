@@ -75,6 +75,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
   const { userType, userSelectedProperty } = useAuth()
   const { updatedJourneyType } = useGuestContext()
   const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const isMobile = useMediaQuery('(max-width:480px)')
   const [expandedAccordion, setExpandedAccordion] = useState<string | false>(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const currentPath = router.asPath
@@ -188,6 +189,9 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
                         alignItems: 'center',
                       }}
                       onClick={() => {
+                        if (isMobile) {
+                          handleDrawerToggle() // 👈 close drawer on mobile
+                        }
                         updatedJourneyType(subItem.path?.replaceAll('/', '-') || '')
                       }}
                     >
@@ -226,6 +230,9 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
             alignItems: 'center',
           }}
           onClick={() => {
+            if (isMobile) {
+              handleDrawerToggle() // 👈 close drawer on mobile
+            }
             updatedJourneyType(item.path?.replaceAll('/', '-') || '')
           }}
         >
@@ -255,6 +262,10 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
     background: 'linear-gradient(180deg, #f9fafa 0%, #e0e0e0 100%)',
     padding: '16px 8px',
     transition: 'width 0.3s ease',
+    '@media (max-width:480px)': {
+      top: '88px',
+      height: 'calc(100% - 88px)',
+    },
   }
 
   useEffect(() => {

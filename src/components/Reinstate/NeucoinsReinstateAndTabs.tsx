@@ -9,7 +9,12 @@ const NeucoinsReinstateAndTabs: React.FC = () => {
   const { isGuestLoggedIn } = useGuestContext()
 
   return (
-    <Box padding={'0 3vw'} alignContent={'center'}>
+    <Box
+      sx={{
+        px: { xs: 0, sm: '3vw' },
+        alignContent: 'center',
+      }}
+    >
       {!isGuestLoggedIn ? (
         <MobileNumberInput />
       ) : (

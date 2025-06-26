@@ -849,7 +849,7 @@ const TabItemRoom = () => {
       }
       if (
         (redeemNeucoinsData?.status == 200 &&
-          redeemNeucoinsData?.data?.transactionStatus !== 'success') ||
+          redeemNeucoinsData?.data?.transactionStatus?.toLowerCase() !== 'success') ||
         redeemNeucoinsData?.status !== 200
       ) {
         setModalType('failure')
@@ -869,7 +869,7 @@ const TabItemRoom = () => {
         ])
       } else if (
         redeemNeucoinsData?.status == 200 &&
-        redeemNeucoinsData?.data?.transactionStatus === 'success'
+        redeemNeucoinsData?.data?.transactionStatus?.toLowerCase() === 'success'
       ) {
         setModalType('success')
         setOpen(true)
@@ -1012,32 +1012,39 @@ const TabItemRoom = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          padding: 4,
+          p: { xs: 2, sm: 3, md: 4 },
           backgroundColor: '#f7f9fc',
           borderRadius: 3,
           boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-          marginTop: 4,
+          mt: { xs: 2, md: 4 },
         }}
       >
         <Typography
           variant="h5"
-          mb={3}
+          mb={{ xs: 2, sm: 3 }}
           fontWeight="bold"
-          sx={{ color: '#333', textAlign: 'center' }}
+          sx={{
+            color: '#333',
+            textAlign: 'center',
+            fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' },
+          }}
         >
           Please Enter Booking Details
         </Typography>
-
-        {/* <Grid container spacing={3}> */}
 
         <Box
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: 2,
+            flexDirection: { xs: 'column', sm: 'row' },
           }}
         >
           {journeyFields.map((field) => {
+            const commonStyle = {
+              flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 30%' },
+            }
+
             if (field.type === 'date') {
               return (
                 <DateInput
@@ -1048,9 +1055,7 @@ const TabItemRoom = () => {
                   onChange={(name, date) => handleDateChange(name, date ? dayjs(date) : null)}
                   error={!!errors[field.name]}
                   helperText={errors[field.name]}
-                  customStyle={{
-                    flex: '1 1 30%',
-                  }}
+                  customStyle={commonStyle}
                 />
               )
             }
@@ -1068,6 +1073,7 @@ const TabItemRoom = () => {
                   key={field.name}
                   disabled={field.disable}
                   placeholder={field.placeHolderText}
+                  customStyle={commonStyle}
                 />
               )
             }
@@ -1085,16 +1091,14 @@ const TabItemRoom = () => {
                   key={field.name}
                   disabled={field.disable}
                   placeholder={field.placeHolderText}
-                  customStyle={{
-                    flex: '1 1 30%',
-                  }}
+                  customStyle={commonStyle}
                 />
               )
             }
           })}
         </Box>
 
-        <Box sx={{ mt: 4, textAlign: 'center' }}>
+        <Box sx={{ mt: { xs: 3, sm: 4 }, textAlign: 'center' }}>
           <Button
             type="submit"
             variant="contained"
@@ -1103,11 +1107,11 @@ const TabItemRoom = () => {
             disabled={loading}
             startIcon={loading && <CircularProgress size={20} color="inherit" />}
             sx={{
-              paddingX: 5,
-              paddingY: 1.5,
+              px: { xs: 3, sm: 5 },
+              py: 1.5,
               borderRadius: 10,
               fontWeight: 'bold',
-              fontSize: '1rem',
+              fontSize: { xs: '0.875rem', sm: '1rem' },
               textTransform: 'none',
               transition: 'all 0.3s ease',
               '&:hover': {

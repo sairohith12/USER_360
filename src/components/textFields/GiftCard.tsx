@@ -218,7 +218,14 @@ const GiftCardDetails: React.FC = () => {
   }
 
   return (
-    <Box sx={{ p: 4, overflowY: 'auto', textAlign: 'center' }}>
+    <Box
+      sx={{
+        px: { xs: 0, sm: 3, md: 4 },
+        py: { xs: 0, sm: 4, md: 4 },
+        overflowY: 'auto',
+        textAlign: 'center',
+      }}
+    >
       {/* Heading */}
       <Typography
         variant="h2"
