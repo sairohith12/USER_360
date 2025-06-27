@@ -91,7 +91,13 @@ const Header: React.FC<Props> = ({ onMenuClick }) => {
             )}
             <Link href="/" passHref>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-                <Image src="/logo/IHCL-LOGO-white.png" alt="Logo" width={90} height={35} priority />
+                <Image
+                  src="/logo/IHCL-LOGO-white.png"
+                  alt="Logo"
+                  width={isDesktop ? 90 : 60}
+                  height={isDesktop ? 35 : 25}
+                  priority
+                />
                 {!isMobile && (
                   <Typography
                     fontSize="0.7rem"

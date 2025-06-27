@@ -54,10 +54,9 @@ const GiftCardInfo: React.FC<GiftCardInfoProps> = ({
   isExpiryExtension = false,
   onRedeem,
 }) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery('(max-width:480px)')
   const balanceValue = balance
-  const isRedeemable = (status === 'Active' || status === 'Activated') && balanceValue > 0
+  const isRedeemable = (status === 'Active' || status === 'Activated') && Number(balanceValue) > 0
 
   return (
     <Paper
@@ -69,10 +68,13 @@ const GiftCardInfo: React.FC<GiftCardInfoProps> = ({
         borderRadius: 4,
         overflow: 'hidden',
         backgroundColor: '#fff',
+        // '@media (max-width:480px)': {
+        //   minWidth: '85vw',
+        // },
       }}
     >
       {/* Info Grid */}
-      <Grid container direction={isMobile ? 'column' : 'row'}>
+      <Grid container direction={isMobile ? 'column' : 'row'} alignItems="flex-start">
         <InfoItem label="Card Number" value={cardNumber} icon={<CreditCardIcon />} />
         {!isMobile && <Divider orientation="vertical" flexItem />}
         <InfoItem

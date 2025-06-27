@@ -150,6 +150,7 @@ const Login = () => {
               onChange={handleEmailChange}
               error={!!emailError}
               helperText={emailError}
+              disabled={loading}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

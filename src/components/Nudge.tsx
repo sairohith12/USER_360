@@ -10,7 +10,6 @@ const UserDetails: React.FC = () => {
   if (!isGuestLoggedIn || !Guest) {
     return null // If not logged in, return nothing
   }
-  console.log('Guest Details:', Guest)
   const nudgeData =
     journeyType === JOURNEY_TYPES?.TEGC_REDEMPTION
       ? {
