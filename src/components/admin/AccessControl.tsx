@@ -160,7 +160,7 @@ const AccessControl = () => {
       if (userData?.status === 200) {
         if (userData?.data?.usersData?.length > 0) {
           setFilteredUsers(
-            userData?.data?.usersData?.flatMap(({ user, access }) =>
+            userData?.data?.usersData?.flatMap(({ user, access }: { user: any; access: any[] }) =>
               access.map((a: any) => ({ user, access: a })),
             ),
           )
