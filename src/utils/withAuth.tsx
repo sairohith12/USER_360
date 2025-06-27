@@ -1,34 +1,31 @@
 // utils/withAuth.tsx
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "../context/authContext";
-import MainLayout from "@/components/layout/CoreLayout";
-
-type UserType = "admin" | "editor" | "viewer";
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useAuth, UserType } from '../context/authContext'
+import MainLayout from '@/components/layout/CoreLayout'
 
 interface Options {
-  roles?: UserType[]; // Optional: restrict to specific roles
-  redirectTo?: string; // Optional: default is "/"
+  roles?: UserType[] // Optional: restrict to specific roles
+  redirectTo?: string // Optional: default is "/"
 }
 
 export function withAuth<P extends object>(
   Component: React.ComponentType<P>,
-  options: Options = {}
+  options: Options = {},
 ): React.FC<P> {
-  const { roles, redirectTo = "/" } = options;
+  const { roles, redirectTo = '/' } = options
 
   const Wrapper: React.FC<P> = (props) => {
-    const { isLoggedIn, userType } = useAuth();
-    const router = useRouter();
+    const { isLoggedIn, userType } = useAuth()
+    const router = useRouter()
 
-    const isAuthorized =
-      isLoggedIn && (!roles || (userType && roles.includes(userType)));
+    const isAuthorized = isLoggedIn && (!roles || (userType && roles.includes(userType)))
 
     useEffect(() => {
       if (!isAuthorized) {
-        router.replace(redirectTo);
+        router.replace(redirectTo)
       }
-    }, [isAuthorized, router]);
+    }, [isAuthorized, router])
 
     if (!isAuthorized) {
       return (
@@ -36,11 +33,11 @@ export function withAuth<P extends object>(
           <h1>Unauthorized</h1>
           <p>You do not have access to this page.</p>
         </MainLayout>
-      );
+      )
     }
 
-    return <Component {...props} />;
-  };
+    return <Component {...props} />
+  }
 
-  return Wrapper;
+  return Wrapper
 }

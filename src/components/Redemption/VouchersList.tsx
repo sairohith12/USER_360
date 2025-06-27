@@ -129,7 +129,7 @@ const VouchersTab = () => {
     ...Array.from(
       new Set(
         updatedVouchers
-          ?.map((voucherArr: { label: string }[]) =>
+          ?.map((voucherArr: any) =>
             voucherArr?.vouchers?.map((voucher: { label: string }) => voucher?.label),
           )
           ?.flat(),

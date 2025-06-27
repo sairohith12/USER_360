@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, ReactNode } from 'react'
 
 // Define types for the Guest data
 interface Guest {
-  [key: string]: string | number | null | undefined | Dayjs
+  [key: string]: string | number | null | undefined | Dayjs | any
 }
 //  {
 //   firstName: string;

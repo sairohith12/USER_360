@@ -141,7 +141,7 @@ const GiftCardDetails: React.FC = () => {
         })
       }
     } catch (error) {
-      setWrongMsg(error?.response?.data?.message || 'Error fetching gift card balance')
+      setWrongMsg((error as any)?.response?.data?.message || 'Error fetching gift card balance')
     } finally {
       setLoading(false)
     }

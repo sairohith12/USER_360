@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import api from 'api/axios'
+import { AxiosResponse } from 'axios'
 
 export type UserType = 'admin' | 'editor' | 'viewer' | 'super_admin' | null
 
@@ -18,8 +19,8 @@ interface User {
 interface AuthContextType {
   user: User | null
   loading: boolean
-  login: (email: string) => Promise<void>
-  verifyOtp: (email: string | undefined, otp: string) => Promise<void>
+  login: (email: string) => Promise<AxiosResponse<any, any>>
+  verifyOtp: (email: string | undefined, otp: string) => any
   logout: () => void
   accessToken: string | null
   isLoggedIn: boolean
@@ -40,13 +41,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [error, setError] = useState()
   // const [refreshToken, setRefreshToken] = useState<string | null>(null)
 
-  const login = async (email: string) => {
+  const login = async (email: string): Promise<AxiosResponse<any, any>> => {
     try {
       const response = await api.post('/auth/login', { email })
       return response
     } catch (error) {
       console.error('Login failed', error)
-      throw error
+      return (error as any)?.response
     }
   }
 

@@ -15,6 +15,7 @@ import {
   ListItem,
   Tooltip,
   IconButton,
+  ListItemProps,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
@@ -54,8 +55,14 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
     },
   },
 }))
-
-const StyledListItem = styled(ListItem)(({ theme }) => ({
+interface StyledListItemProps extends ListItemProps {
+  selected?: boolean
+  button?: true
+  to?: string
+}
+const StyledListItem = styled(ListItem, {
+  shouldForwardProp: (prop) => prop !== 'selected',
+})<StyledListItemProps>(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   margin: '2px 4px',
   '&.Mui-selected': {
@@ -178,7 +185,6 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
                   return (
                     <StyledListItem
                       key={subIndex}
-                      button
                       selected={isSubActive}
                       component={NextLinkComposed}
                       to={subItem.path!}
@@ -190,7 +196,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
                       }}
                       onClick={() => {
                         if (isMobile) {
-                          handleDrawerToggle() // 👈 close drawer on mobile
+                          handleDrawerToggle()
                         }
                         updatedJourneyType(subItem.path?.replaceAll('/', '-') || '')
                       }}
@@ -231,7 +237,7 @@ const SidenavWithAccordions: React.FC<Props> = ({ mobileOpen, handleDrawerToggle
           }}
           onClick={() => {
             if (isMobile) {
-              handleDrawerToggle() // 👈 close drawer on mobile
+              handleDrawerToggle()
             }
             updatedJourneyType(item.path?.replaceAll('/', '-') || '')
           }}
